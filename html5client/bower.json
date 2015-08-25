@@ -1,0 +1,9 @@
+{
+  "name": "zeiterfassung",
+  "version": "0.1.0",
+  "dependencies": {
+    "angular": "1.4.4",
+    "lodash": "*",
+    "bootstrap": "3.3.5"
+  }
+}
