@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "angular": "1.4.4",
+    "angular-ui-router": "0.2.15",
     "lodash": "*",
     "bootstrap": "3.3.5"
   }
