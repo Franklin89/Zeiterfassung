@@ -11,7 +11,9 @@ namespace Backend
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+#if !DEBUG
             config.Filters.Add(new RequireHttpsAttribute());
+#endif
 
             // Web API routes
             config.MapHttpAttributeRoutes();
