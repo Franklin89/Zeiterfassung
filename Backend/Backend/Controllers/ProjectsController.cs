@@ -57,13 +57,14 @@ namespace Backend.Controllers
             }
         }
 
-        //[HttpGet]
-        //public IEnumerable<Task> GetTasksByProject(int id)
-        //{
-        //    using (var db = new DatabaseContext())
-        //    {
-        //        return db.Projects.SingleOrDefault(p => p.Id == id).Tasks.ToList();
-        //    }
-        //}
+        [HttpGet]
+        [Route("projects/GetTasksByProject/{id}")]
+        public IEnumerable<Task> GetTasksByProject(int id)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Projects.SingleOrDefault(p => p.Id == id).Tasks.ToList();
+            }
+        }
     }
 }
