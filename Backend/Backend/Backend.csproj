@@ -175,6 +175,10 @@
     <Compile Include="Migrations\201509010724000_InitialMigration.Designer.cs">
       <DependentUpon>201509010724000_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509010842141_change time recording.cs" />
+    <Compile Include="Migrations\201509010842141_change time recording.Designer.cs">
+      <DependentUpon>201509010842141_change time recording.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Task.cs" />
@@ -237,6 +241,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201509010724000_InitialMigration.resx">
       <DependentUpon>201509010724000_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010842141_change time recording.resx">
+      <DependentUpon>201509010842141_change time recording.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

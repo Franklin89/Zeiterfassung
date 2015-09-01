@@ -26,8 +26,8 @@ namespace Backend.Models
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
 
-        public DateTime Start { get; set; }
+        public double Time { get; set; }
 
-        public DateTime End { get; set; }
+        public DateTime Date{ get; set; }
     }
 }
