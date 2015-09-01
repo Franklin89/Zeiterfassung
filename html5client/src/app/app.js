@@ -37,5 +37,10 @@ zeiterfassungsapp.config(function ($stateProvider, $urlRouterProvider) {
             url: "/accountManagement",
             templateUrl: "usertask/accountManagement.html"
             //controller: "UserCtrl as vm"
+        })
+        .state('statistics', {
+            url: "/statistics",
+            templateUrl: "statistics/statistic.html"
+            //controller: "UserCtrl as vm"
         });
 });

@@ -1,1 +1,61 @@
 <p>Dies ist die ErfassungsView</p>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+            <label>Projekt</label>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    Projekt
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Projekt 1</a></li>
+                    <li><a href="#">Projekt 2</a></li>
+                    <li><a href="#">Projekt 3</a></li>
+                    <li><a href="#">Projekt 4</a></li>
+                </ul>
+            </div>
+
+            <label>Tätigkeit</label>
+
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    Tätigkeit
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Tätigkeit 1</a></li>
+                    <li><a href="#">Tätigkeit 2</a></li>
+                    <li><a href="#">Tätigkeit 3</a></li>
+                    <li><a href="#">Tätigkeit 4</a></li>
+                </ul>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker1').datetimepicker();
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <label>Stunden</label>
+            <input type="number" min="1" max="12" value="3" class="form-control"/>
+        </div>
+    </div>
+</div>
