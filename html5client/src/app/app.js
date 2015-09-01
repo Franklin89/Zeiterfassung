@@ -3,7 +3,9 @@
  */
 'use strict';
 
-var zeiterfassungsapp = angular.module('zeiterfassung.ui', ['ui.router'])
+var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
+    'ui.router',
+    'zeiterfassung.ui.users'])
 
     .controller('MainController', ['$log', function($log) {
 

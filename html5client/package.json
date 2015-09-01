@@ -19,7 +19,12 @@
     "node-uuid": "~1.4.3",
     "optimist": "~0.6.1",
     "prompt": "^0.2.13",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "karma": "0.12.28",
+    "karma-chrome-launcher": "~0.1.7",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-jasmine": "~0.2.0",
+    "karma-safari-launcher": "^0.1.1"
   },
   "private": true,
   "main": "app.js",
