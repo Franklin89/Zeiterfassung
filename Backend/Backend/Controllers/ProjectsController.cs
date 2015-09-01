@@ -3,6 +3,7 @@ using Backend.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace Backend.Controllers
 {
@@ -55,5 +56,14 @@ namespace Backend.Controllers
                 db.SaveChanges();
             }
         }
+
+        //[HttpGet]
+        //public IEnumerable<Task> GetTasksByProject(int id)
+        //{
+        //    using (var db = new DatabaseContext())
+        //    {
+        //        return db.Projects.SingleOrDefault(p => p.Id == id).Tasks.ToList();
+        //    }
+        //}
     }
 }

@@ -11,12 +11,16 @@
 //  reproduced, distributed or given to a third party without the written consent
 //  of ML-Software.ch.
 #endregion
+using System.Collections.Generic;
+
 namespace Backend.Models
 {
     public class Task
     {
         public int Id { get; set; }
 
-        public string Name { get; set; } 
+        public string Name { get; set; }
+
+        public virtual List<Project> UserTasks { get; set; } = new List<Project>();
     }
 }
