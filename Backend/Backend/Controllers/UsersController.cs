@@ -32,16 +32,31 @@ namespace Backend.Controllers
         // POST api/values
         public void Post([FromBody]User user)
         {
+            using (var db = new DatabaseContext())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
         }
 
         // PUT api/values/5
         public void Put(int id, [FromBody]User user)
         {
+            using (var db = new DatabaseContext())
+            {
+                db.Entry(db.Users.Find(id)).CurrentValues.SetValues(user);
+                db.SaveChanges();
+            }
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            using (var db = new DatabaseContext())
+            {
+                db.Users.Remove(db.Users.Find(id));
+                db.SaveChanges();
+            }
         }
     }
 }
