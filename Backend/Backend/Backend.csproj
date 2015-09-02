@@ -165,7 +165,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserTasksController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,6 +181,10 @@
     <Compile Include="Migrations\201509010842141_change time recording.cs" />
     <Compile Include="Migrations\201509010842141_change time recording.Designer.cs">
       <DependentUpon>201509010842141_change time recording.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010946590_Task.cs" />
+    <Compile Include="Migrations\201509010946590_Task.Designer.cs">
+      <DependentUpon>201509010946590_Task.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Project.cs" />
@@ -244,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509010842141_change time recording.resx">
       <DependentUpon>201509010842141_change time recording.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010946590_Task.resx">
+      <DependentUpon>201509010946590_Task.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

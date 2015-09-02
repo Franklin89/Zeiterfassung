@@ -6,52 +6,52 @@ using System.Web.Http;
 
 namespace Backend.Controllers
 {
-    public class UsersController : ApiController
+    public class TasksController : ApiController
     {
-        // GET api/users
-        public IEnumerable<User> Get()
+        // GET: api/Tasks
+        public IEnumerable<Task> Get()
         {
             using (var db = new DatabaseContext())
             {
-                return db.Users.ToList();
+                return db.Tasks.ToList();
             }
         }
 
-        // GET api/users/5
-        public User Get(int id)
+        // GET: api/Tasks/5
+        public Task Get(int id)
         {
             using (var db = new DatabaseContext())
             {
-                return db.Users.SingleOrDefault(x => x.Id == id);
+                return db.Tasks.SingleOrDefault(t => t.Id == id);
             }
         }
 
-        // POST api/values
-        public void Post([FromBody]User user)
+        // POST: api/Tasks
+        public void Post([FromBody]Task task)
         {
             using (var db = new DatabaseContext())
             {
-                db.Users.Add(user);
+                db.Tasks.Add(task);
                 db.SaveChanges();
             }
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]User user)
+        // PUT: api/Tasks/5
+        public void Put(int id, [FromBody]Task task)
         {
             using (var db = new DatabaseContext())
             {
-                db.Entry(db.Users.Find(id)).CurrentValues.SetValues(user);
+                db.Entry(db.Tasks.Find(id)).CurrentValues.SetValues(task);
                 db.SaveChanges();
             }
         }
 
-        // DELETE api/values/5
+        // DELETE: api/Tasks/5
         public void Delete(int id)
         {
             using (var db = new DatabaseContext())
             {
-                db.Users.Remove(db.Users.Find(id));
+                db.Tasks.Remove(db.Tasks.Find(id));
                 db.SaveChanges();
             }
         }

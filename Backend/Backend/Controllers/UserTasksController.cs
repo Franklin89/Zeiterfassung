@@ -6,52 +6,52 @@ using System.Web.Http;
 
 namespace Backend.Controllers
 {
-    public class UsersController : ApiController
+    public class UserTasksController : ApiController
     {
-        // GET api/users
-        public IEnumerable<User> Get()
+        // GET: api/UserTasks
+        public IEnumerable<UserTask> Get()
         {
             using (var db = new DatabaseContext())
             {
-                return db.Users.ToList();
+                return db.UserTasks.ToList();
             }
         }
 
-        // GET api/users/5
-        public User Get(int id)
+        // GET: api/UserTasks/5
+        public UserTask Get(int id)
         {
             using (var db = new DatabaseContext())
             {
-                return db.Users.SingleOrDefault(x => x.Id == id);
+                return db.UserTasks.SingleOrDefault(t => t.Id == id);
             }
         }
 
-        // POST api/values
-        public void Post([FromBody]User user)
+        // POST: api/UserTasks
+        public void Post([FromBody]UserTask UserTask)
         {
             using (var db = new DatabaseContext())
             {
-                db.Users.Add(user);
+                db.UserTasks.Add(UserTask);
                 db.SaveChanges();
             }
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]User user)
+        // PUT: api/UserTasks/5
+        public void Put(int id, [FromBody]UserTask UserTask)
         {
             using (var db = new DatabaseContext())
             {
-                db.Entry(db.Users.Find(id)).CurrentValues.SetValues(user);
+                db.Entry(db.UserTasks.Find(id)).CurrentValues.SetValues(UserTask);
                 db.SaveChanges();
             }
         }
 
-        // DELETE api/values/5
+        // DELETE: api/UserTasks/5
         public void Delete(int id)
         {
             using (var db = new DatabaseContext())
             {
-                db.Users.Remove(db.Users.Find(id));
+                db.UserTasks.Remove(db.UserTasks.Find(id));
                 db.SaveChanges();
             }
         }
