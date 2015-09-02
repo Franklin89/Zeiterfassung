@@ -1,9 +1,8 @@
-<p>Dies ist die ErfassungsView</p>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
             <label>Projekt</label>
+
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="true">
@@ -18,9 +17,10 @@
                 </ul>
             </div>
 
-            <label>Tätigkeit</label>
+            <br />
 
-            <div class="dropdown">
+            <label>Tätigkeit</label>
+            <div class="dropdown recordingdropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="true">
                     Tätigkeit
@@ -34,28 +34,33 @@
                 </ul>
             </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class='col-sm-6'>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker1'>
-                                <input type='text' class="form-control"/>
+            <label>Datum</label>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+                    <!-- TODO kk: Noch ausbauen unobstrusive JavaScript -->
                     <script type="text/javascript">
                         $(function () {
                             $('#datetimepicker1').datetimepicker();
                         });
+
+                        $(".dropdown-menu li a").click(function(){
+                            $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+                            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                        });
+
                     </script>
-                </div>
-            </div>
 
             <label>Stunden</label>
             <input type="number" min="1" max="12" value="3" class="form-control"/>
+
+            <button class="btn btn-default recordingbutton">Erfassen</button>
+
         </div>
     </div>
 </div>
