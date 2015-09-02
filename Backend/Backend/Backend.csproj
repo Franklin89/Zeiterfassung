@@ -165,12 +165,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\RequireHttpsAttribute.cs" />
+    <Compile Include="Migrations\201509010724000_InitialMigration.cs" />
+    <Compile Include="Migrations\201509010724000_InitialMigration.Designer.cs">
+      <DependentUpon>201509010724000_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010842141_change time recording.cs" />
+    <Compile Include="Migrations\201509010842141_change time recording.Designer.cs">
+      <DependentUpon>201509010842141_change time recording.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
@@ -229,7 +238,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509010724000_InitialMigration.resx">
+      <DependentUpon>201509010724000_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010842141_change time recording.resx">
+      <DependentUpon>201509010842141_change time recording.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

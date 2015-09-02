@@ -19,6 +19,11 @@ namespace Backend.Database
 {
     public class DatabaseContext : DbContext
     {
+        public DatabaseContext()
+        {
+            this.Configuration.ProxyCreationEnabled = false;
+        }
+
         public DbSet<Project> Projects { get; set; }
 
         public DbSet<Task> Tasks { get; set; }

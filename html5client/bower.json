@@ -7,5 +7,9 @@
     "lodash": "*",
     "bootstrap": "3.3.5",
     "eonasdan-bootstrap-datetimepicker": "~4.15.35"
+    "bootstrap": "3.3.5"
+  },
+  "devDependencies": {
+    "jasmine-jquery": "1.7.0"
   }
 }

@@ -22,10 +22,10 @@ namespace Backend.Models
 
         public string Name { get; set; }
 
-        public virtual List<Task> Tasks { get; set; }
+        public virtual List<Task> Tasks { get; set; } = new List<Task>();
 
-        public virtual List<User> Users { get; set; }
+        public virtual List<User> Users { get; set; } = new List<User>();
 
-        public virtual List<UserTask> UserTasks { get; set; }
+        public virtual List<UserTask> UserTasks { get; set; } = new List<UserTask>();
     }
 }
