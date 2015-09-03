@@ -17,25 +17,25 @@
               date: "02.01.2015",
               hours: 8,
               task: "Programmieren",
-              project: "Testproject"
+              project: "Testproject 1"
             },
             {
               date: "02.01.2015",
               hours: 8,
               task: "Programmieren",
-              project: "Testproject"
+              project: "Testproject 2"
             },
             {
               date: "02.01.2015",
               hours: 8,
               task: "Programmieren",
-              project: "Testproject"
+              project: "Testproject 3"
             },
             {
               date: "02.01.2015",
               hours: 8,
               task: "Programmieren",
-              project: "Testproject"
+              project: "Testproject 4"
             },
             {
                 date: "02.01.2015",
@@ -53,11 +53,11 @@
 
         function limittimerecordsTo4(){
             sc.timerecords = records.slice(0,4);
-        }
+        };
 
         sc.showallrecords = function(){
             sc.timerecords = records;
-        }
+        };
 
         limittimerecordsTo4();
     });
