@@ -10,7 +10,7 @@ namespace Backend.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Interfaces";
 
             return View();
         }
