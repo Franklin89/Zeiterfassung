@@ -51,7 +51,7 @@
             },
         ];
 
-        function limittimerecordsTo4() {
+        sc.limittimerecordsTo4 = function () {
             sc.timerecords = records.slice(0, 4);
         };
 
@@ -140,7 +140,7 @@
         }
 
         drawChartwithD3();
-        limittimerecordsTo4();
+        sc.limittimerecordsTo4();
     });
 })();
 
