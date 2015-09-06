@@ -21,14 +21,14 @@
             },
             {
                 date: "02.01.2015",
-                hours: 8,
-                task: "Programmieren",
+                hours: 16,
+                task: "Administratives",
                 project: "Testproject 2"
             },
             {
                 date: "02.01.2015",
                 hours: 8,
-                task: "Programmieren",
+                task: "Meeting",
                 project: "Testproject 3"
             },
             {
@@ -96,34 +96,30 @@
 
         var pie = d3.layout.pie()
             .value(function (d) {
-                return d.count;
+                return d.hours;
             })
             .sort(null);
 
         var path = svg.selectAll('path')
-            .data(pie(dataset))
+            .data(pie(records))
             .enter()
             .append('path')
             .attr('d', arc)
             .attr('fill', function (d, i) {
-                return color(d.data.label);
+                return color(d.data.task);
             });
 
 
         var tooltip = d3.select('#chartcontainer');
 
         path.on('mouseover', function (d) {
-            var total = d3.sum(dataset.map(function (d) {
-                return d.count;
+            var total = d3.sum(records.map(function (d) {
+                return d.hours;
             }));
-            var percent = Math.round(1000 * d.data.count / total) / 10;
+            var percent = Math.round(1000 * d.data.hours / total) / 10;
 
-            tooltip.select('.labelTest').html("Label: " + d.data.label);
-            tooltip.select('.count').html("Count: " + d.data.count);
-            tooltip.select('.percent').html(percent + '%');
-
-            $('#labelLabel').text("Label: " + d.data.label);
-            $('#countLabel').text("Count: " + d.data.count);
+            $('#labelLabel').text("Task: " + d.data.task);
+            $('#countLabel').text("Stunden: " + d.data.hours);
             $('#percentLabel').text(percent + '%');
 
         });
