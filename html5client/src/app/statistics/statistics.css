@@ -1,0 +1,25 @@
+#chart {
+    height: 360px;
+    margin: 0 auto;
+    position: relative;
+    width: 360px;
+}
+.tooltipBox {
+    margin-top: 20px;
+    position: relative;
+}
+
+.legend {
+    font-size: 12px;
+}
+rect {
+    cursor: pointer;
+    stroke-width: 2;
+}
+rect.disabled {
+    fill: transparent !important;
+}
+h1 {
+    font-size: 14px;
+    text-align: center;
+}
