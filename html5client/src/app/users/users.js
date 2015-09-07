@@ -3,5 +3,5 @@
  */
 
 angular.module('zeiterfassung.ui.users', [
-    'zeiterfassung.ui.users.integrationservices'
+    'zeiterfassung.users.integrationservices'
 ])
