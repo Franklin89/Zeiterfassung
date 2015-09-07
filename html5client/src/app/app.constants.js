@@ -8,6 +8,8 @@ angular.module('zeiterfassung.ui.app.constants', [])
  * REST URL definitions
  */
     .constant('REST', {
-        PROJECT: 'https://interfaces.azurewebsites.net/api',
-        USERS: 'https://interfaces.azurewebsites.net/api/Users'
+        PROJECTS: 'https://interfaces.azurewebsites.net/api/projects',
+        USERS: 'https://interfaces.azurewebsites.net/api/users',
+        TASKS: 'https://interfaces.azurewebsites.net/api/tasks',
+        USERTASKS: 'https://interfaces.azurewebsites.net/api/usertasks'
     });
