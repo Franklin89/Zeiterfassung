@@ -1,5 +1,4 @@
-angular.module('zeiterfassung.project.integrationservices', [])
-
+angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.constants'])
     .factory('TaskIntegrationService', function ($http, $log, $q, REST) {
 
         function readTasks() {

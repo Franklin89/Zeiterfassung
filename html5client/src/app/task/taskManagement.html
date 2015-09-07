@@ -10,17 +10,22 @@
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Tasks</div>
+                <div class="panel-heading clearfix">
+                    <p class="panel-title pull-left">Tasks</p>
+                    <button class="btn btn-primary pull-right" ng-click="addProject()">Add Task</button>
+                </div>
 
-                <!-- Table -->
                 <table class="table">
+                    <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Beschrieb</th>
                     </tr>
-                    <tr ng-repeat="task in tc.tasks">
-                        <td><input type="text" class="form-control" value="{{task.name}}"></td>
-                        <td><input type="text" class="form-control" value="{{task.description}}"></td>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="task in tasks">
+                        <td ng-repeat="prop in task">
+                            <input type="text" class="form-control" ng-model="prop">
+                        </td>
                         <td>
                             <button class="btn btn-success">Save</button>
                         </td>
@@ -28,6 +33,7 @@
                             <button class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

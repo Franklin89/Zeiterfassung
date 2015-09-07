@@ -6,28 +6,8 @@
 
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
-    timerecordingapp.controller('TaskController', function () {
+    timerecordingapp.controller('TaskController', ['$scope', 'TaskIntegrationService', function ($scope, taskIntegrationService) {
+        $scope.tasks = taskIntegrationService.readTasks();
 
-        var tc = this;
-
-        this.tasks = [
-            {
-                name: "Programming",
-                description: "Implementing a module"
-            },
-            {
-                name: "Administratives",
-                description: "Diverent administrative Tasks"
-            },
-            {
-                name: "Meeting",
-                description: "Testdescription"
-            },
-            {
-                name: "Specification",
-                description: "Testdescription"
-            },
-        ]
-
-    });
+    }]);
 })();
