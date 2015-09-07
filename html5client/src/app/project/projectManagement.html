@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="ProjectController as pc">
+<div class="container-fluid" ng-controller="ProjectController">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -10,18 +10,24 @@
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Projekte</div>
+                <div class="panel-heading clearfix">
+                    <p class="panel-title pull-left">Projekte</p>
+                    <button class="btn btn-primary pull-right" ng-click="addProject()">Add Project</button>
+                </div>
 
                 <table class="table">
+                    <thead>
                     <tr>
                         <th>Name</th>
                         <th>Dauer</th>
                         <th>Beschrieb</th>
                     </tr>
-                    <tr ng-repeat="project in pc.projects">
-                        <td><input type="text" class="form-control" value="{{project.name}}"></td>
-                        <td><input type="text" class="form-control" value="{{project.duration}}"></td>
-                        <td><input type="text" class="form-control" value="{{project.description}}"></td>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="project in projects">
+                        <td ng-repeat="prop in project">
+                            <input type="text" class="form-control" ng-model="prop">
+                        </td>
                         <td>
                             <button class="btn btn-success">Save</button>
                         </td>
@@ -29,6 +35,7 @@
                             <button class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
