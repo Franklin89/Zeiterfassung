@@ -6,10 +6,10 @@ angular.module('zeiterfassung.project.integrationservices', [])
 
     .factory('ProjectIntegrationService', function ($http, $log, $q, REST) {
 
-        function readPojects() {
+        function readProjects() {
             var dfd = $q.defer();
             $log.info('readProjects');
-            $http.get(REST.PROJECT + '/readprojects', null, {tracker: 'rest'})
+            $http.get(REST.PROJECTS, null, {tracker: 'rest'})
                 .success(function (result) {
                     dfd.resolve(result);
                 })
@@ -22,7 +22,7 @@ angular.module('zeiterfassung.project.integrationservices', [])
         function createProject(project) {
             var dfd = $q.defer();
             $log.debug('createProject: ' + angular.toJson(project, true));
-            $http.post(REST.PROJECT + '/createProject', project, {tracker: 'rest'})
+            $http.post(REST.PROJECTS, project, {tracker: 'rest'})
                 .success(function (result) {
                     dfd.resolve(result);
                 })
@@ -32,10 +32,10 @@ angular.module('zeiterfassung.project.integrationservices', [])
             return dfd.promise;
         }
 
-        function editProject(editedProject) {
+        function editProject(project) {
             var dfd = $q.defer();
-            $log.debug('editProject: ' + angular.toJson(editedProject, true));
-            $http.put(REST.PDV + '/editProject', editedProject, {tracker: 'rest'})
+            $log.debug('editProject: ' + angular.toJson(project, true));
+            $http.put(REST.PROJECTS + '/' + project.Id, project, {tracker: 'rest'})
                 .success(function (result) {
                     dfd.resolve(result);
                 })
@@ -48,7 +48,7 @@ angular.module('zeiterfassung.project.integrationservices', [])
         function deleteProject(project) {
             var dfd = $q.defer();
             $log.debug('DeleteProject: ' + angular.toJson(project, true));
-            $http.delete(REST.PROJECT + '/deleteProject?id=' + project.id, {tracker: 'rest'})
+            $http.delete(REST.PROJECTS + '/' + project.id, {tracker: 'rest'})
                 .success(function (result) {
                     dfd.resolve(result);
                 })
@@ -60,7 +60,7 @@ angular.module('zeiterfassung.project.integrationservices', [])
 
         return {
             createProject: createProject,
-            readPojects: readPojects,
+            readPojects: readProjects,
             deleteProject: deleteProject,
             editProject: editProject
         };
