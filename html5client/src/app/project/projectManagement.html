@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="ProjectController as pc">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -8,29 +8,29 @@
     </div>
 
     <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Projekte</div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Projekte</div>
-
-            <!-- Table -->
-            <table class="table">
-                <tr>
-                    <th>Name</th>
-                    <th>Dauer</th>
-                    <th>Beschrieb</th>
-                </tr>
-                <tr>
-                    <td><input type="text" class="form-control" value="Test"></td>
-                    <td><input type="text" class="form-control" value="Hallo"></td>
-                    <td><input type="text" class="form-control" value="Testbeschreibung"></td>
-                    <td>
-                        <button class="btn">Save</button>
-                    </td>
-                    <td>
-                        <button class="btn">Delete</button>
-                    </td>
-                </tr>
-            </table>
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Dauer</th>
+                        <th>Beschrieb</th>
+                    </tr>
+                    <tr ng-repeat="project in pc.projects">
+                        <td><input type="text" class="form-control" value="{{project.name}}"></td>
+                        <td><input type="text" class="form-control" value="{{project.duration}}"></td>
+                        <td><input type="text" class="form-control" value="{{project.description}}"></td>
+                        <td>
+                            <button class="btn">Save</button>
+                        </td>
+                        <td>
+                            <button class="btn">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

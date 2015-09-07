@@ -137,7 +137,7 @@
                 .text(function (d) {
                     return d;
                 });
-        }
+        };
 
         drawChartwithD3();
         sc.limittimerecordsTo4();
