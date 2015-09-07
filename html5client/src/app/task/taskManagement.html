@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="TaskController as tc">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -16,13 +16,11 @@
                 <table class="table">
                     <tr>
                         <th>Name</th>
-                        <th>Dauer</th>
                         <th>Beschrieb</th>
                     </tr>
-                    <tr>
-                        <td><input type="text" class="form-control" value="Test"></td>
-                        <td><input type="text" class="form-control" value="Hallo"></td>
-                        <td><input type="text" class="form-control" value="Testbeschreibung"></td>
+                    <tr ng-repeat="task in tc.tasks">
+                        <td><input type="text" class="form-control" value="{{task.name}}"></td>
+                        <td><input type="text" class="form-control" value="{{task.description}}"></td>
                         <td>
                             <button class="btn">Save</button>
                         </td>
