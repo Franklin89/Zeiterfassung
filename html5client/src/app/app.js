@@ -39,6 +39,6 @@ zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider
             })
             .state('login', {
                 url: "/login",
-                templateUrl: "authentification/login.html"
+                templateUrl: "authentication/login.html"
             });
     }]);
