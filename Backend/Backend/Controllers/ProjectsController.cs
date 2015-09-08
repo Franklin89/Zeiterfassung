@@ -58,7 +58,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        [Route("projects/GetTasksByProject/{id}")]
+        [Route("api/projects/GetTasksByProject/{id}")]
         public IEnumerable<Task> GetTasksByProject(int id)
         {
             using (var db = new DatabaseContext())

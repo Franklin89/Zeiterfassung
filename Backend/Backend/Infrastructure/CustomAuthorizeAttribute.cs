@@ -6,6 +6,7 @@ using System.Linq;
 using Backend.Database;
 using Backend.Models;
 using System.Data.Entity;
+using System.Web;
 
 namespace Backend.Infrastructure
 {
@@ -21,27 +22,47 @@ namespace Backend.Infrastructure
                 const string tokenName = "api-token";
 
                 // Check if api token is set in the header
-                if(actionContext.Request.Headers.Contains(tokenName))
+                if (actionContext.Request.Headers.Contains(tokenName))
                 {
                     var tokenString = actionContext.Request.Headers.GetValues(tokenName).First();
                     Token token = Token.Decrypt(tokenString);
 
                     User user;
 
+                    // Check that user exists on db
                     using (var db = new DatabaseContext())
                     {
                         user = db.Users.SingleOrDefault(u => u.Username == token.Username);
                     }
 
-                    if(user != null)
+                    if (user != null)
                     {
+                        // Check that the IP Address is the same
+                        bool requestIPMatchesTokenIP = token.IP.Equals(GetClientIp(actionContext));
+
+                        if (!requestIPMatchesTokenIP)
+                        {
+                            actionContext.Response = actionContext.Request.CreateErrorResponse(
+                                        HttpStatusCode.Forbidden,
+                                        "IP does not match!");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        actionContext.Response = actionContext.Request.CreateErrorResponse(
+                                        HttpStatusCode.Forbidden,
+                                        "User not in DB!");
+                        return;
                     }
                 }
-                
-                actionContext.Response = actionContext.Request.CreateErrorResponse(
-                    HttpStatusCode.InternalServerError,
-                    "Internal Server Errror: Something went wrong during the authorization!");
-                return;
+                else
+                {
+                    actionContext.Response = actionContext.Request.CreateErrorResponse(
+                                        HttpStatusCode.Forbidden,
+                                        "Please specify your api-token!");
+                    return;
+                }
             }
             catch
             {
@@ -97,6 +118,12 @@ namespace Backend.Infrastructure
             //    return;
 
             //}
+        }
+
+        private string GetClientIp(HttpActionContext actionContext)
+        {
+            var ip = ((HttpContextWrapper)actionContext.Request.Properties["MS_HttpContext"]).Request.UserHostAddress;
+            return ip;
         }
     }
 }
