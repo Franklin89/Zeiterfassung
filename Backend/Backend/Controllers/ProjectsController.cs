@@ -14,7 +14,7 @@ namespace Backend.Controllers
         {
             using (var db = new DatabaseContext())
             {
-                return db.Projects.ToList();
+                return db.Projects.Include(x => x.Tasks).ToList();
             }
         }
 
@@ -23,7 +23,7 @@ namespace Backend.Controllers
         {
             using (var db = new DatabaseContext())
             {
-                return db.Projects.SingleOrDefault(t => t.Id == id);
+                return db.Projects.Include(x => x.Tasks).SingleOrDefault(t => t.Id == id);
             }
         }
 
