@@ -24,26 +24,21 @@ zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider
             .state('timeRecording', {
                 url: "/timeRecording",
                 templateUrl: "recording/timeRecording.html"
-                //controller: "MainController as vm"
             })
             .state('projectManagement', {
                 url: "/projectManagement",
                 templateUrl: "project/projectManagement.html"
-                //controller: "UserCtrl as vm"
             })
             .state('accountManagement', {
                 url: "/accountManagement",
                 templateUrl: "usertask/accountManagement.html"
-                //controller: "UserCtrl as vm"
             })
             .state('statistics', {
                 url: "/statistics",
                 templateUrl: "statistics/statistic.html"
-                //controller: "UserCtrl as vm"
             })
             .state('login', {
                 url: "/login",
                 templateUrl: "authentification/login.html"
-                //controller: "UserCtrl as vm"
             });
     }]);
