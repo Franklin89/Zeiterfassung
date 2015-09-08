@@ -21,7 +21,7 @@ namespace Backend.Controllers
                     return Ok(new Token(credentials.Username, HttpContext.Current.Request.UserHostAddress).Encrypt());
                 }
 
-                return NotFound();
+                return Unauthorized();
             }
         }
     }
