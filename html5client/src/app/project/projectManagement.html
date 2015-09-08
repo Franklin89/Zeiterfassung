@@ -2,13 +2,46 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Projekte verwalten
+                Projekte und Tasks verwalten
             </h1>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                Neues Projekt erfassen
+            </div>k:
+            <p>
+                <label>Projekt</label>
+                <input type="text" class="form-control"/>
+            </p>
+            <p>
+                <label>Your Name:</label>
+                <input type="text" class="form-control"/>
+            </p>
+            <p>
+                <button class="btn btn-success">Add</button>
+            </p>
+            </div>
+            <div class="span4">
+                <label>Task für ein Projekt erfassen</label>
+                <div class="dropdown recordingdropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        Tätigkeit
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Tätigkeit 1</a></li>
+                        <li><a href="#">Tätigkeit 2</a></li>
+                        <li><a href="#">Tätigkeit 3</a></li>
+                        <li><a href="#">Tätigkeit 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
                     <p class="panel-title pull-left">Projekte</p>
@@ -19,14 +52,18 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Dauer</th>
-                        <th>Beschrieb</th>
+                        <th>Tätigkeiten</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="project in projects">
-                        <td ng-repeat="prop in project">
-                            <input type="text" class="form-control" ng-model="prop">
+                        <td>
+                            <input type="text" class="form-control" value="{{project.Name}}">
+                        </td>
+                        <td>
+                            <ul>
+                                <li></li>
+                            </ul>
                         </td>
                         <td>
                             <button class="btn btn-success">Save</button>

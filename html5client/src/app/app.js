@@ -6,7 +6,7 @@
 var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
     'ui.router',
     'zeiterfassung.ui.users',
-    'zeiterfassung.task.integrationservices'])
+    'zeiterfassung.task.integrationservices', 'zeiterfassung.project.integrationservices'])
 
     .controller('MainController', ['$log', function($log) {
 

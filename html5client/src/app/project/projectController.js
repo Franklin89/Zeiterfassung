@@ -6,29 +6,14 @@
 
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
-    timerecordingapp.controller('ProjectController', function ($scope) {
-        $scope.projects = [
-            {
-                name: "Testproject",
-                duration: "2",
-                description: "Testdescription"
-            },
-            {
-                name: "Altova",
-                duration: "4",
-                description: "Testdescription"
-            },
-            {
-                name: "Game 456",
-                duration: "2",
-                description: "Testdescription"
-            },
-            {
-                name: "App 321",
-                duration: "2",
-                description: "Testdescription"
-            }
-        ];
+    timerecordingapp.controller('ProjectController',['$scope', 'ProjectIntegrationService',
+        function ($scope, projectIntegrtionService) {
+
+        $scope.projects;
+
+        projectIntegrtionService.readPojects().then(function(result){
+            $scope.projects = result;
+        });
 
         $scope.addProject = function () {
             $scope.projects.push({
@@ -37,5 +22,5 @@
                 description: "Added project"
             });
         }
-    });
+    }]);
 })();
