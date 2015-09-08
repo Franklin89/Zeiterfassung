@@ -5,8 +5,7 @@
 
 var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
     'ui.router',
-    'zeiterfassung.ui.users',
-    'zeiterfassung.task.integrationservices'])
+    'zeiterfassung.ui.users'])
 
     .controller('MainController', ['$log', function($log) {
 
@@ -16,39 +15,35 @@ var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
     }]);
 
 
-zeiterfassungsapp.config(function ($stateProvider, $urlRouterProvider) {
+zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+    function ($stateProvider, $urlRouterProvider, $httpProvider) {
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        $urlRouterProvider.otherwise("/timeRecording");
 
-    $urlRouterProvider.otherwise("/timeRecording");
-
-    $stateProvider
-        .state('timeRecording', {
-            url: "/timeRecording",
-            templateUrl: "recording/timeRecording.html"
-            //controller: "MainController as vm"
-        })
-        .state('projectManagement', {
-            url: "/projectManagement",
-            templateUrl: "project/projectManagement.html"
-            //controller: "UserCtrl as vm"
-        })
-        .state('taskManagement', {
-            url: "/taskManagement",
-            templateUrl: "task/taskManagement.html"
-            //controller: "UserCtrl as vm"
-        })
-        .state('accountManagement', {
-            url: "/accountManagement",
-            templateUrl: "usertask/accountManagement.html"
-            //controller: "UserCtrl as vm"
-        })
-        .state('statistics', {
-            url: "/statistics",
-            templateUrl: "statistics/statistic.html"
-            //controller: "UserCtrl as vm"
-        })
-        .state('login', {
-            url: "/login",
-            templateUrl: "authentification/login.html"
-            //controller: "UserCtrl as vm"
-        });
-});
+        $stateProvider
+            .state('timeRecording', {
+                url: "/timeRecording",
+                templateUrl: "recording/timeRecording.html"
+                //controller: "MainController as vm"
+            })
+            .state('projectManagement', {
+                url: "/projectManagement",
+                templateUrl: "project/projectManagement.html"
+                //controller: "UserCtrl as vm"
+            })
+            .state('accountManagement', {
+                url: "/accountManagement",
+                templateUrl: "usertask/accountManagement.html"
+                //controller: "UserCtrl as vm"
+            })
+            .state('statistics', {
+                url: "/statistics",
+                templateUrl: "statistics/statistic.html"
+                //controller: "UserCtrl as vm"
+            })
+            .state('login', {
+                url: "/login",
+                templateUrl: "authentification/login.html"
+                //controller: "UserCtrl as vm"
+            });
+    }]);
