@@ -1,6 +1,6 @@
-angular.module('zeiterfassung.authentification.integrationservices', [])
+angular.module('zeiterfassung.authentication.integrationservices', [])
 
-    .factory('AuthentificationIntegrationService', function ($http, $log, $q, REST) {
+    .factory('AuthenticationIntegrationService', function ($http, $log, $q, REST) {
 
         function createSession(user) {
             var dfd = $q.defer();

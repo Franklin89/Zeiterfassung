@@ -164,6 +164,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
@@ -173,7 +174,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\RequireHttpsAttribute.cs" />
+    <Compile Include="Infrastructure\StringExtensions.cs" />
+    <Compile Include="Infrastructure\Token.cs" />
     <Compile Include="Migrations\201509010724000_InitialMigration.cs" />
     <Compile Include="Migrations\201509010724000_InitialMigration.Designer.cs">
       <DependentUpon>201509010724000_InitialMigration.cs</DependentUpon>
@@ -186,7 +190,16 @@
     <Compile Include="Migrations\201509010946590_Task.Designer.cs">
       <DependentUpon>201509010946590_Task.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509080742221_Add Username to User.cs" />
+    <Compile Include="Migrations\201509080742221_Add Username to User.Designer.cs">
+      <DependentUpon>201509080742221_Add Username to User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509080855388_Update Model.cs" />
+    <Compile Include="Migrations\201509080855388_Update Model.Designer.cs">
+      <DependentUpon>201509080855388_Update Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Credentials.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
@@ -221,6 +234,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Models\ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -252,6 +266,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509010946590_Task.resx">
       <DependentUpon>201509010946590_Task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509080742221_Add Username to User.resx">
+      <DependentUpon>201509080742221_Add Username to User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509080855388_Update Model.resx">
+      <DependentUpon>201509080855388_Update Model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

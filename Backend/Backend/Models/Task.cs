@@ -21,6 +21,6 @@ namespace Backend.Models
 
         public string Name { get; set; }
 
-        public virtual List<Project> UserTasks { get; set; } = new List<Project>();
+        public int ProjectId { get; set; }
     }
 }
