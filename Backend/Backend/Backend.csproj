@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201509080742221_Add Username to User.Designer.cs">
       <DependentUpon>201509080742221_Add Username to User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509080855388_Update Model.cs" />
+    <Compile Include="Migrations\201509080855388_Update Model.Designer.cs">
+      <DependentUpon>201509080855388_Update Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Credentials.cs" />
     <Compile Include="Models\Project.cs" />
@@ -230,6 +234,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Models\ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -264,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509080742221_Add Username to User.resx">
       <DependentUpon>201509080742221_Add Username to User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509080855388_Update Model.resx">
+      <DependentUpon>201509080855388_Update Model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
