@@ -30,6 +30,8 @@ namespace Backend.Models
 
         public double WorkingHoursPerDay { get; set; }
 
+        public string Username { get; set; }
+
         public virtual List<Project> Projects { get; set; } = new List<Project>();
 
         public virtual List<UserTask> UserTasks { get; set; } = new List<UserTask>();
