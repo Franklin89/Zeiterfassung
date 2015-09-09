@@ -2,10 +2,9 @@
  * Created by U110333 on 25.08.2015.
  */
 
-angular.module('zeiterfassung.project.integrationservices', [])
+angular.module('zeiterfassung.project.integrationservices', ['zeiterfassung.ui.app.constants'])
 
-    .factory('ProjectIntegrationService', ['$http', '$log', '$q', 'REST',
-        function ($http, $log, $q, REST) {
+    .factory('ProjectIntegrationService', ['$http', '$log', '$q', 'REST', function ($http, $log, $q, REST) {
 
         function readProjects() {
             var dfd = $q.defer();
@@ -20,16 +19,29 @@ angular.module('zeiterfassung.project.integrationservices', [])
             return dfd.promise;
         }
 
-        function createProject(project) {
+        function createProject(project, tasks) {
             var dfd = $q.defer();
+            var promises = [];
             $log.debug('createProject: ' + angular.toJson(project, true));
-            $http.post(REST.PROJECTS, project, {tracker: 'rest'})
-                .success(function (result) {
-                    dfd.resolve(result);
-                })
-                .error(function (result, status, headers, config) {
-                    dfd.reject({result: result, status: status});
+
+            promises.push(new function () {
+                $http.post(REST.PROJECTS, project, {tracker: 'rest'})
+                    .error(function (result, status) {
+                        dfd.reject({result: result, status: status});
+                    });
+            });
+
+            angular.forEach(tasks, function (task) {
+                task.ProjectId = project.Id;
+                promises.push(new function () {
+                    $http.post(REST.TASKS, task, {tracker: 'rest'})
+                        .error(function (result, status) {
+                            dfd.reject({result: result, status: status});
+                        });
                 });
+            });
+
+            $q.all(promises).then(dfd.resolve());
             return dfd.promise;
         }
 

@@ -11,7 +11,7 @@ namespace Backend.Controllers
     {
         [HttpPost]
         [Route("api/account/login")]
-        public IHttpActionResult GetTasksByProject([FromBody]Credentials credentials)
+        public IHttpActionResult Login([FromBody]Credentials credentials)
         {
             using (var db = new DatabaseContext())
             {
