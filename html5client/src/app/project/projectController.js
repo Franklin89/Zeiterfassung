@@ -6,21 +6,41 @@
 
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
-    timerecordingapp.controller('ProjectController',['$scope', 'ProjectIntegrationService',
-        function ($scope, projectIntegrtionService) {
+    timerecordingapp.controller('ProjectController',['$scope', 'ProjectIntegrationService', '$timeout',
+        function ($scope, projectIntegrtionService, $timeout) {
 
         $scope.projects;
+        $scope.projectNameInvalid = false;
+        $scope.projectInserted = false;
 
-        projectIntegrtionService.readPojects().then(function(result){
-            $scope.projects = result;
-        });
+        var readProjects = function() {
+            projectIntegrtionService.readPojects().then(function (result) {
+                $scope.projects = result;
+            });
+        };
 
         $scope.addProject = function () {
-            $scope.projects.push({
-                name: "New Project",
-                duration: "999",
-                description: "Added project"
-            });
-        }
+
+            if($scope.projectname == undefined){
+                $scope.projectNameInvalid = true;
+            }
+            else {
+
+                $scope.projectInserted = true;
+
+                $scope.projectNameInvalid = false;
+                projectIntegrtionService.createProject({
+                        "Name": $scope.projectname
+                    }
+                ).then(function(){
+                        $scope.projectInserted = true;
+                        $timeout(function(){
+                            $scope.projectInserted = false;
+                        }, 2000);
+                    });
+                $timeout(readProjects, 1000);
+            }
+        };
+        readProjects();
     }]);
 })();

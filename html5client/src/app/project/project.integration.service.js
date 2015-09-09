@@ -4,12 +4,13 @@
 
 angular.module('zeiterfassung.project.integrationservices', [])
 
-    .factory('ProjectIntegrationService', function ($http, $log, $q, REST) {
+    .factory('ProjectIntegrationService', ['$http', '$log', '$q', 'REST',
+        function ($http, $log, $q, REST) {
 
         function readProjects() {
             var dfd = $q.defer();
             $log.info('readProjects');
-            $http.get(REST.PROJECTS, null, {tracker: 'rest'})
+            $http.get(REST.PROJECTS, null)
                 .success(function (result) {
                     dfd.resolve(result);
                 })
@@ -64,4 +65,4 @@ angular.module('zeiterfassung.project.integrationservices', [])
             deleteProject: deleteProject,
             editProject: editProject
         };
-    });
+    }]);
