@@ -6,8 +6,8 @@
 
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
-    timerecordingapp.controller('ProjectController', ['$scope', 'ProjectIntegrationService', '$timeout',
-        function ($scope, projectIntegrtionService, $timeout) {
+    timerecordingapp.controller('ProjectController', ['$scope', 'ProjectIntegrationService', '$timeout', 'TaskIntegrationService',
+        function ($scope, projectIntegrtionService, $timeout, taskIntegrationService) {
 
             $scope.projects;
             $scope.projectNameInvalid = false;
@@ -15,6 +15,9 @@
             $scope.tasknameInvalid = false;
             $scope.taskInserted = false;
             $scope.networkErrorOccured = false;
+            $scope.dropdownDisplay = "Select a project";
+
+            var projectId;
 
             var readProjects = function () {
                 projectIntegrtionService.readPojects().then(function (result) {
@@ -40,8 +43,7 @@
                             $timeout(function () {
                                 $scope.projectInserted = false;
                             }, 2000);
-                        }).error(function(){
-                            alert("Error");
+                        }).error(function () {
                             $scope.networkErrorOccured = true;
                         });
                     $timeout(readProjects, 1000);
@@ -53,17 +55,36 @@
                 if ($scope.taskname == undefined) {
                     $scope.tasknameInvalid = true;
                 }
-                else{
+                else {
                     $scope.taskInserted = true;
 
                     $scope.tasknameInvalid = false;
 
 
-
-
                 }
             };
 
+            $scope.dropDownSelected = function (projectIdofSelectedItem, projectName) {
+                projectId = projectIdofSelectedItem;
+                $scope.dropdownDisplay = projectName;
+            };
+
+
+            $scope.insertTask = function () {
+                var taskToInsert = {
+                    "Name": $scope.taskname,
+                    "ProjectId": projectId
+                };
+
+                taskIntegrationService.createTask(taskToInsert).success(function () {
+                    $scope.taskInserted = true;
+                    $timeout(function () {
+                        $scope.taskInserted = false;
+                    }, 2000);
+                }).error(function () {
+                    $scope.networkErrorOccured = true;
+                });
+            };
             readProjects();
         }]);
 })();

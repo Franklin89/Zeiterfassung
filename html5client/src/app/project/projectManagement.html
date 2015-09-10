@@ -46,11 +46,11 @@
                             <div class="dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="true">
-                                    Projekt
+                                    {{dropdownDisplay}}
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li ng-repeat="project in projects"><a href="#">{{project.Name}}</a></li>
+                                    <li ng-repeat="project in projects"><a href="#" ng-click="dropDownSelected(project.Id, project.Name)">{{project.Name}}</a></li>
                                 </ul>
                             </div>
                             </p>
@@ -59,7 +59,7 @@
                             <input type="text" class="form-control" ng-model="taskname">
                             </p>
                             <p>
-                                <button class="btn btn-success" ng-click="addTask()">Add</button>
+                                <button class="btn btn-success" ng-click="insertTask()">Add Task</button>
                             </p>
                         </div>
                     </div>
