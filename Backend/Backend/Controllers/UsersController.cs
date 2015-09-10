@@ -18,6 +18,7 @@ namespace Backend.Controllers
         }
 
         // GET api/users/5
+        [Authorize]
         public User Get(int id)
         {
             using (var db = new DatabaseContext())
