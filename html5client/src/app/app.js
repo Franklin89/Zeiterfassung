@@ -7,17 +7,7 @@ var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
     'ui.router',
     'zeiterfassung.ui.users',
     'zeiterfassung.authentication',
-    'zeiterfassung.ui.app.constants',
-    'zeiterfassung.project.integrationservices',
-    'zeiterfassung.task.integrationservices'])
-
-    .controller('MainController', ['$log', function($log) {
-
-        this.vm = this;
-        this.test = 'Greeting from The Incredibels';
-        this.goa = null;
-    }]);
-
+    'zeiterfassung.project']);
 
 zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     function ($stateProvider, $urlRouterProvider, $httpProvider) {

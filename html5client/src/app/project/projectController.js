@@ -1,15 +1,7 @@
-/**
- * Created by Kiwi on 07.09.15.
- */
+angular.module('zeiterfassung.project', ['zeiterfassung.project.integrationservices', 'zeiterfassung.task.integrationservices'])
+    .controller('ProjectController', ['$scope', 'ProjectIntegrationService', '$timeout', 'TaskIntegrationService',
+        function ($scope, projectIntegrationService, $timeout, taskIntegrationService) {
 
-(function () {
-
-    var timerecordingapp = angular.module('zeiterfassung.ui');
-
-    timerecordingapp.controller('ProjectController', ['$scope', 'ProjectIntegrationService', '$timeout', 'TaskIntegrationService',
-        function ($scope, projectIntegrtionService, $timeout, taskIntegrationService) {
-
-            $scope.projects;
             $scope.projectNameInvalid = false;
             $scope.projectInserted = false;
             $scope.tasknameInvalid = false;
@@ -20,7 +12,7 @@
             var projectId;
 
             var readProjects = function () {
-                projectIntegrtionService.readPojects().then(function (result) {
+                projectIntegrationService.readPojects().then(function (result) {
                     $scope.projects = result;
                 });
             };
@@ -35,7 +27,7 @@
                     $scope.projectInserted = true;
 
                     $scope.projectNameInvalid = false;
-                    projectIntegrtionService.createProject({
+                    projectIntegrationService.createProject({
                             "Name": $scope.projectname
                         }
                     ).success(function () {
@@ -86,5 +78,5 @@
                 });
             };
             readProjects();
-        }]);
-})();
+        }
+    ]);
