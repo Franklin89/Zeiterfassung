@@ -36,7 +36,7 @@ angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.
         function deleteTask(task) {
             var dfd = $q.defer();
             $log.debug('DeleteTask: ' + angular.toJson(task, true));
-            $http.delete(REST.PROJECTS + '/' + task.Id, {tracker: 'rest'})
+            $http.delete(REST.TASKS + '/' + task.Id, {tracker: 'rest'})
                 .success(function (result) {
                     dfd.resolve(result);
                 })

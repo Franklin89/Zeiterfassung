@@ -64,7 +64,8 @@
                         </div>
                     </div>
                     <div class="alert alert-danger" role="alert" ng-show="tasknameInvalid">Der Taskname darf nicht leer sein</div>
-                    <div class="alert alert-success" role="alert" ng-show="taskInserted">Das Task wurde erfolgreich hinzugefügt</div>
+                    <div class="alert alert-danger" role="alert" ng-show="noProjectSelected">Bitte wähle ein Projekt</div>
+                    <div class="alert alert-success" role="alert" ng-show="taskInserted">Der Task wurde erfolgreich hinzugefügt</div>
                 </div>
             </div>
         </div>
@@ -72,6 +73,9 @@
             <div class="panel panel-info">
                 <div class="panel-heading clearfix">
                     <p class="panel-title pull-left">Projekte</p>
+                    <p>
+                    <button class="btn btn-warning pull-right" ng-show="changesDetected" ng-click="saveAllProjects()">Speichern</button>
+                    </p>
                 </div>
 
                 <table class="table">
@@ -84,12 +88,13 @@
                     <tbody>
                     <tr ng-repeat="project in projects">
                         <td>
-                            <input type="text" class="form-control" value="{{project.Name}}">
+                            <input type="text" class="form-control" ng-model="project.Name" ng-change="inputChanged()"/>
                         </td>
                         <td>
                             <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="task in project.Tasks">{{task.Name}}
-                                    <a data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                                <li class="list-group-item" ng-repeat="task in project.Tasks">
+                                    <input type="text" class="form-control" ng-model="task.Name" ng-change="inputChanged()"/>
+                                    <a data-toggle="tooltip" type="button" class="btn btn-sm btn-danger" ng-click="deleteTask(task)"><i class="glyphicon glyphicon-trash"></i></a>
                                 </li>
                             </ul>
                         </td>

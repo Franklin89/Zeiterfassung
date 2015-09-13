@@ -1,4 +1,5 @@
 ﻿using Backend.Database;
+using Backend.Infrastructure;
 using Backend.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Backend.Controllers
         }
 
         // GET api/users/5
+        [CustomAuthorize]
         public User Get(int id)
         {
             using (var db = new DatabaseContext())

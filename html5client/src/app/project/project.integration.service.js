@@ -58,6 +58,23 @@ angular.module('zeiterfassung.project.integrationservices', ['zeiterfassung.ui.a
             return dfd.promise;
         }
 
+        function updateProjects(projects) {
+            var dfd = $q.defer();
+
+            for (var i = 0; i < projects.length; i++) {
+                var project = projects[i];
+                $log.debug('updateProjects: ' + angular.toJson(project, true));
+                $http.put(REST.PROJECTS + "/" + project.Id, project)
+                    .success(function (result) {
+                        dfd.resolve(result);
+                    })
+                    .error(function (result, status) {
+                        dfd.reject({result: result, status: status})
+                    });
+                return dfd.promise;
+            }
+        }
+
         function deleteProject(project) {
             var dfd = $q.defer();
             $log.debug('DeleteProject: ' + angular.toJson(project, true));
@@ -75,6 +92,7 @@ angular.module('zeiterfassung.project.integrationservices', ['zeiterfassung.ui.a
             createProject: createProject,
             readPojects: readProjects,
             deleteProject: deleteProject,
-            editProject: editProject
+            editProject: editProject,
+            updateProjects: updateProjects
         };
     }]);

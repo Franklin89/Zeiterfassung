@@ -10,11 +10,13 @@
         function ($scope, projectIntegrtionService, $timeout, taskIntegrationService) {
 
             $scope.projects;
+            $scope.noProjectSelected = false;
             $scope.projectNameInvalid = false;
             $scope.projectInserted = false;
             $scope.tasknameInvalid = false;
             $scope.taskInserted = false;
             $scope.networkErrorOccured = false;
+            $scope.changesDetected = false;
             $scope.dropdownDisplay = "Select a project";
 
             var projectId;
@@ -50,20 +52,6 @@
                 }
             };
 
-
-            $scope.addTask = function () {
-                if ($scope.taskname == undefined) {
-                    $scope.tasknameInvalid = true;
-                }
-                else {
-                    $scope.taskInserted = true;
-
-                    $scope.tasknameInvalid = false;
-
-
-                }
-            };
-
             $scope.dropDownSelected = function (projectIdofSelectedItem, projectName) {
                 projectId = projectIdofSelectedItem;
                 $scope.dropdownDisplay = projectName;
@@ -71,20 +59,59 @@
 
 
             $scope.insertTask = function () {
-                var taskToInsert = {
-                    "Name": $scope.taskname,
-                    "ProjectId": projectId
-                };
 
-                taskIntegrationService.createTask(taskToInsert).success(function () {
-                    $scope.taskInserted = true;
-                    $timeout(function () {
-                        $scope.taskInserted = false;
-                    }, 2000);
-                }).error(function () {
-                    $scope.networkErrorOccured = true;
-                });
+                if ($scope.dropdownDisplay === "Select a project") {
+                    $scope.noProjectSelected = true;
+                }
+                else {
+                    $scope.noProjectSelected = false;
+                }
+
+                if ($scope.taskname === undefined || $scope.taskname === '') {
+                    $scope.tasknameInvalid = true;
+                }
+                else {
+                    $scope.tasknameInvalid = false;
+                }
+
+                if ($scope.taskname !== undefined && $scope.dropdownDisplay !== "Select a project") {
+                    var taskToInsert = {
+                        "Name": $scope.taskname,
+                        "ProjectId": projectId
+                    };
+
+                    taskIntegrationService.createTask(taskToInsert).success(function () {
+                        $scope.taskInserted = true;
+                        $timeout(function () {
+                            $scope.taskInserted = false;
+                        }, 2000);
+                    }).error(function () {
+                        $scope.networkErrorOccured = true;
+                    });
+                }
+                ;
             };
+
+            $scope.deleteTask = function(task){
+                taskIntegrationService.deleteTask(task).
+                    then(function(){
+                        alert("Task wurde erfolgreich gelöscht");
+                        readProjects();
+                    })
+            };
+
+            $scope.inputChanged = function(){
+                $scope.changesDetected = true;
+            };
+
+
+            $scope.saveAllProjects = function(){
+                projectIntegrtionService.updateProjects($scope.projects)
+                    .then(function(){
+                       alert("Alle Projekte wurden erfolgreich upgedatet");
+                    });
+            };
+
             readProjects();
         }]);
 })();
