@@ -104,12 +104,6 @@
                 $scope.changesDetected = true;
             };
 
-            $scope.insertTask = function () {
-                var taskToInsert = {
-                    "Name": $scope.taskname,
-                    "ProjectId": projectId
-                };
-
             $scope.saveAllProjects = function(){
                 projectIntegrtionService.updateProjects($scope.projects)
                     .then(function(){
