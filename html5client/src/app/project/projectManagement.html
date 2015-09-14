@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="ProjectController">
+<div class="container-fluid" ng-controller="ProjectController" xmlns="http://www.w3.org/1999/html">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -10,6 +10,14 @@
     <div class="row">
         <div class="alert alert-danger" role="alert" ng-show="showFailureAtTopOfPage">{{errorMessage}}</div>
         <div class="alert alert-success" role="alert" ng-show="showSuccessAtTopOfPage">{{successMeassage}}
+        </div>
+    </div>
+
+    <div id="projectSpinnerRow" class="row" ng-show="showSpinner">
+        <div class="col-lg-1 col-lg-offset-6">
+            <div id="projectViewSpinner" class="whirly-loader">
+                Loading…
+            </div>
         </div>
     </div>
 

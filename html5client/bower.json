@@ -6,7 +6,8 @@
     "angular-ui-router": "0.2.15",
     "lodash": "*",
     "bootstrap": "3.3.5",
-    "eonasdan-bootstrap-datetimepicker": "~4.15.35"
+    "eonasdan-bootstrap-datetimepicker": "~4.15.35",
+    "css-spinners": "2.2.0"
   },
   "devDependencies": {
     "jasmine-jquery": "1.7.0"
