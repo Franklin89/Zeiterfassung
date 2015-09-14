@@ -15,10 +15,11 @@
             $scope.projectInserted = false;
             $scope.tasknameInvalid = false;
             $scope.taskInserted = false;
-            $scope.networkErrorOccured = false;
             $scope.changesDetected = false;
             $scope.showSuccessAtTopOfPage = false;
             $scope.successMeassage;
+            $scope.showFailureAtTopOfPage = false;
+            $scope.errorMeassage;
             $scope.dropdownDisplay = "Select a project";
 
             var projectId;
@@ -47,7 +48,12 @@
                             $timeout(function () {
                                 $scope.projectInserted = false;
                             }, 2000)}, function() {
-                            $scope.networkErrorOccured = true;
+                                $scope.errorMessage = "Fehler beim Erstellen des Projekts";
+                                $scope.showFailureAtTopOfPage = true;
+
+                                $timeout(function () {
+                                    $scope.showFailureAtTopOfPage = false;
+                                }, 2000);
                         });
                     $timeout(readProjects, 2000);
                 }
@@ -87,7 +93,12 @@
                             $scope.taskInserted = false;
                         }, 2000);
                     }, function () {
-                        $scope.networkErrorOccured = true;
+                            $scope.errorMessage = "Fehler beim Einfügen des Tasks";
+                            $scope.showFailureAtTopOfPage = true;
+
+                            $timeout(function () {
+                                $scope.showFailureAtTopOfPage = false;
+                            }, 2000);
                     });
                     $timeout(readProjects, 2000);
                 };
@@ -103,6 +114,13 @@
                             $scope.showSuccessAtTopOfPage = false;
                         }, 2000);
                         readProjects();
+                    }, function(){
+                        $scope.errorMessage = "Fehler beim Löschen des Tasks";
+                        $scope.showFailureAtTopOfPage = true;
+
+                        $timeout(function () {
+                            $scope.showFailureAtTopOfPage = false;
+                        }, 2000);
                     })
             };
 
@@ -118,6 +136,13 @@
 
                         $timeout(function () {
                             $scope.showSuccessAtTopOfPage = false;
+                        }, 2000);
+                    }, function(){
+                        $scope.errorMessage = "Fehler beim Updaten der Tasks und Projekte";
+                        $scope.showFailureAtTopOfPage = true;
+
+                        $timeout(function () {
+                            $scope.showFailureAtTopOfPage = false;
                         }, 2000);
                     });
             };
