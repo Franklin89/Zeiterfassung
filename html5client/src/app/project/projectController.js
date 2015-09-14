@@ -17,6 +17,8 @@
             $scope.taskInserted = false;
             $scope.networkErrorOccured = false;
             $scope.changesDetected = false;
+            $scope.showSuccessAtTopOfPage = false;
+            $scope.successMeassage;
             $scope.dropdownDisplay = "Select a project";
 
             var projectId;
@@ -40,15 +42,14 @@
                     projectIntegrtionService.createProject({
                             "Name": $scope.projectname
                         }
-                    ).success(function () {
+                    ).then(function () {
                             $scope.projectInserted = true;
                             $timeout(function () {
                                 $scope.projectInserted = false;
-                            }, 2000);
-                        }).error(function () {
+                            }, 2000)}, function() {
                             $scope.networkErrorOccured = true;
                         });
-                    $timeout(readProjects, 1000);
+                    $timeout(readProjects, 2000);
                 }
             };
 
@@ -80,22 +81,27 @@
                         "ProjectId": projectId
                     };
 
-                    taskIntegrationService.createTask(taskToInsert).success(function () {
+                    taskIntegrationService.createTask(taskToInsert).then(function () {
                         $scope.taskInserted = true;
                         $timeout(function () {
                             $scope.taskInserted = false;
                         }, 2000);
-                    }).error(function () {
+                    }, function () {
                         $scope.networkErrorOccured = true;
                     });
-                }
-                ;
+                    $timeout(readProjects, 2000);
+                };
             };
 
             $scope.deleteTask = function(task){
                 taskIntegrationService.deleteTask(task).
                     then(function(){
-                        alert("Task wurde erfolgreich gelöscht");
+                        $scope.successMeassage = "Der Task wurde erfolgreich gelöscht";
+                        $scope.showSuccessAtTopOfPage = true;
+
+                        $timeout(function () {
+                            $scope.showSuccessAtTopOfPage = false;
+                        }, 2000);
                         readProjects();
                     })
             };
@@ -107,7 +113,12 @@
             $scope.saveAllProjects = function(){
                 projectIntegrtionService.updateProjects($scope.projects)
                     .then(function(){
-                       alert("Alle Projekte wurden erfolgreich upgedatet");
+                        $scope.successMeassage = "Projekte und Tasks erfolgreich geändert";
+                        $scope.showSuccessAtTopOfPage = true;
+
+                        $timeout(function () {
+                            $scope.showSuccessAtTopOfPage = false;
+                        }, 2000);
                     });
             };
 
