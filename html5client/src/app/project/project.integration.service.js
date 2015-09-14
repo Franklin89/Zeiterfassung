@@ -4,7 +4,8 @@
 
 angular.module('zeiterfassung.project.integrationservices', ['zeiterfassung.ui.app.constants'])
 
-    .factory('ProjectIntegrationService', ['$http', '$log', '$q', 'REST', function ($http, $log, $q, REST) {
+    .factory('ProjectIntegrationService', ['$http', '$log', '$q', 'REST', 'TaskIntegrationService',
+        function ($http, $log, $q, REST, taskIntegrationService) {
 
         function readProjects() {
             var dfd = $q.defer();
@@ -71,9 +72,12 @@ angular.module('zeiterfassung.project.integrationservices', ['zeiterfassung.ui.a
                     .error(function (result, status) {
                         dfd.reject({result: result, status: status})
                     });
+
+                taskIntegrationService.updateAllTasks(project.Tasks);
             }
             return dfd.promise;
         }
+
 
         function deleteProject(project) {
             var dfd = $q.defer();

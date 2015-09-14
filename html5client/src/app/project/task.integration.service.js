@@ -46,9 +46,28 @@ angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.
             return dfd.promise;
         }
 
+        function updateTasks(tasks) {
+
+            var dfd = $q.defer();
+
+            for (var i = 0; i < tasks.length; i++) {
+                var task = tasks[i];
+                $log.debug('updateProjects: ' + angular.toJson(task, true));
+                $http.put(REST.TASKS + "/" + task.Id, task)
+                    .success(function (result) {
+                        dfd.resolve(result);
+                    })
+                    .error(function (result, status) {
+                        dfd.reject({result: result, status: status})
+                    });
+            }
+            return dfd.promise;
+        }
+
         return {
             createTask: createTask,
             editTask: editTask,
-            deleteTask: deleteTask
+            deleteTask: deleteTask,
+            updateAllTasks: updateTasks
         };
     }]);
