@@ -27,7 +27,13 @@
             var readProjects = function () {
                 projectIntegrtionService.readPojects().then(function (result) {
                     $scope.projects = result;
-                });
+                }, function () {
+                    $scope.errorMessage = "Netzwerkfehler";
+                    $scope.showFailureAtTopOfPage = true;
+
+                    $timeout(function () {
+                        $scope.showFailureAtTopOfPage = false;
+                    }, 2000)});
             };
 
             $scope.addProject = function () {
