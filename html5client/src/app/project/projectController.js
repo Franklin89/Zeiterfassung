@@ -29,7 +29,7 @@
 
                 $scope.showSpinner = true;
 
-                projectIntegrtionService.readPojects().then(function (result) {
+                projectIntegrationService.readPojects().then(function (result) {
                     $scope.projects = result;
                     $scope.showSpinner = false;
                 }, function () {
