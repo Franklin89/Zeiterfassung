@@ -71,8 +71,8 @@ angular.module('zeiterfassung.project.integrationservices', ['zeiterfassung.ui.a
                     .error(function (result, status) {
                         dfd.reject({result: result, status: status})
                     });
-                return dfd.promise;
             }
+            return dfd.promise;
         }
 
         function deleteProject(project) {
