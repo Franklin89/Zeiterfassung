@@ -21,7 +21,7 @@ var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
 
 zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     function ($stateProvider, $urlRouterProvider, $httpProvider) {
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        $httpProvider.interceptors.push('AuthenticationInterceptorService');
         $urlRouterProvider.otherwise("/timeRecording");
 
         $stateProvider

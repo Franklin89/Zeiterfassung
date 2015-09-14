@@ -1,13 +1,26 @@
 angular.module('zeiterfassung.authentication', ['zeiterfassung.authentication.integrationservices'])
-    .controller('AuthenticationController', ['$scope', 'AuthenticationIntegrationService',
-        function ($scope, authenticationIntegrationService) {
+    .controller('AuthenticationController', ['$scope', '$state', 'AuthenticationIntegrationService',
+        function ($scope, $state, authenticationIntegrationService) {
             $scope.login = function () {
                 authenticationIntegrationService.login($scope.user)
                     .then(function (result) {
                         // authorized
-                        alert(result.toString());
+                        alert('Login succesful!');
+                        $state.go('timeRecording');
                     }, function (reason) {
                         // unauthorized
+                        alert('Login failed! Try again..');
                     });
             }
-    }]);
+
+            $scope.logout = function () {
+                authenticationIntegrationService.logout()
+                    .then(function (result) {
+                        alert('Logout succesful!');
+                        $state.go('login');
+                    }, function (reason) {
+                        // error
+                        alert('Logout failed! Try again..');
+                    });
+            }
+        }]);

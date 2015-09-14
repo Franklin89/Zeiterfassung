@@ -1,19 +1,70 @@
-angular.module('zeiterfassung.authentication.integrationservices', ['zeiterfassung.ui.app.constants'])
-    .factory('AuthenticationIntegrationService', ['$http', '$log', '$q', 'REST', function ($http, $log, $q, REST) {
-        function login(user) {
-            var dfd = $q.defer();
-            $log.debug('login user: ' + angular.toJson(user, true));
-            $http.post(REST.ACCOUNT + '/login', {Username: user.name, PasswordHash: user.password})
-                .success(function (result) {
-                    dfd.resolve(result);
-                })
-                .error(function (result, status) {
-                    dfd.reject({result: result, status: status});
-                });
-            return dfd.promise;
-        }
+angular.module('zeiterfassung.authentication.integrationservices', ['zeiterfassung.ui.app.constants', 'LocalStorageModule'])
+    .factory('AuthenticationIntegrationService', ['$http', '$log', '$q', 'localStorageService', 'REST',
+        function ($http, $log, $q, localStorageService, REST) {
+            localStorageService.remove('authData');
+            var authentication = {
+                isAuth: false,
+                userName: ""
+            };
 
-        return {
-            login: login
-        };
-    }]);
+            function login(user) {
+                var dfd = $q.defer();
+                $log.debug('login user: ' + angular.toJson(user, true));
+                $http.post(REST.ACCOUNT + '/login', {Username: user.username, PasswordHash: user.password})
+                    .success(function (result) {
+                        localStorageService.set('authData', {token: result, userName: user.username});
+
+                        authentication.isAuth = true;
+                        authentication.userName = user.username;
+                        dfd.resolve(result);
+                    })
+                    .error(function (result, status) {
+                        dfd.reject({result: result, status: status});
+                    });
+                return dfd.promise;
+            }
+
+            function logout() {
+                localStorageService.remove('authData');
+                authentication.isAuth = false;
+                authentication.userName = "";
+            }
+
+            function isAuth() {
+                return authentication.isAuth;
+            }
+
+            return {
+                login: login,
+                logout: logout,
+                isAuth: isAuth
+            };
+        }])
+    .factory('AuthenticationInterceptorService', ['$q', '$injector', 'localStorageService',
+        function ($q, $injector, localStorageService) {
+            function request(config) {
+                config.headers = config.headers || {};
+                var authData = localStorageService.get('authData');
+
+                if (authData) {
+                    config.headers['api-token'] = authData.token;
+                }
+
+                return config;
+            }
+
+            function responseError(error) {
+                if (error.status === 401) {
+                    // manually inject service to avoid circular reference
+                    var stateService = $injector.get('$state');
+                    stateService.go('login');
+                }
+                return $q.reject(error);
+            }
+
+            return {
+                request: request,
+                responseError: responseError
+            };
+        }
+    ]);
