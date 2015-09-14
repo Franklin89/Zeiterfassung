@@ -7,7 +7,7 @@
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
     timerecordingapp.controller('ProjectController', ['$scope', 'ProjectIntegrationService', '$timeout', 'TaskIntegrationService',
-        function ($scope, projectIntegrtionService, $timeout, taskIntegrationService) {
+        function ($scope, projectIntegrationService, $timeout, taskIntegrationService) {
 
             $scope.projects;
             $scope.noProjectSelected = false;
@@ -25,7 +25,7 @@
             var projectId;
 
             var readProjects = function () {
-                projectIntegrtionService.readPojects().then(function (result) {
+                projectIntegrationService.readPojects().then(function (result) {
                     $scope.projects = result;
                 }, function () {
                     $scope.errorMessage = "Netzwerkfehler";
@@ -46,7 +46,7 @@
                     $scope.projectInserted = true;
 
                     $scope.projectNameInvalid = false;
-                    projectIntegrtionService.createProject({
+                    projectIntegrationService.createProject({
                             "Name": $scope.projectname
                         }
                     ).then(function () {
@@ -73,19 +73,9 @@
 
             $scope.insertTask = function () {
 
-                if ($scope.dropdownDisplay === "Select a project") {
-                    $scope.noProjectSelected = true;
-                }
-                else {
-                    $scope.noProjectSelected = false;
-                }
+                $scope.noProjectSelected = $scope.dropdownDisplay === "Select a project";
 
-                if ($scope.taskname === undefined || $scope.taskname === '') {
-                    $scope.tasknameInvalid = true;
-                }
-                else {
-                    $scope.tasknameInvalid = false;
-                }
+                $scope.tasknameInvalid = $scope.taskname === undefined || $scope.taskname === '';
 
                 if ($scope.taskname !== undefined && $scope.dropdownDisplay !== "Select a project") {
                     var taskToInsert = {
@@ -107,7 +97,7 @@
                             }, 2000);
                     });
                     $timeout(readProjects, 2000);
-                };
+                }
             };
 
             $scope.deleteTask = function(task){
@@ -135,7 +125,7 @@
             };
 
             $scope.saveAllProjects = function(){
-                projectIntegrtionService.updateProjects($scope.projects)
+                projectIntegrationService.updateProjects($scope.projects)
                     .then(function(){
                         $scope.successMeassage = "Projekte und Tasks erfolgreich geändert";
                         $scope.showSuccessAtTopOfPage = true;
