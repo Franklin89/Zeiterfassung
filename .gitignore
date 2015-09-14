@@ -8,3 +8,7 @@
 /Backend/Backend/obj/*
 *.user
 *.suo
+/html5client/.idea/*
+/html5client/bower_components/*
+/html5client/node_modules/*
+/html5client/build/*

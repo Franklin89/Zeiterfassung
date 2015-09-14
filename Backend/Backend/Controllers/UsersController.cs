@@ -10,6 +10,7 @@ namespace Backend.Controllers
     public class UsersController : ApiController
     {
         // GET api/users
+        [CustomAuthorize]
         public IEnumerable<User> Get()
         {
             using (var db = new DatabaseContext())
@@ -19,7 +20,6 @@ namespace Backend.Controllers
         }
 
         // GET api/users/5
-        [CustomAuthorize]
         public User Get(int id)
         {
             using (var db = new DatabaseContext())
