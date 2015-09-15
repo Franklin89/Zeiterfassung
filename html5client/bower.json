@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "dependencies": {
     "angular": "1.4.4",
+    "angular-md5": "~0.1.8",
     "angular-ui-router": "0.2.15",
-    "lodash": "*",
     "bootstrap": "3.3.5",
+    "css-spinners": "2.2.0",
     "eonasdan-bootstrap-datetimepicker": "~4.15.35",
-    "css-spinners": "2.2.0"
+    "lodash": "*"
   },
   "devDependencies": {
     "jasmine-jquery": "1.7.0"
