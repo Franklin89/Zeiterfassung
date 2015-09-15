@@ -77,7 +77,7 @@ namespace Backend.Infrastructure
                 actionContext.Response = actionContext.Request
                     .CreateErrorResponse(
                     HttpStatusCode.InternalServerError,
-                    "Internal Server Errror: Something went wrong during the authorization!");
+                    $"Internal Server Errror: {exception.Message}!");
                 return;
             }   
         }
