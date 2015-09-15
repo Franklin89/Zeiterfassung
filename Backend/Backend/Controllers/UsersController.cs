@@ -11,6 +11,7 @@ namespace Backend.Controllers
     public class UsersController : ApiController
     {
         // GET api/users
+        [CustomAuthorize(Users ="Admin")]
         public IEnumerable<User> Get()
         {
             using (var db = new DatabaseContext())

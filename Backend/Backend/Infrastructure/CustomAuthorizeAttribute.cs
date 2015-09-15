@@ -6,6 +6,7 @@ using System.Linq;
 using Backend.Database;
 using Backend.Models;
 using System.Web;
+using System;
 
 namespace Backend.Infrastructure
 {
@@ -35,12 +36,23 @@ namespace Backend.Infrastructure
                     {
                         // Check that the IP Address is the same
                         bool requestIPMatchesTokenIP = token.IP.Equals(GetClientIp(actionContext));
-
+                        
                         if (!requestIPMatchesTokenIP)
                         {
                             actionContext.Response = actionContext.Request.CreateErrorResponse(
                                         HttpStatusCode.Unauthorized,
                                         "IP does not match!");
+                            return;
+                        }
+
+                        // Check Users collection
+                        var users = Users.Split(',').ToList();
+
+                        if(Users.Count() > 0 && !users.Contains(user.Username))
+                        {
+                            actionContext.Response = actionContext.Request.CreateErrorResponse(
+                                        HttpStatusCode.Unauthorized,
+                                        "User is not authorized for this operation!");
                             return;
                         }
                     }
@@ -60,7 +72,7 @@ namespace Backend.Infrastructure
                     return;
                 }
             }
-            catch
+            catch(Exception exception)
             {
                 actionContext.Response = actionContext.Request
                     .CreateErrorResponse(
