@@ -11,18 +11,29 @@ var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
     'zeiterfassung.project.integrationservices',
     'zeiterfassung.task.integrationservices'])
 
-    .controller('MainController', ['$log', function($log) {
+    .controller('MainController', ['$scope', '$state', 'AuthenticationIntegrationService',
+        function ($scope, $state, authenticationIntegrationService) {
 
-        this.vm = this;
-        this.test = 'Greeting from The Incredibels';
-        this.goa = null;
-    }]);
+            $scope.loggedIn = authenticationIntegrationService.isAuth();
+
+            $scope.logout = function () {
+                authenticationIntegrationService.logout()
+                    .then(function (result) {
+                        alert('Logout succesful!');
+                        $state.go('login');
+                    }, function (reason) {
+                        // error
+                        alert('Logout failed! Try again..');
+                    });
+            }
+        }
+    ]);
 
 
 zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $httpProvider.interceptors.push('AuthenticationInterceptorService');
-        $urlRouterProvider.otherwise("/timeRecording");
+        $urlRouterProvider.otherwise("/login");
 
         $stateProvider
             .state('timeRecording', {

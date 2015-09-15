@@ -12,15 +12,4 @@ angular.module('zeiterfassung.authentication', ['zeiterfassung.authentication.in
                         alert('Login failed! Try again..');
                     });
             }
-
-            $scope.logout = function () {
-                authenticationIntegrationService.logout()
-                    .then(function (result) {
-                        alert('Logout succesful!');
-                        $state.go('login');
-                    }, function (reason) {
-                        // error
-                        alert('Logout failed! Try again..');
-                    });
-            }
         }]);
