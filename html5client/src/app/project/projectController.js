@@ -51,7 +51,7 @@
                     $scope.projectInserted = true;
 
                     $scope.projectNameInvalid = false;
-                    projectIntegrtionService.createProject({
+                    projectIntegrationService.createProject({
                             "Name": $scope.projectname
                         }
                     ).then(function () {
@@ -130,7 +130,7 @@
             };
 
             $scope.saveAllProjects = function(){
-                projectIntegrtionService.updateProjects($scope.projects)
+                projectIntegrationService.updateProjects($scope.projects)
                     .then(function(){
                         $scope.successMeassage = "Projekte und Tasks erfolgreich geändert";
                         $scope.showSuccessAtTopOfPage = true;

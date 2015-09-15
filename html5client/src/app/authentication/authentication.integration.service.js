@@ -15,7 +15,7 @@ angular.module('zeiterfassung.authentication.integrationservices', ['zeiterfassu
                     PasswordHash: md5.createHash(user.password)
                 })
                     .success(function (result) {
-                        localStorageService.set('authData', {token: result});
+                        localStorageService.set('authData', {token: JSON.parse(result)});
 
                         authentication.isAuth = true;
                         authentication.userName = user.username;
