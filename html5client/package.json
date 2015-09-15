@@ -28,5 +28,8 @@
   },
   "private": true,
   "main": "app.js",
-  "license": "The Incredibels"
+  "license": "The Incredibels",
+  "dependencies": {
+    "angular-local-storage": "^0.2.2"
+  }
 }
