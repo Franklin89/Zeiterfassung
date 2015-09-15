@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
+using Backend.Infrastructure;
 
 namespace Backend.Controllers
 {
+    [CustomAuthorize]
     public class ProjectsController : ApiController
     {
         // GET: api/Projects

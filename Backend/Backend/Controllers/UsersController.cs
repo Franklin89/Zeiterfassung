@@ -7,10 +7,10 @@ using System.Web.Http;
 
 namespace Backend.Controllers
 {
+    [CustomAuthorize]
     public class UsersController : ApiController
     {
         // GET api/users
-        [CustomAuthorize]
         public IEnumerable<User> Get()
         {
             using (var db = new DatabaseContext())
