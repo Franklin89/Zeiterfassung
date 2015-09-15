@@ -16,17 +16,10 @@ var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
 
             $scope.loggedIn = function () {
                 return authenticationIntegrationService.isAuth();
-            }
+            };
 
             $scope.logout = function () {
-                authenticationIntegrationService.logout()
-                    .then(function (result) {
-                        alert('Logout succesful!');
-                        $state.go('login');
-                    }, function (reason) {
-                        // error
-                        alert('Logout failed! Try again..');
-                    });
+                authenticationIntegrationService.logout();
             }
         }
     ]);
