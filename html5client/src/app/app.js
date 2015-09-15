@@ -19,7 +19,18 @@ var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
             };
 
             $scope.logout = function () {
-                authenticationIntegrationService.logout();
+                swal({
+                    title: "Abmelden",
+                    text: "Willst Du dich wirklich ausloggen?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Ja, abmelden",
+                    cancelButtonText: "Nein",
+                    closeOnConfirm: true
+                }, function () {
+                    authenticationIntegrationService.logout();
+                    $state.go("login");
+                });
             }
         }
     ]);

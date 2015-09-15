@@ -5,11 +5,10 @@ angular.module('zeiterfassung.authentication', ['zeiterfassung.authentication.in
                 authenticationIntegrationService.login($scope.user)
                     .then(function (result) {
                         // authorized
-                        alert('Login succesful!');
                         $state.go('timeRecording');
                     }, function (reason) {
                         // unauthorized
-                        alert('Login failed! Try again..');
+                        //TODO: display error message
                     });
             }
         }]);

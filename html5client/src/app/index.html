@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../bower_components/css-spinners/css/spinner/whirly.css"/>
     <link rel="stylesheet" href="project/projectManagement.css"/>
     <link rel="stylesheet" href="../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../../bower_components/sweetalert/dist/sweetalert.css"/>
   </head>
 
   <body ng-app="zeiterfassung.ui">
@@ -38,7 +39,7 @@
             <li ui-sref-active="active"><a ui-sref="statistics">Übersicht</a></li>
             <li ui-sref-active="active"><a ui-sref="projectManagement">Projektverwaltung</a></li>
             <li ui-sref-active="active"><a ui-sref="accountManagement">Kontoeinstellungen</a></li>
-            <li ui-sref-active="active" ng-show="loggedIn()"><a ui-sref="login" ng-click="logout()">Abmelden</a></li>
+            <li ui-sref-active="active" ng-show="loggedIn()"><a href="" ng-click="logout()">Abmelden</a></li>
           </ul>
         </div>
       </div>
@@ -58,6 +59,7 @@
     <script type="text/javascript"
             src="../../node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script type="text/javascript" src="../../bower_components/angular-md5/angular-md5.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Einbindung der eigenen Scripts -->
     <script type="text/javascript" src="app.js"></script>
