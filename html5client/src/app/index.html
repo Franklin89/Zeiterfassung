@@ -19,7 +19,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <nav class="navbar navbar-inverse" ng-controller="MainController" ng-hide="!loggedIn">
+    <nav class="navbar navbar-inverse" ng-controller="MainController" ng-hide="!loggedIn()">
       <div class="container-fluid">
         <!-- Is used for mobile display -->
         <div class="navbar-header">
@@ -56,6 +56,7 @@
     <script type="text/javascript" src="../../bower_components/d3/d3.js"></script>
     <script type="text/javascript"
             src="../../node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/angular-md5/angular-md5.min.js"></script>
 
     <!-- Einbindung der eigenen Scripts -->
     <script type="text/javascript" src="app.js"></script>

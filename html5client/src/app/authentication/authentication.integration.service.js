@@ -1,6 +1,6 @@
-angular.module('zeiterfassung.authentication.integrationservices', ['zeiterfassung.ui.app.constants', 'LocalStorageModule'])
-    .factory('AuthenticationIntegrationService', ['$http', '$log', '$q', 'localStorageService', 'REST',
-        function ($http, $log, $q, localStorageService, REST) {
+angular.module('zeiterfassung.authentication.integrationservices', ['zeiterfassung.ui.app.constants', 'LocalStorageModule', 'angular-md5'])
+    .factory('AuthenticationIntegrationService', ['$http', '$log', '$q', 'localStorageService', 'REST', 'md5',
+        function ($http, $log, $q, localStorageService, REST, md5) {
             localStorageService.remove('authData');
             var authentication = {
                 isAuth: false,
@@ -10,9 +10,12 @@ angular.module('zeiterfassung.authentication.integrationservices', ['zeiterfassu
             function login(user) {
                 var dfd = $q.defer();
                 $log.debug('login user: ' + angular.toJson(user, true));
-                $http.post(REST.ACCOUNT + '/login', {Username: user.username, PasswordHash: user.password})
+                $http.post(REST.ACCOUNT + '/login', {
+                    Username: user.username,
+                    PasswordHash: md5.createHash(user.password)
+                })
                     .success(function (result) {
-                        localStorageService.set('authData', {token: result, userName: user.username});
+                        localStorageService.set('authData', {token: result});
 
                         authentication.isAuth = true;
                         authentication.userName = user.username;

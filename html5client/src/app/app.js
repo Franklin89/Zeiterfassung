@@ -14,7 +14,9 @@ var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
     .controller('MainController', ['$scope', '$state', 'AuthenticationIntegrationService',
         function ($scope, $state, authenticationIntegrationService) {
 
-            $scope.loggedIn = authenticationIntegrationService.isAuth();
+            $scope.loggedIn = function () {
+                return authenticationIntegrationService.isAuth();
+            }
 
             $scope.logout = function () {
                 authenticationIntegrationService.logout()
