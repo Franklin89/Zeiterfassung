@@ -1,0 +1,23 @@
+{
+  "bitwise"       : true,
+  "curly"         : true,
+  "eqeqeq"        : true,
+  "forin"         : true,
+  "freeze"        : true,
+  "funcscope"     : false,
+  "iterator"      : false,
+  "latedef"       : true,
+  "nocomma"       : false,
+  "nonew"         : true,
+  "notypeof"      : false,
+  "shadow"        : "inner",
+  "singleGroups"  : false,
+  "strict"        : true,
+  "undef"         : true,
+  "unused"        : true,
+  "asi"           : false,
+  "predef": ["angular", "module", "swal", "console", "describe", "beforeEach", "afterEach", "inject", "it", "xit", "expect", "d3"],
+  "globals": {
+    "$": false
+  }
+}

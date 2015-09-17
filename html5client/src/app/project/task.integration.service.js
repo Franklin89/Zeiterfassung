@@ -2,17 +2,20 @@
  * Created by U110333 on 25.08.2015.
  */
 
-angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.constants'])
+(function() {
+    'use strict';
 
-    .factory('TaskIntegrationService', ['$http', '$log', '$q', 'REST', function ($http, $log, $q, REST) {
+    angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.constants'])
+
+    .factory('TaskIntegrationService', ['$http', '$log', '$q', 'REST', function($http, $log, $q, REST) {
 
         function createTask(task) {
-            var dfd = $q.defer();
-            var promises = [];
+            var dfd = $q.defer(), promises = [];
+
             $log.debug('createTask: ' + angular.toJson(task, true));
-            promises.push(new function () {
+            promises.push(new function() {
                 $http.post(REST.TASKS, task, {tracker: 'rest'})
-                    .error(function (result, status) {
+                    .error(function(result, status) {
                         dfd.reject({result: result, status: status});
                     });
             });
@@ -24,10 +27,10 @@ angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.
             var dfd = $q.defer();
             $log.debug('editProject: ' + angular.toJson(task, true));
             $http.put(REST.PROJECTS + '/' + task.Id, task, {tracker: 'rest'})
-                .success(function (result) {
+                .success(function(result) {
                     dfd.resolve(result);
                 })
-                .error(function (result, status, headers, config) {
+                .error(function(result, status) {
                     dfd.reject({result: result, status: status});
                 });
             return dfd.promise;
@@ -37,10 +40,10 @@ angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.
             var dfd = $q.defer();
             $log.debug('DeleteTask: ' + angular.toJson(task, true));
             $http.delete(REST.TASKS + '/' + task.Id, {tracker: 'rest'})
-                .success(function (result) {
+                .success(function(result) {
                     dfd.resolve(result);
                 })
-                .error(function (result, status, headers, config) {
+                .error(function(result, status) {
                     dfd.reject({result: result, status: status});
                 });
             return dfd.promise;
@@ -48,17 +51,17 @@ angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.
 
         function updateTasks(tasks) {
 
-            var dfd = $q.defer();
+            var dfd = $q.defer(), i = 0, task;
 
-            for (var i = 0; i < tasks.length; i++) {
-                var task = tasks[i];
+            for (i = 0; i < tasks.length; i++) {
+                task = tasks[i];
                 $log.debug('updateProjects: ' + angular.toJson(task, true));
-                $http.put(REST.TASKS + "/" + task.Id, task)
-                    .success(function (result) {
+                $http.put(REST.TASKS + '/' + task.Id, task)
+                    .success(function(result) {
                         dfd.resolve(result);
                     })
-                    .error(function (result, status) {
-                        dfd.reject({result: result, status: status})
+                    .error(function(result, status) {
+                        dfd.reject({result: result, status: status});
                     });
             }
             return dfd.promise;
@@ -71,3 +74,4 @@ angular.module('zeiterfassung.task.integrationservices', ['zeiterfassung.ui.app.
             updateAllTasks: updateTasks
         };
     }]);
+})();
