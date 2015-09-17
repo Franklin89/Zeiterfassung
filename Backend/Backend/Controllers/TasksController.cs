@@ -1,4 +1,5 @@
 ﻿using Backend.Database;
+using Backend.Infrastructure;
 using Backend.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Web.Http;
 
 namespace Backend.Controllers
 {
+    [CustomAuthorize]
     public class TasksController : ApiController
     {
         // GET: api/Tasks
@@ -27,6 +29,7 @@ namespace Backend.Controllers
         }
 
         // POST: api/Tasks
+        [CustomAuthorize(Users = "admin")]
         public void Post([FromBody]Task task)
         {
             using (var db = new DatabaseContext())
@@ -37,6 +40,7 @@ namespace Backend.Controllers
         }
 
         // PUT: api/Tasks/5
+        [CustomAuthorize(Users = "admin")]
         public void Put(int id, [FromBody]Task task)
         {
             using (var db = new DatabaseContext())
@@ -47,6 +51,7 @@ namespace Backend.Controllers
         }
 
         // DELETE: api/Tasks/5
+        [CustomAuthorize(Users = "admin")]
         public void Delete(int id)
         {
             using (var db = new DatabaseContext())

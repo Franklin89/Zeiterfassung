@@ -30,6 +30,7 @@ namespace Backend.Controllers
         }
 
         // POST: api/Projects
+        [CustomAuthorize(Users = "admin")]
         public void Post([FromBody]Project Project)
         {
             using (var db = new DatabaseContext())
@@ -40,6 +41,7 @@ namespace Backend.Controllers
         }
 
         // PUT: api/Projects/5
+        [CustomAuthorize(Users = "admin")]
         public void Put(int id, [FromBody]Project Project)
         {
             using (var db = new DatabaseContext())
@@ -50,6 +52,7 @@ namespace Backend.Controllers
         }
 
         // DELETE: api/Projects/5
+        [CustomAuthorize(Users = "admin")]
         public void Delete(int id)
         {
             using (var db = new DatabaseContext())

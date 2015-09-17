@@ -1,4 +1,5 @@
 ﻿using Backend.Database;
+using Backend.Infrastructure;
 using Backend.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Web.Http;
 
 namespace Backend.Controllers
 {
+    [CustomAuthorize]
     public class UserTasksController : ApiController
     {
         // GET: api/UserTasks

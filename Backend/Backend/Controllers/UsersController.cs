@@ -11,7 +11,7 @@ namespace Backend.Controllers
     public class UsersController : ApiController
     {
         // GET api/users
-        [CustomAuthorize(Users ="admin")]
+        [CustomAuthorize(Users = "admin")]
         public IEnumerable<User> Get()
         {
             using (var db = new DatabaseContext())
@@ -30,6 +30,7 @@ namespace Backend.Controllers
         }
 
         // POST api/values
+        [CustomAuthorize(Users = "admin")]
         public void Post([FromBody]User user)
         {
             using (var db = new DatabaseContext())
@@ -50,6 +51,7 @@ namespace Backend.Controllers
         }
 
         // DELETE api/values/5
+        [CustomAuthorize(Users = "admin")]
         public void Delete(int id)
         {
             using (var db = new DatabaseContext())
