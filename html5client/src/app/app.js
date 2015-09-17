@@ -47,9 +47,13 @@
                     url: '/projectManagement',
                     templateUrl: 'project/projectManagement.html'
                 })
-                .state('accountManagement', {
-                    url: '/accountManagement',
+                .state('account', {
+                    url: '/account',
                     templateUrl: 'users/accountManagement.html'
+                })
+                .state('users', {
+                    url: '/userManagement',
+                    templateUrl: 'users/userManagement.html'
                 })
                 .state('statistics', {
                     url: '/statistics',
