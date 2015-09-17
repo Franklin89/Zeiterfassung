@@ -60,5 +60,15 @@ namespace Backend.Controllers
                 db.SaveChanges();
             }
         }
+
+        [HttpGet]
+        [Route("api/users/GetByUsername/{id}")]
+        public User GetByUsername(string username)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Users.SingleOrDefault(p => p.Username == username);
+            }
+        }
     }
 }
