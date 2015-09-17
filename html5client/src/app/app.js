@@ -52,7 +52,7 @@ zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider
             })
             .state('accountManagement', {
                 url: "/accountManagement",
-                templateUrl: "usertask/accountManagement.html"
+                templateUrl: "users/accountManagement.html"
             })
             .state('statistics', {
                 url: "/statistics",
