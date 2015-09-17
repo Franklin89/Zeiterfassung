@@ -66,12 +66,11 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li ng-repeat="project in projects"><a href="#"
-                                                                           ng-click="dropDownSelected(project.Id, project.Name)">{{project.Name}}</a>
+                                    <li ng-repeat="project in projects">
+                                        <a href="" ng-click="dropDownSelected(project.Id, project.Name)">{{project.Name}}</a>
                                     </li>
                                 </ul>
                             </div>
-                            </p>
                             <p>
                                 <label>Taskname</label>
                                 <input type="text" class="form-control" ng-model="taskname">
