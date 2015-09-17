@@ -4,4 +4,4 @@
 
 angular.module('zeiterfassung.ui.users', [
     'zeiterfassung.users.integrationservices'
-])
+]);
