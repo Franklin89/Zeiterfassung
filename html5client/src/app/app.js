@@ -36,7 +36,7 @@
         function($stateProvider, $urlRouterProvider, $httpProvider) {
 
             $httpProvider.interceptors.push('AuthenticationInterceptorService');
-            $urlRouterProvider.otherwise('/login');
+            $urlRouterProvider.otherwise('/timeRecording');
 
             $stateProvider
                 .state('timeRecording', {
@@ -49,7 +49,7 @@
                 })
                 .state('accountManagement', {
                     url: '/accountManagement',
-                    templateUrl: 'usertask/accountManagement.html'
+                    templateUrl: 'users/accountManagement.html'
                 })
                 .state('statistics', {
                     url: '/statistics',

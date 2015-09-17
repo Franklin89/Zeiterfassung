@@ -9,11 +9,14 @@
             'AuthenticationIntegrationService',
             ['$http', '$log', '$q', 'localStorageService', 'REST', 'md5',
             function($http, $log, $q, localStorageService, REST, md5) {
-                localStorageService.remove('authData');
                 var authentication = {
                     isAuth: false,
                     userName: ''
                 };
+
+                if (localStorageService.get('authData')) {
+                    authentication.isAuth = true;
+                }
 
                 function login(user) {
                     var dfd = $q.defer();
