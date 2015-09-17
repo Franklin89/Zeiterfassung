@@ -3,7 +3,7 @@
 
     var zeiterfassungsapp = angular.module('zeiterfassung.ui', [
         'ui.router',
-        'zeiterfassung.ui.users',
+        'zeiterfassung.users',
         'zeiterfassung.authentication',
         'zeiterfassung.ui.app.constants',
         'zeiterfassung.project.integrationservices',
