@@ -12,7 +12,6 @@
                             return result;
                         }, function(reason) {
                             // unauthorized
-                            //TODO: display error message
                             return reason;
                         });
                 };
