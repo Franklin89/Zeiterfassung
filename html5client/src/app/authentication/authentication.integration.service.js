@@ -55,11 +55,16 @@
                     return authentication.userName.toUpperCase() === REST.ADMINUSERNAME.toUpperCase();
                 }
 
+                function currentUsername() {
+                    return authentication.userName;
+                }
+
                 return {
                     login: login,
                     logout: logout,
                     isAuth: isAuth,
-                    isAdmin: isAdmin
+                    isAdmin: isAdmin,
+                    currentUsername: currentUsername
                 };
             }])
         .factory('AuthenticationInterceptorService', ['$q', '$injector', 'localStorageService',

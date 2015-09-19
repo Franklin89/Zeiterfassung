@@ -31,6 +31,19 @@
                 return dfd.promise;
             }
 
+            function getUserByUsername(userName) {
+                var dfd = $q.defer();
+                $log.info('getUserByUsername');
+                $http.get(REST.USERS + '/GetByUsername/' + userName, null, {tracker: 'rest'})
+                    .success(function (result) {
+                        dfd.resolve(result);
+                    })
+                    .error(function (result, status) {
+                        dfd.reject({result: result, status: status});
+                    });
+                return dfd.promise;
+            }
+
             function createUser(userTemplate) {
                 var dfd = $q.defer();
                 $log.debug('createUser: ' + angular.toJson(userTemplate, true));
@@ -73,6 +86,7 @@
             return {
                 readUsers: readUsers,
                 readUserForId: readUserForId,
+                getUserByUsername: getUserByUsername,
                 createUser: createUser,
                 editUser: editUser,
                 deleteUser: deleteUser
