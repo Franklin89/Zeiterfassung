@@ -62,7 +62,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        [Route("api/users/GetByUsername/{id}")]
+        [Route("api/users/GetByUsername/{username}")]
         public User GetByUsername(string username)
         {
             using (var db = new DatabaseContext())
