@@ -94,7 +94,7 @@
 
                 return {
                     createProject: createProject,
-                    readPojects: readProjects,
+                    readProjects: readProjects,
                     deleteProject: deleteProject,
                     editProject: editProject,
                     updateProjects: updateProjects,
