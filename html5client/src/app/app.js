@@ -16,6 +16,10 @@
                     return authenticationIntegrationService.isAuth();
                 };
 
+                $scope.isAdmin = function () {
+                    return authenticationIntegrationService.isAdmin();
+                };
+
                 $scope.logout = function() {
                     swal({
                         title: 'Abmelden',

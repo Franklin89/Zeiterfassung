@@ -15,8 +15,10 @@
                     userName: ''
                 };
 
-                if (localStorageService.get('authData')) {
+                var localAuthData = localStorageService.get('authData');
+                if (localAuthData) {
                     authentication.isAuth = true;
+                    authentication.userName = localAuthData.username;
                 }
 
                 function login(user) {
@@ -27,7 +29,7 @@
                         PasswordHash: md5.createHash(user.password)
                     })
                         .success(function(result) {
-                            localStorageService.set('authData', {token: result});
+                            localStorageService.set('authData', {token: result, username: user.username});
 
                             authentication.isAuth = true;
                             authentication.userName = user.username;
@@ -49,10 +51,15 @@
                     return authentication.isAuth;
                 }
 
+                function isAdmin() {
+                    return authentication.userName.toUpperCase() === REST.ADMINUSERNAME.toUpperCase();
+                }
+
                 return {
                     login: login,
                     logout: logout,
-                    isAuth: isAuth
+                    isAuth: isAuth,
+                    isAdmin: isAdmin
                 };
             }])
         .factory('AuthenticationInterceptorService', ['$q', '$injector', 'localStorageService',
