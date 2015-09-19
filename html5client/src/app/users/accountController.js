@@ -1,7 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('zeiterfassung.users', ['zeiterfassung.users.integrationservices', 'zeiterfassung.authentication'])
+    angular.module('zeiterfassung.users', ['zeiterfassung.users.integrationservices', 'zeiterfassung.authentication', 'xeditable'])
+        .run(function (editableOptions) {
+            editableOptions.theme = 'bs3';
+        })
         .controller('AccountController', ['$scope', '$state', 'UsersIntegrationService', 'AuthenticationIntegrationService',
             function ($scope, $state, usersIntegrationService, authenticationIntegrationService) {
                 usersIntegrationService.getUserByUsername(authenticationIntegrationService.currentUsername())
@@ -11,5 +14,10 @@
                         // show error message
                         return reason;
                     });
-            }]);
+
+                $scope.updateUser = function () {
+                    return usersIntegrationService.editUser($scope.account);
+                };
+            }
+        ]);
 })();

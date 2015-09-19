@@ -60,7 +60,7 @@
             function editUser(user) {
                 var dfd = $q.defer();
                 $log.debug('editUser: ' + angular.toJson(user, true));
-                $http.put(REST.USERS, user, {tracker: 'rest'})
+                $http.put(REST.USERS + '/' + user.Id, user, {tracker: 'rest'})
                     .success(function(result) {
                         dfd.resolve(result);
                     })

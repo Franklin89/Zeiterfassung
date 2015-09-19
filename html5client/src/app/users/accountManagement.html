@@ -29,33 +29,38 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <td>Beruf:</td>
-                                        <td>Software Engineer</td>
+                                        <td>Name:</td>
+                                        <td>
+                                            <a href="#" editable-text="account.LastName" onaftersave="updateUser()">
+                                                {{ account.LastName || 'empty' }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Alter</td>
-                                        <td>23</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Geburtsdatum</td>
-                                        <td>01/24/1988</td>
-                                    </tr>
-
-                                    <tr>
-                                    <tr>
-                                        <td>Geschlecht</td>
-                                        <td>Männlich</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adresse</td>
-                                        <td>Wankdorfstrasse, Bern</td>
+                                        <td>Vorname</td>
+                                        <td>
+                                            <a href="#" editable-text="account.FirstName" onaftersave="updateUser()">
+                                                {{ account.FirstName || 'empty' }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Email</td>
-                                        <td><a href="mailto:info@support.com">Testmail</a></td>
+                                        <td>
+                                            <a href="#" editable-email="account.Email" onaftersave="updateUser()">
+                                                {{ account.Email || 'empty' }}
+                                            </a>
+                                        </td>
                                     </tr>
-                                    <td>Telefonnummer</td>
-                                    <td>0794544432</td>
+                                    <tr>
+                                        <td>Sollarbeitszeit pro Tag</td>
+                                        <td>
+                                            <a href="#" editable-number="account.WorkingHoursPerDay" e-min="0"
+                                               e-max="12" onaftersave="updateUser()">
+                                                {{ account.WorkingHoursPerDay || 0.0 }}
+                                            </a>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
 
