@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="TimeRecordingController">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -14,14 +14,13 @@
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="true">
-                    Projekt
+                    {{dropdownProjectDisplay}}
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Projekt 1</a></li>
-                    <li><a href="#">Projekt 2</a></li>
-                    <li><a href="#">Projekt 3</a></li>
-                    <li><a href="#">Projekt 4</a></li>
+                    <li ng-repeat="project in projects">
+                        <a ng-click="projectDropDownSelected(project.Id)">{{project.Name}}</a>
+                    </li>
                 </ul>
             </div>
 
@@ -31,17 +30,13 @@
             <div class="dropdown recordingdropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="true">
-                    Tätigkeit
+                    {{dropdownTaskDisplay}}
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Tätigkeit 1</a></li>
-                    <li><a href="#">Tätigkeit 2</a></li>
-                    <li><a href="#">Tätigkeit 3</a></li>
-                    <li><a href="#">Tätigkeit 4</a></li>
+                    <li ng-repeat="task in tasks" ng-click="taskDropDownSelected(task)"><a>{{task.Name}}</a></li>
                 </ul>
             </div>
-
             <label>Datum</label>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
@@ -57,17 +52,16 @@
                             $('#datetimepicker1').datetimepicker();
                         });
 
-                        $(".dropdown-menu li a").click(function(){
+                        $(".dropdown-menu li a").click(function () {
                             $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
                             $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
                         });
-
                     </script>
 
             <label>Stunden</label>
             <input type="number" min="1" max="12" value="3" class="form-control"/>
 
-            <button class="btn btn-primary recordingbutton">Erfassen</button>
+            <button class="btn btn-primary recordingbutton" ng-click="addUserTask()">Erfassen</button>
 
         </div>
     </div>

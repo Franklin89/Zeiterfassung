@@ -137,16 +137,3 @@
         </div>
     </div>
 </div>
-
-<!-- TODO kk: Noch ausbauen unobstrusive JavaScript -->
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker();
-    });
-
-    $(".dropdown-menu li a").click(function () {
-        $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-    });
-
-</script>
