@@ -12,6 +12,7 @@ module.exports = function(config) {
       '../bower_components/angular-ui-router/release/angular-ui-router.js',
       '../bower_components/angular-mocks/angular-mocks.js',
       '../bower_components/angular-md5/angular-md5.min.js',
+      '../bower_components/jasmine-async-sugar/jasmine-async-sugar.js',
       '../node_modules/angular-local-storage/dist/angular-local-storage.min.js',
       '../src/app/**/*.js'//,
       //'../bower_components/**/*.js',

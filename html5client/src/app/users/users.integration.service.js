@@ -8,13 +8,17 @@
             function readUsers() {
                 var dfd = $q.defer();
                 $log.info('readUsers');
+                console.log('read users 1');
                 $http.get(REST.USERS, {tracker: 'rest'})
                     .success(function(result) {
+                        console.log('read users 2');
                         dfd.resolve(result);
                     })
                     .error(function(result, status) {
+                        console.log('read users 3');
                         dfd.reject({result: result, status: status});
                     });
+                console.log('read users 4');
                 return dfd.promise;
             }
 
@@ -46,14 +50,18 @@
 
             function createUser(userTemplate) {
                 var dfd = $q.defer();
+                console.log('1');
                 $log.debug('createUser: ' + angular.toJson(userTemplate, true));
                 $http.post(REST.USERS, userTemplate, {tracker: 'rest'})
                     .success(function(result) {
+                        console.log('2');
                         dfd.resolve(result);
                     })
                     .error(function(result, status) {
+                        console.log('3');
                         dfd.reject({result: result, status: status});
                     });
+                console.log('4');
                 return dfd.promise;
             }
 
@@ -83,11 +91,29 @@
                 return dfd.promise;
             }
 
+            function createUserNew(userTemplate) {
+                var dfd = $q.defer(), promises = [];
+                $log.debug('createProject: ' + angular.toJson(userTemplate, true));
+                console.log('createUserNew 1');
+                promises.push(function() {
+                    $http.post(REST.USERS, userTemplate, {tracker: 'rest'})
+                        .error(function(result, status) {
+                            console.log('createUserNew 2');
+                            dfd.reject({result: result, status: status});
+                        });
+                });
+                console.log('createUserNew 3');
+                $q.all(promises).then(dfd.resolve());
+                console.log('createUserNew 4');
+                return dfd.promise;
+            }
+
             return {
                 readUsers: readUsers,
                 readUserForId: readUserForId,
                 getUserByUsername: getUserByUsername,
                 createUser: createUser,
+                createUserNew: createUserNew,
                 editUser: editUser,
                 deleteUser: deleteUser
             };

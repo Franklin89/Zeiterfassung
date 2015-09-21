@@ -22,7 +22,7 @@
                     var dfd = $q.defer(), promises = [];
                     $log.debug('createProject: ' + angular.toJson(project, true));
 
-                    promises.push(new function() {
+                    promises.push(function() {
                         $http.post(REST.PROJECTS, project, {tracker: 'rest'})
                             .error(function(result, status) {
                                 dfd.reject({result: result, status: status});
@@ -31,7 +31,7 @@
 
                     angular.forEach(tasks, function(task) {
                         task.ProjectId = project.Id;
-                        promises.push(new function() {
+                        promises.push(function() {
                             $http.post(REST.TASKS, task, {tracker: 'rest'})
                                 .error(function(result, status) {
                                     dfd.reject({result: result, status: status});
@@ -57,20 +57,24 @@
                 }
 
                 function updateProjects(projects) {
-                    var dfd = $q.defer(), i, project;
+                    var dfd = $q.defer(), i, project, executor;
 
-                    for (i = 0; i < projects.length; i++) {
-                        project = projects[i];
-                        $log.debug('updateProjects: ' + angular.toJson(project, true));
-                        $http.put(REST.PROJECTS + '/' + project.Id, project)
+                    executor = function(proj) {
+                        $log.debug('updateProjects: ' + angular.toJson(proj, true));
+                        $http.put(REST.PROJECTS + '/' + proj.Id, proj)
                             .success(function(result) {
                                 dfd.resolve(result);
                             })
                             .error(function(result, status) {
-                                dfd.reject({result: result, status: status})
+                                dfd.reject({result: result, status: status});
                             });
 
-                        taskIntegrationService.updateAllTasks(project.Tasks);
+                        taskIntegrationService.updateAllTasks(proj.Tasks);
+                    };
+
+                    for (i = 0; i < projects.length; i++) {
+                        project = projects[i];
+                        executor(project);
                     }
                     return dfd.promise;
                 }

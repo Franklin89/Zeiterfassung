@@ -16,14 +16,65 @@
                 options: {
                     config: '.jscsrc'
                 }
+            },
+            protractor: {
+                options: {
+                    configFile: "test/protractor-conf.js",
+                    noColor: false,
+                    args: { }
+                },
+                e2e: {
+                    options: {
+                        keepAlive: false
+                    }
+                },
+                continuous: {
+                    options: {
+                        keepAlive: true
+                    }
+                }
+            },
+            connect: {
+                options: {
+                    port: 9000,
+                    hostname: 'localhost'
+                },
+                test: {
+                    options: {
+                        // set the location of the application files
+                        base: ['../src/app']
+                    }
+                }
+            },
+            watch: {
+                files: ['<%= jshint.files %>'],
+                tasks: ['jsh', 'cs']
             }
+            //watch: {
+            //    options: {
+            //        livereload: true
+            //    }//,
+                //karma: {
+                //    files: ['app/js/**/*.js', 'test/unit/*.js'],
+                //    tasks: ['karma:continuous:run']
+                //},
+                //protractor: {
+                //    files: ['app/js/**/*.js', 'test/e2e/*.js'],
+                //    tasks: ['protractor:continuous']
+                //}
+            //}
         });
 
         grunt.loadNpmTasks('grunt-contrib-jshint');
-        grunt.loadNpmTasks("grunt-jscs");
+        grunt.loadNpmTasks('grunt-jscs');
+        grunt.loadNpmTasks('grunt-contrib-connect');
+        grunt.loadNpmTasks('grunt-protractor-runner');
+        grunt.loadNpmTasks('grunt-contrib-watch');
 
-        grunt.registerTask('test', ['jshint']);
-        grunt.registerTask('cc', ['jscs']);
-        grunt.registerTask('default', ['jshint', 'jscs']);
+        grunt.registerTask('test-jsh', ['jshint']);
+        grunt.registerTask('test-cs', ['jscs']);
+        grunt.registerTask('test-e2e', ['connect:test', 'protractor:e2e']);
+
+        grunt.registerTask('default', ['test-jsh', 'test-cs', 'test-e2e']);
     };
 })();
