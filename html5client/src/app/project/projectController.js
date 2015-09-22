@@ -17,17 +17,12 @@
             $scope.showSuccessAtTopOfPage = false;
             $scope.showFailureAtTopOfPage = false;
             $scope.dropdownDisplay = 'Select a project';
-            $scope.showSpinner = false;
 
             var projectId, readProjects;
 
             readProjects = function() {
-
-                $scope.showSpinner = true;
-
                 projectIntegrationService.readProjects().then(function(result) {
                     $scope.projects = result;
-                    $scope.showSpinner = false;
                 }, function() {
                     $scope.errorMessage = 'Netzwerkfehler';
                     $scope.showFailureAtTopOfPage = true;
