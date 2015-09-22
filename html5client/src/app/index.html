@@ -36,10 +36,10 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li ui-sref-active="active"><a ui-sref="timeRecording">Erfassung</a></li>
+            <li ui-sref-active="active" ng-hide="isAdmin()"><a ui-sref="timeRecording">Erfassung</a></li>
             <li ui-sref-active="active"><a ui-sref="statistics">Übersicht</a></li>
             <li ui-sref-active="active" ng-hide="!isAdmin()"><a ui-sref="projectManagement">Projektverwaltung</a></li>
-            <li ui-sref-active="active"><a ui-sref="account">Kontoeinstellungen</a></li>
+            <li ui-sref-active="active" ng-hide="isAdmin()"><a ui-sref="account">Kontoeinstellungen</a></li>
             <li ui-sref-active="active" ng-hide="!isAdmin()"><a ui-sref="users">Benutzerverwaltung</a></li>
             <li ui-sref-active="active" ng-show="loggedIn()"><a href="" ng-click="logout()">Abmelden</a></li>
           </ul>
