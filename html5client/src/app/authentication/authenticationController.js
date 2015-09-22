@@ -8,7 +8,12 @@
                     authenticationIntegrationService.login($scope.user)
                         .then(function(result) {
                             // authorized
-                            $state.go('timeRecording');
+                            if (authenticationIntegrationService.isAdmin()){
+                                $state.go('projectManagement');
+                            }
+                            else{
+                                $state.go('timeRecording');
+                            }
                             return result;
                         }, function(reason) {
                             // unauthorized
