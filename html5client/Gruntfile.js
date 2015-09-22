@@ -62,7 +62,7 @@
             },
             watch: {
                 files: ['<%= jshint.files %>'],
-                tasks: ['jsh', 'cs']
+                tasks: ['test-jsh', 'test-cs']
             }
             //watch: {
             //    options: {
