@@ -90,7 +90,7 @@
                     var authData = localStorageService.get('authData');
 
                     if (authData) {
-                        config.headers['api-token'] = authData.token;
+                        config.headers['api-token'] = authData.token.replace(/['"]+/g, '');
                     }
 
                     return config;
