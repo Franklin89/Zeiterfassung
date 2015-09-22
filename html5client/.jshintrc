@@ -16,7 +16,25 @@
   "undef"         : true,
   "unused"        : true,
   "asi"           : false,
-  "predef": ["angular", "module", "swal", "console", "describe", "beforeEach", "afterEach", "inject", "it", "xit", "expect", "d3"],
+  "predef": [
+    "angular",
+    "module",
+    "swal",
+    "console",
+    "describe",
+    "beforeEach",
+    "beforeAll",
+    "beforeEachAsync",
+    "afterEach",
+    "inject",
+    "it",
+    "xit",
+    "expect",
+    "d3",
+    "browser",
+    "element",
+    "by"
+  ],
   "globals": {
     "$": false
   }

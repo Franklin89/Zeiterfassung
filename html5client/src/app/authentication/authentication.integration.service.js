@@ -9,14 +9,18 @@
             'AuthenticationIntegrationService',
             ['$http', '$log', '$q', 'localStorageService', 'REST', 'md5',
             function($http, $log, $q, localStorageService, REST, md5) {
+                var authentication, localAuthData;
+
                 localStorageService.remove('authData');
-                var authentication = {
+                authentication = {
                     isAuth: false,
                     userName: ''
                 };
 
-                if (localStorageService.get('authData')) {
+                localAuthData = localStorageService.get('authData');
+                if (localAuthData) {
                     authentication.isAuth = true;
+                    authentication.userName = localAuthData.username;
                 }
 
                 function login(user) {
@@ -27,7 +31,7 @@
                         PasswordHash: md5.createHash(user.password)
                     })
                         .success(function(result) {
-                            localStorageService.set('authData', {token: result});
+                            localStorageService.set('authData', {token: result, username: user.username});
 
                             authentication.isAuth = true;
                             authentication.userName = user.username;
@@ -49,10 +53,20 @@
                     return authentication.isAuth;
                 }
 
+                function isAdmin() {
+                    return authentication.userName.toUpperCase() === REST.ADMINUSERNAME.toUpperCase();
+                }
+
+                function currentUsername() {
+                    return authentication.userName;
+                }
+
                 return {
                     login: login,
                     logout: logout,
-                    isAuth: isAuth
+                    isAuth: isAuth,
+                    isAdmin: isAdmin,
+                    currentUsername: currentUsername
                 };
             }])
         .factory('AuthenticationInterceptorService', ['$q', '$injector', 'localStorageService',
@@ -62,7 +76,7 @@
                     var authData = localStorageService.get('authData');
 
                     if (authData) {
-                        config.headers['api-token'] = authData.token;
+                        config.headers['api-token'] = authData.token.replace(/['"]+/g, '');
                     }
 
                     return config;

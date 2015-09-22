@@ -15,13 +15,13 @@
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{account.FirstName + account.LastName}}</h3>
+                        <h3 class="panel-title">{{account.FirstName + " " + account.LastName}}</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3 col-lg-3 " align="center">
                                 <img alt="User Pic"
-                                     src="http://www.ninthmosaicmedia.com/wp-content/uploads/2012/01/nerd1.jpg"
+                                     src="http://divvygreen.com/public-uploads/profile-pics/unknown.jpg"
                                      class="img-circle img-responsive">
                             </div>
 
@@ -29,49 +29,42 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <td>Beruf:</td>
-                                        <td>Software Engineer</td>
+                                        <td>Name:</td>
+                                        <td>
+                                            <a href="#" editable-text="account.LastName" onaftersave="updateUser()">
+                                                {{ account.LastName || 'empty' }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Alter</td>
-                                        <td>23</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Geburtsdatum</td>
-                                        <td>01/24/1988</td>
-                                    </tr>
-
-                                    <tr>
-                                    <tr>
-                                        <td>Geschlecht</td>
-                                        <td>Männlich</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adresse</td>
-                                        <td>Wankdorfstrasse, Bern</td>
+                                        <td>Vorname</td>
+                                        <td>
+                                            <a href="#" editable-text="account.FirstName" onaftersave="updateUser()">
+                                                {{ account.FirstName || 'empty' }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Email</td>
-                                        <td><a href="mailto:info@support.com">Testmail</a></td>
+                                        <td>
+                                            <a href="#" editable-email="account.Email" onaftersave="updateUser()">
+                                                {{ account.Email || 'empty' }}
+                                            </a>
+                                        </td>
                                     </tr>
-                                    <td>Telefonnummer</td>
-                                    <td>0794544432</td>
+                                    <tr>
+                                        <td>Sollarbeitszeit pro Tag</td>
+                                        <td>
+                                            <a href="#" editable-number="account.WorkingHoursPerDay" e-min="1"
+                                               e-max="12" onaftersave="updateUser()">
+                                                {{ account.WorkingHoursPerDay || 0.0 }}
+                                            </a>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
-
-                                <a href="#" class="btn btn-primary">Speichern</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
-                           class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <span class="pull-right">
-                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button"
-                               class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button"
-                               class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        </span>
                     </div>
                 </div>
             </div>

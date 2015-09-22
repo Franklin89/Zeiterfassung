@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="recording/timeRecording.css"/>
     <link rel="stylesheet" href="statistics/statistics.css"/>
-    <link rel="stylesheet" href="../../bower_components/css-spinners/css/spinner/hexdots.css"/>
+    <link rel="stylesheet" href="../../bower_components/css-spinners/css/spinner/whirly.css"/>
     <link rel="stylesheet" href="project/projectManagement.css"/>
-    <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="../../bower_components/sweetalert/dist/sweetalert.css"/>
     <link rel="stylesheet" href="../../bower_components/angular-xeditable/dist/css/xeditable.css"/>
   </head>
@@ -36,10 +36,10 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li ui-sref-active="active" ng-hide="isAdmin()"><a ui-sref="timeRecording">Erfassung</a></li>
+            <li ui-sref-active="active"><a ui-sref="timeRecording">Erfassung</a></li>
             <li ui-sref-active="active"><a ui-sref="statistics">Übersicht</a></li>
             <li ui-sref-active="active" ng-hide="!isAdmin()"><a ui-sref="projectManagement">Projektverwaltung</a></li>
-            <li ui-sref-active="active" ng-hide="isAdmin()"><a ui-sref="account">Kontoeinstellungen</a></li>
+            <li ui-sref-active="active"><a ui-sref="account">Kontoeinstellungen</a></li>
             <li ui-sref-active="active" ng-hide="!isAdmin()"><a ui-sref="users">Benutzerverwaltung</a></li>
             <li ui-sref-active="active" ng-show="loggedIn()"><a href="" ng-click="logout()">Abmelden</a></li>
           </ul>
@@ -51,13 +51,13 @@
       <div ui-view></div>
     </div>
 
-    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="../../bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../bower_components/moment/min/moment.min.js"></script>
-    <script type="text/javascript" src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="../../bower_components/d3/d3.js"></script>
+    <script type="text/javascript" src="../../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/d3/d3.min.js"></script>
     <script type="text/javascript"
             src="../../node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
     <script type="text/javascript" src="../../bower_components/angular-md5/angular-md5.min.js"></script>
@@ -65,17 +65,6 @@
     <script type="text/javascript" src="../../bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
 
     <!-- Einbindung der eigenen Scripts -->
-    <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="app.constants.js"></script>
-    <script type="text/javascript" src="users/users.integration.service.js"></script>
-    <script type="text/javascript" src="users/accountController.js"></script>
-    <script type="text/javascript" src="statistics/statisticController.js"></script>
-    <script type="text/javascript" src="project/projectController.js"></script>
-    <script type="text/javascript" src="project/project.integration.service.js"></script>
-    <script type="text/javascript" src="project/task.integration.service.js"></script>
-    <script type="text/javascript" src="authentication/authentication.integration.service.js"></script>
-    <script type="text/javascript" src="authentication/authenticationController.js"></script>
-    <script type="text/javascript" src="recording/timeRecordingController.js"></script>
-    <script type="text/javascript" src="recording/userTask.integration.service.js"></script>
+    <script type="text/javascript" src="../../build/zeiterfassung.min.js"></script>
   </body>
 </html>

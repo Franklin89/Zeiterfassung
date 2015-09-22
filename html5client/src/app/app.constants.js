@@ -8,5 +8,6 @@ angular.module('zeiterfassung.ui.app.constants', [])
         USERS: 'https://interfaces.azurewebsites.net/api/users',
         TASKS: 'https://interfaces.azurewebsites.net/api/tasks',
         USERTASKS: 'https://interfaces.azurewebsites.net/api/usertasks',
-        ACCOUNT: 'https://interfaces.azurewebsites.net/api/account'
+        ACCOUNT: 'https://interfaces.azurewebsites.net/api/account',
+        ADMINUSERNAME: 'admin'
     });

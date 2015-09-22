@@ -13,7 +13,7 @@
             var dfd = $q.defer(), promises = [];
 
             $log.debug('createTask: ' + angular.toJson(task, true));
-            promises.push(new function() {
+            promises.push(function() {
                 $http.post(REST.TASKS, task, {tracker: 'rest'})
                     .error(function(result, status) {
                         dfd.reject({result: result, status: status});
@@ -51,10 +51,9 @@
 
         function updateTasks(tasks) {
 
-            var dfd = $q.defer(), i = 0, task;
+            var dfd = $q.defer(), i = 0, t, executor;
 
-            for (i = 0; i < tasks.length; i++) {
-                task = tasks[i];
+            executor = function(task) {
                 $log.debug('updateProjects: ' + angular.toJson(task, true));
                 $http.put(REST.TASKS + '/' + task.Id, task)
                     .success(function(result) {
@@ -63,6 +62,11 @@
                     .error(function(result, status) {
                         dfd.reject({result: result, status: status});
                     });
+            };
+
+            for (i = 0; i < tasks.length; i++) {
+                t = tasks[i];
+                executor(t);
             }
             return dfd.promise;
         }

@@ -60,7 +60,7 @@
             function editUser(user) {
                 var dfd = $q.defer();
                 $log.debug('editUser: ' + angular.toJson(user, true));
-                $http.put(REST.USERS, user, {tracker: 'rest'})
+                $http.put(REST.USERS + '/' + user.Id, user, {tracker: 'rest'})
                     .success(function(result) {
                         dfd.resolve(result);
                     })
@@ -83,11 +83,29 @@
                 return dfd.promise;
             }
 
+            function createUserNew(userTemplate) {
+                var dfd = $q.defer(), promises = [];
+                $log.debug('createProject: ' + angular.toJson(userTemplate, true));
+                console.log('createUserNew 1');
+                promises.push(function() {
+                    $http.post(REST.USERS, userTemplate, {tracker: 'rest'})
+                        .error(function(result, status) {
+                            console.log('createUserNew 2');
+                            dfd.reject({result: result, status: status});
+                        });
+                });
+                console.log('createUserNew 3');
+                $q.all(promises).then(dfd.resolve());
+                console.log('createUserNew 4');
+                return dfd.promise;
+            }
+
             return {
                 readUsers: readUsers,
                 readUserForId: readUserForId,
                 readByUserName: readUserByUsername,
                 createUser: createUser,
+                createUserNew: createUserNew,
                 editUser: editUser,
                 deleteUser: deleteUser
             };
