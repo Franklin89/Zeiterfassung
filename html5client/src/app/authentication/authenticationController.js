@@ -6,6 +6,7 @@
         .controller('AuthenticationController', ['$scope', '$state', 'AuthenticationIntegrationService',
             function($scope, $state, authenticationIntegrationService) {
                 $scope.login = function() {
+                    $scope.error = '';
                     authenticationIntegrationService.login($scope.user)
                         .then(function(result) {
                             // authorized
@@ -18,6 +19,8 @@
                             return result;
                         }, function(reason) {
                             // unauthorized
+                            $scope.user.password = '';
+                            $scope.error = 'Login fehlgeschlagen';
                             return reason;
                         });
                 };
