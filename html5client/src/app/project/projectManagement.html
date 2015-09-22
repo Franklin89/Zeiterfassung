@@ -106,7 +106,13 @@
                     <tbody>
                     <tr ng-repeat="project in projects">
                         <td>
+                            <div class="col-xs-9">
                             <input type="text" class="form-control" ng-model="project.Name" ng-change="inputChanged()"/>
+                            </div>
+                            <div>
+                                <a data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"
+                                   ng-click="deleteProject(project)" ng-show="project.Tasks.length == 0"><i class="glyphicon glyphicon-trash"></i></a>
+                            </div>
                         </td>
                         <td>
                             <ul class="list-group">

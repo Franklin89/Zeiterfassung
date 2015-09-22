@@ -143,6 +143,29 @@
                         }, 2000);
                     });
             };
+
+            $scope.deleteProject = function(project){
+                projectIntegrationService.deleteProject(project).
+                    then(function(){
+                        $scope.successMeassage = 'Das Projekt ' + project.Name +
+                        " wurde erfolgreich gelöscht";
+                        $scope.showSuccessAtTopOfPage = true;
+                        $timeout(function() {
+                            $scope.showSuccessAtTopOfPage = false;
+                        }, 2000);
+                        readProjects();
+                    },
+                    function(){
+                        $scope.errorMessage = 'Fehler beim Löschen des Projekts ' +
+                        project.Name;
+                        $scope.showFailureAtTopOfPage = true;
+
+                        $timeout(function() {
+                            $scope.showFailureAtTopOfPage = false;
+                        }, 2000);
+                    });
+            };
+
             readProjects();
         }]);
 })();

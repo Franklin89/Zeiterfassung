@@ -78,7 +78,7 @@
                 function deleteProject(project) {
                     var dfd = $q.defer();
                     $log.debug('DeleteProject: ' + angular.toJson(project, true));
-                    $http.delete(REST.PROJECTS + '/' + project.id, {tracker: 'rest'})
+                    $http.delete(REST.PROJECTS + '/' + project.Id, {tracker: 'rest'})
                         .success(function(result) {
                             dfd.resolve(result);
                         })
