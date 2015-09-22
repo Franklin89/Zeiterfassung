@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('zeiterfassung.authentication',
-        ['zeiterfassung.authentication.integrationservices', 'angular-loading-bar'])
+        ['zeiterfassung.authentication.integrationservices'])
         .controller('AuthenticationController', ['$scope', '$state', 'AuthenticationIntegrationService',
             function($scope, $state, authenticationIntegrationService) {
                 $scope.login = function() {

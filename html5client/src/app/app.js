@@ -8,7 +8,8 @@
         'zeiterfassung.ui.app.constants',
         'zeiterfassung.project.integrationservices',
         'zeiterfassung.task.integrationservices',
-        'zeiterfassung.userTasks.integrationservices'])
+        'zeiterfassung.userTasks.integrationservices',
+        'angular-loading-bar'])
 
         .controller('MainController', ['$scope', '$state', 'AuthenticationIntegrationService',
             function($scope, $state, authenticationIntegrationService) {
@@ -37,9 +38,9 @@
                 };
             }]);
 
-    zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
-        function($stateProvider, $urlRouterProvider, $httpProvider) {
-
+    zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider',
+        function($stateProvider, $urlRouterProvider, $httpProvider ,cfpLoadingBarProvider) {
+            cfpLoadingBarProvider.spinnerTemplate = '<div class="col-lg-offset-6 hexdots-loader"></div>';
             $httpProvider.interceptors.push('AuthenticationInterceptorService');
             $urlRouterProvider.otherwise('/login');
 
