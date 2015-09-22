@@ -18,7 +18,7 @@
             var user;
 
             var readProjects = function () {
-                projectIntegrationService.readPojects().
+                projectIntegrationService.readProjects().
                     then(function (result) {
                         $scope.projects = result;
                     },

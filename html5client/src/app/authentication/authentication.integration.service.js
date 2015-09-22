@@ -32,6 +32,7 @@
                     })
                         .success(function(result) {
                             localStorageService.set('authData', {token: result, username: user.username});
+                            localStorageService.set('userName', user.username);
 
                             authentication.isAuth = true;
                             authentication.userName = user.username;
@@ -61,12 +62,25 @@
                     return authentication.userName;
                 }
 
+                var readUserData = function(){
+                    var dfd = $q.defer();
+                    $http.get(REST.ACCOUNT, null)
+                        .success(function(result) {
+                            dfd.resolve(result);
+                        })
+                        .error(function(result, status) {
+                            dfd.reject({result: result, status: status});
+                        });
+                    return dfd.promise;
+                };
+
                 return {
                     login: login,
                     logout: logout,
                     isAuth: isAuth,
                     isAdmin: isAdmin,
-                    currentUsername: currentUsername
+                    currentUsername: currentUsername,
+                    readUsers: readUserData
                 };
             }])
         .factory('AuthenticationInterceptorService', ['$q', '$injector', 'localStorageService',
@@ -76,7 +90,7 @@
                     var authData = localStorageService.get('authData');
 
                     if (authData) {
-                        config.headers['api-token'] = authData.token.replace(/['"]+/g, '');
+                        config.headers['api-token'] = authData.token;
                     }
 
                     return config;

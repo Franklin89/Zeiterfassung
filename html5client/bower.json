@@ -9,7 +9,7 @@
     "bootstrap": "3.3.5",
     "css-spinners": "2.2.0",
     "d3": "~3.5.6",
-    "bootstrap-datetimepicker": "1.4.1",
+    "bootstrap-datepicker": "1.4.1",
     "lodash": "*",
     "sweetalert": "~1.1.0"
   },
