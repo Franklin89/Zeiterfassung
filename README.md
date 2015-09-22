@@ -3,7 +3,7 @@
 URL: https://interfaces.azurewebsites.net/api/...
 
 ### Features
-- Benutzer CRUD
+- Benutzer CRUD (/)
   - Sollarbeitszeit
 - Projekt CRUD
 - Tätigkeiten CRUD
