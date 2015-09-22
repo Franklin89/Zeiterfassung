@@ -4,6 +4,7 @@ using Backend.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace Backend.Controllers
 {
@@ -25,7 +26,10 @@ namespace Backend.Controllers
         {
             using (var db = new DatabaseContext())
             {
-                return db.Users.SingleOrDefault(x => x.Id == id);
+                return db.Users
+                         .Include(x => x.Projects)
+                         .Include(x => x.UserTasks)
+                         .SingleOrDefault(x => x.Id == id);
             }
         }
 
