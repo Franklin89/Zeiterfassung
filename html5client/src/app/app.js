@@ -16,7 +16,7 @@
                     return authenticationIntegrationService.isAuth();
                 };
 
-                $scope.isAdmin = function () {
+                $scope.isAdmin = function() {
                     return authenticationIntegrationService.isAdmin();
                 };
 

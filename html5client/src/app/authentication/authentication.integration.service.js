@@ -9,13 +9,15 @@
             'AuthenticationIntegrationService',
             ['$http', '$log', '$q', 'localStorageService', 'REST', 'md5',
             function($http, $log, $q, localStorageService, REST, md5) {
+                var authentication, localAuthData;
+
                 localStorageService.remove('authData');
-                var authentication = {
+                authentication = {
                     isAuth: false,
                     userName: ''
                 };
 
-                var localAuthData = localStorageService.get('authData');
+                localAuthData = localStorageService.get('authData');
                 if (localAuthData) {
                     authentication.isAuth = true;
                     authentication.userName = localAuthData.username;
