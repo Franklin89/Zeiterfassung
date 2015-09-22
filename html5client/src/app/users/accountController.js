@@ -20,7 +20,14 @@
                     });
 
                 $scope.updateUser = function() {
-                    return usersIntegrationService.editUser($scope.account);
+                    usersIntegrationService.editUser($scope.account)
+                        .then(function () {
+                            // success
+                            return true;
+                        }, function (reason) {
+                            // show error message
+                            return reason;
+                        });
                 };
             }
         ]);
