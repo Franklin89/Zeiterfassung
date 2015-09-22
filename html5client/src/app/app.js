@@ -7,7 +7,8 @@
         'zeiterfassung.authentication',
         'zeiterfassung.ui.app.constants',
         'zeiterfassung.project.integrationservices',
-        'zeiterfassung.task.integrationservices'])
+        'zeiterfassung.task.integrationservices',
+        'zeiterfassung.userTasks.integrationservices'])
 
         .controller('MainController', ['$scope', '$state', 'AuthenticationIntegrationService',
             function($scope, $state, authenticationIntegrationService) {

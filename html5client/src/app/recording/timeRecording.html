@@ -38,23 +38,17 @@
                 </ul>
             </div>
             <label>Datum</label>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" ng-model="date"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+            <div class="input-append date" id="dp3" data-date="12.02.2012" data-date-format="dd-mm-yyyy">
+                <input class="span2 datepicker form-control" size="16" type="text" value="12.02.2012" ng-model="date"/>
             </div>
-                    <!-- TODO kk: Noch ausbauen unobstrusive JavaScript -->
+
+            <!-- TODO kk: Noch ausbauen unobstrusive JavaScript -->
                     <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker1').datetimepicker();
-                        });
+                        $('.datepicker').datepicker({format: 'dd.mm.yyyy'})
                     </script>
 
             <label>Stunden</label>
-            <input type="number" min="1" max="12" value="3" class="form-control"/>
+            <input type="number" min="1" max="12" value="3" class="form-control" ng-model="time"/>
 
             <button class="btn btn-primary recordingbutton" ng-click="addUserTask()">Erfassen</button>
 

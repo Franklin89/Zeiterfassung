@@ -7,7 +7,7 @@
     "bootstrap": "3.3.5",
     "css-spinners": "2.2.0",
     "d3": "~3.5.6",
-    "eonasdan-bootstrap-datetimepicker": "~4.15.35",
+    "bootstrap-datetimepicker": "1.4.1",
     "lodash": "*",
     "sweetalert": "~1.1.0",
     "angular-md5": "*"
