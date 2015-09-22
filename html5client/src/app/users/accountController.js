@@ -11,7 +11,7 @@
             'AccountController',
             ['$scope', '$state', 'UsersIntegrationService', 'AuthenticationIntegrationService',
             function($scope, $state, usersIntegrationService, authenticationIntegrationService) {
-                usersIntegrationService.getUserByUsername(authenticationIntegrationService.currentUsername())
+                usersIntegrationService.readByUserName(authenticationIntegrationService.currentUsername())
                     .then(function(result) {
                         $scope.account = result;
                     }, function(reason) {
