@@ -21,10 +21,10 @@
 
                 $scope.updateUser = function() {
                     usersIntegrationService.editUser($scope.account)
-                        .then(function () {
+                        .then(function() {
                             // success
                             return true;
-                        }, function (reason) {
+                        }, function(reason) {
                             // show error message
                             return reason;
                         });
