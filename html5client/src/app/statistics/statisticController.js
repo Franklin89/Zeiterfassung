@@ -4,48 +4,107 @@
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
     timerecordingapp.controller('StatisticsController', ['AuthenticationIntegrationService', 'UsersIntegrationService',
-        function (authenticationIntegrationService, userIntegrationService) {
+        'ProjectIntegrationService', 'TaskIntegrationService',
+        function (authenticationIntegrationService, userIntegrationService,
+                  projectIntegrationService, taskIntegrationService) {
 
             var _this = this, records, drawChartwithD3;
+            _this.workingHoursPerDay = 0;
+            var projects;
+            var tasks;
 
             records = [
                 {
                     Date: '02.01.2015',
                     Time: 8,
-                    TaskId: 'Programmieren',
-                    ProjectId: 'Testproject 1'
+                    TaskName: 'Programmieren',
+                    ProjectName: 'Testproject 1'
                 },
                 {
                     Date: '02.01.2015',
                     Time: 16,
-                    TaskId: 'Administratives',
-                    ProjectId: 'Testproject 2'
+                    TaskName: 'Administratives',
+                    ProjectName: 'Testproject 2'
                 },
                 {
                     Date: '02.01.2015',
                     Time: 8,
-                    TaskId: 'Meeting',
-                    ProjectId: 'Testproject 3'
+                    TaskName: 'Meeting',
+                    ProjectName: 'Testproject 3'
                 },
                 {
                     Date: '02.01.2015',
                     Time: 8,
-                    TaskId: 'Programmieren',
-                    ProjectId: 'Testproject 4'
+                    TaskName: 'Programmieren',
+                    ProjectName: 'Testproject 4'
                 },
                 {
                     Date: '02.01.2015',
                     Time: 8,
-                    TaskId: 'Programmieren',
-                    ProjectId: 'Testproject'
+                    TaskName: 'Programmieren',
+                    ProjectName: 'Testproject'
                 },
                 {
                     Date: '02.01.2015',
                     Time: 8,
-                    TaskId: 'Programmieren',
-                    ProjectId: 'Testproject'
+                    TaskName: 'Programmieren',
+                    ProjectName: 'Testproject'
                 }
             ];
+
+            function readProjects(){
+                projectIntegrationService.readProjects()
+                    .then(function(result){
+                        projects = result;
+                    }, function(){
+                        alert("Beim Lesen der Projekte ist ein Error aufgetreten.");
+                    })
+            };
+
+            function readTasks(){
+                taskIntegrationService.readAllTasks()
+                    .then(function(result){
+                        tasks = result;
+                    }, function(){
+                        alert("Beim Lesen der Tasks ist ein Fehler aufgetreten");
+                    })
+            };
+
+            function ermittleTaskNameForRecords(userTasks){
+                for(var i = 0; i<userTasks.length; i++){
+                    var taskName = getTaskNameFromTaskId(userTasks[i].TaskId);
+                    records[i].TaskName = taskName;
+                }
+            }
+
+            function ermittleProjectNameForRecords(userTasks){
+                for(var i = 0; i<userTasks.length; i++){
+                    var projectName = getProjectNameFromProjetId(userTasks[i].ProjectId);
+                    records[i].ProjectName = projectName;
+                }
+            }
+
+            function getProjectNameFromProjetId(projectId){
+                var projectName = undefined;
+
+                alert(projects.length);
+                projects.some(function(project){
+                    projectName = project.Name;
+                    return project.Id === projectId;
+                });
+                return projectName;
+            };
+
+            function getTaskNameFromTaskId(taskid){
+                var taskName = undefined;
+
+                tasks.some(function(task){
+                    taskName = task.Name;
+                    return task.Id === taskid;
+                    });
+
+                return taskName;
+            };
 
             _this.readUserTaskForUser = function () {
                 var userName = _this.getCurrentUserName();
@@ -55,9 +114,12 @@
                 userIntegrationService.readByUserName(userName)
                  .then(function(result){
                  user = result;
+                 _this.workingHoursPerDay = user.WorkingHoursPerDay;
                  userIntegrationService.readUserForId(user.Id)
                  .then(function(result){
                          records = result.UserTasks;
+                         ermittleTaskNameForRecords(result.UserTasks);
+                         ermittleProjectNameForRecords(result.UserTasks);
                          _this.timerecords = records;
                          console.log("Records nach dem Lesen" + angular.toJson(records));
                          drawChartwithD3();
@@ -120,7 +182,7 @@
                     .append('path')
                     .attr('d', arc)
                     .attr('fill', function (d) {
-                        return color(d.data.TaskId);
+                        return color(d.data.TaskName);
                     }
                 );
 
@@ -132,7 +194,7 @@
                     percent = Math.round(1000 * d.data.Time / total) / 10;
 
                     //TODO kk: Noch angular model verwenden
-                    $('#labelLabel').text('Task: ' + d.data.TaskId);
+                    $('#labelLabel').text('Task: ' + d.data.TaskName);
                     $('#countLabel').text('Stunden: ' + d.data.Time);
                     $('#percentLabel').text(percent + '%');
                 });
@@ -166,6 +228,8 @@
 
             _this.limittimerecordsTo4();
             _this.readUserTaskForUser();
+            readProjects();
+            readTasks();
         }]);
 })();
 

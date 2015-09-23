@@ -43,7 +43,7 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">8.5</div>
+                                    <div class="huge">{{sc.workingHoursPerDay}}</div>
                                     <div>Sollarbeitszeit</div>
                                 </div>
                             </div>
@@ -123,8 +123,8 @@
                                 <tr ng-repeat="timerecord in sc.timerecords">
                                     <td>{{ timerecord.Date }}</td>
                                     <td>{{ timerecord.Time }}</td>
-                                    <td>{{ timerecord.TaskId }}</td>
-                                    <td>{{ timerecord.ProjectId }}</td>
+                                    <td>{{ timerecord.TaskName }}</td>
+                                    <td>{{ timerecord.ProjectName }}</td>
                                 </tr>
                                 </tbody>
                             </table>
