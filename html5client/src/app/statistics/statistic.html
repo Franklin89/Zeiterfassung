@@ -121,7 +121,7 @@
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="timerecord in sc.timerecords">
-                                    <td>{{ timerecord.Date }}</td>
+                                    <td>{{ timerecord.Date | date:'dd.MM.yyyy'}}</td>
                                     <td>{{ timerecord.Time }}</td>
                                     <td>{{ timerecord.TaskName }}</td>
                                     <td>{{ timerecord.ProjectName }}</td>

@@ -87,7 +87,6 @@
             function getProjectNameFromProjetId(projectId){
                 var projectName = undefined;
 
-                alert(projects.length);
                 projects.some(function(project){
                     projectName = project.Name;
                     return project.Id === projectId;
