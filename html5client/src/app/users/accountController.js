@@ -30,5 +30,18 @@
                         });
                 };
             }
+        ])
+        .controller(
+        'UserController',
+        ['$scope', '$state', 'UsersIntegrationService',
+            function($scope, $state, usersIntegrationService) {
+                usersIntegrationService.readUsers()
+                        .then(function(result) {
+                            // success
+                            $scope.users = result;
+                        }, function() {
+                            // TODO:show error message
+                        });
+            }
         ]);
 })();

@@ -1,80 +1,80 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="UserController" xmlns="http://www.w3.org/1999/html">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Benutzerverwaltung
+                Benutzer verwalten
             </h1>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x">Benutzer erfassen</i>
+                        </div>
+                        <div class="col-xs-9 text-left">
+                            <p>
+                                <label>Benutzername</label>
+                                <input type="text" required class="form-control" ng-model="account.userName"/>
+                            </p>
+                            <p>
+                                <label>E-Mail</label>
+                                <input type="email" required class="form-control" ng-model="account.email"/>
+                            </p>
+                            <p>
+                                <label>Passwort</label>
+                                <input type="password" required class="form-control" ng-model="account.password"/>
+                            </p>
 
-            <div class="container-fluid">
-
-
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Testperson</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-3 col-lg-3 " align="center">
-                                <img alt="User Pic"
-                                     src="http://www.ninthmosaicmedia.com/wp-content/uploads/2012/01/nerd1.jpg"
-                                     class="img-circle img-responsive">
-                            </div>
-
-                            <div class=" col-md-9 col-lg-9 ">
-                                <table class="table table-user-information">
-                                    <tbody>
-                                    <tr>
-                                        <td>Beruf:</td>
-                                        <td>Software Engineer</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Alter</td>
-                                        <td>23</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Geburtsdatum</td>
-                                        <td>01/24/1988</td>
-                                    </tr>
-
-                                    <tr>
-                                    <tr>
-                                        <td>Geschlecht</td>
-                                        <td>Männlich</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adresse</td>
-                                        <td>Wankdorfstrasse, Bern</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email</td>
-                                        <td><a href="mailto:info@support.com">Testmail</a></td>
-                                    </tr>
-                                    <td>Telefonnummer</td>
-                                    <td>0794544432</td>
-
-                                    </tbody>
-                                </table>
-
-                                <a href="#" class="btn btn-primary">Speichern</a>
-                            </div>
+                            <p>
+                                <button class="btn btn-success" ng-click="addUser()">Erstellen</button>
+                            </p>
                         </div>
                     </div>
-                    <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button"
-                           class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <span class="pull-right">
-                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button"
-                               class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button"
-                               class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        </span>
-                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="panel panel-info">
+                <div class="panel-heading clearfix">
+                    <p class="panel-title pull-left">Alle Benutzer</p>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Vorname</th>
+                            <th>Benutzername</th>
+                            <th>E-Mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in users">
+                        <td>
+                            <p>{{user.LastName}}</p>
+                        </td>
+                        <td>
+                            <p>{{user.FirstName}}</p>
+                        </td>
+                        <td>
+                            <p>{{user.Username}}</p>
+                        </td>
+                        <td>
+                            <div class="col-xs-9">
+                                <p>{{user.Email}}</p>
+                            </div>
+                            <div ng-hide="user.Username === 'admin'">
+                                <a data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"
+                                   ng-click="deleteUser(user)"><i class="glyphicon glyphicon-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
