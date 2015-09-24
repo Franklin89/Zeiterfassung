@@ -10,16 +10,16 @@
     .factory('TaskIntegrationService', ['$http', '$log', '$q', 'REST', function($http, $log, $q, REST) {
 
         function createTask(task) {
-            var dfd = $q.defer(), promises = [];
+            var dfd = $q.defer();
 
             $log.debug('createTask: ' + angular.toJson(task, true));
-            promises.push(function() {
-                $http.post(REST.TASKS, task, {tracker: 'rest'})
-                    .error(function(result, status) {
-                        dfd.reject({result: result, status: status});
-                    });
-            });
-            $q.all(promises).then(dfd.resolve());
+            $http.post(REST.TASKS, task, {tracker: 'rest'})
+                .success(function(result) {
+                    dfd.resolve(result);
+                })
+                .error(function(result, status) {
+                    dfd.reject({result: result, status: status});
+                });
             return dfd.promise;
         }
 

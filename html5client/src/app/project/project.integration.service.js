@@ -18,28 +18,17 @@
                     return dfd.promise;
                 }
 
-                function createProject(project, tasks) {
-                    var dfd = $q.defer(), promises = [];
+                function createProject(project) {
+                    var dfd = $q.defer();
                     $log.debug('createProject: ' + angular.toJson(project, true));
 
-                    promises.push(new function() {
-                        $http.post(REST.PROJECTS, project, {tracker: 'rest'})
-                            .error(function(result, status) {
-                                dfd.reject({result: result, status: status});
-                            });
-                    });
-
-                    angular.forEach(tasks, function(task) {
-                        task.ProjectId = project.Id;
-                        promises.push(new function() {
-                            $http.post(REST.TASKS, task, {tracker: 'rest'})
-                                .error(function(result, status) {
-                                    dfd.reject({result: result, status: status});
-                                });
+                    $http.post(REST.PROJECTS, project, {tracker: 'rest'})
+                        .success(function(result) {
+                            dfd.resolve(result);
+                        })
+                        .error(function(result, status) {
+                            dfd.reject({result: result, status: status});
                         });
-                    });
-
-                    $q.all(promises).then(dfd.resolve());
                     return dfd.promise;
                 }
 
