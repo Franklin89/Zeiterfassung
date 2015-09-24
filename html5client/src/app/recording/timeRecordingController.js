@@ -39,7 +39,7 @@
             };
 
             var getUserNameFromLocalStorage = function(){
-                return localStorageService.get('userName');
+                return authService.currentUsername();
             };
 
             $scope.projectDropDownSelected = function (projectIdofSelectedItem) {

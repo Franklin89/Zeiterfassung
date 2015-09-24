@@ -9,7 +9,8 @@
         'zeiterfassung.project.integrationservices',
         'zeiterfassung.task.integrationservices',
         'zeiterfassung.userTasks.integrationservices',
-        'angular-loading-bar'])
+        'angular-loading-bar',
+        'zeiterfassung.saldoCalculator'])
 
         .controller('MainController', ['$scope', '$state', 'AuthenticationIntegrationService',
             function($scope, $state, authenticationIntegrationService) {

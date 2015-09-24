@@ -4,12 +4,13 @@
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
     timerecordingapp.controller('StatisticsController', ['AuthenticationIntegrationService', 'UsersIntegrationService',
-        'ProjectIntegrationService', 'TaskIntegrationService',
+        'ProjectIntegrationService', 'TaskIntegrationService', 'SaldoHelper',
         function (authenticationIntegrationService, userIntegrationService,
-                  projectIntegrationService, taskIntegrationService) {
+                  projectIntegrationService, taskIntegrationService, saldoHelper) {
 
             var _this = this, records, drawChartwithD3;
             _this.workingHoursPerDay = 0;
+            _this.saldo = 0;
             var projects;
             var tasks;
 
@@ -119,6 +120,8 @@
                          records = result.UserTasks;
                          ermittleTaskNameForRecords(result.UserTasks);
                          ermittleProjectNameForRecords(result.UserTasks);
+                         var startdatum = result.UserTasks[0].Date;
+                         _this.saldo = saldoHelper.calculateSaldo(startdatum, _this.workingHoursPerDay, result.UserTasks);
                          _this.timerecords = records;
                          console.log("Records nach dem Lesen" + angular.toJson(records));
                          drawChartwithD3();
