@@ -60,7 +60,7 @@
                 var userTaskToAdd = {
                     "Date": date,
                     "ProjectId": projectId,
-                    "TaskId": 2,
+                    "TaskId": taskId,
                     "Time": $scope.time,
                     "UserId": user.Id
                 };

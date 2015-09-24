@@ -13,6 +13,8 @@
             _this.saldo = 0;
             var projects;
             var tasks;
+            _this.ausstehendeFerientage = 25;
+            _this.gebrauchteFerienTage = 0;
 
             records = [
                 {
@@ -106,6 +108,15 @@
                 return taskName;
             };
 
+            function ermittleFerien(){
+                records.forEach(function(record) {
+                    if(record.TaskName === "Ferien"){
+                        _this.ausstehendeFerientage -= record.Time;
+                        _this.gebrauchteFerienTage += record.Time;
+                    }
+                });
+            };
+
             _this.readUserTaskForUser = function () {
                 var userName = _this.getCurrentUserName();
                 var user;
@@ -120,6 +131,7 @@
                          records = result.UserTasks;
                          ermittleTaskNameForRecords(result.UserTasks);
                          ermittleProjectNameForRecords(result.UserTasks);
+                         ermittleFerien();
                          var startdatum = result.UserTasks[0].Date;
                          _this.saldo = saldoHelper.calculateSaldo(startdatum, _this.workingHoursPerDay, result.UserTasks);
                          _this.timerecords = records;
