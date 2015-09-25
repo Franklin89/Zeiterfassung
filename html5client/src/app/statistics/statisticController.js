@@ -137,6 +137,7 @@
                          _this.timerecords = records;
                          console.log("Records nach dem Lesen" + angular.toJson(records));
                          drawChartwithD3();
+                         _this.limittimerecordsTo6();
                      },
                  function(){
                  alert("Beim zweiten Lesen des Benutzer ist ein Fehler aufgetreten");
@@ -151,8 +152,8 @@
                 return authenticationIntegrationService.currentUsername();
             };
 
-            _this.limittimerecordsTo4 = function () {
-                _this.timerecords = records.slice(0, 4);
+            _this.limittimerecordsTo6 = function () {
+                _this.timerecords = records.slice(0, 6);
             };
 
             _this.showallrecords = function () {
@@ -240,7 +241,6 @@
                     });
             };
 
-            _this.limittimerecordsTo4();
             _this.readUserTaskForUser();
             readProjects();
             readTasks();
