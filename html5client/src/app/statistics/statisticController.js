@@ -129,15 +129,18 @@
                  userIntegrationService.readUserForId(user.Id)
                  .then(function(result){
                          records = result.UserTasks;
-                         ermittleTaskNameForRecords(result.UserTasks);
-                         ermittleProjectNameForRecords(result.UserTasks);
-                         ermittleFerien();
-                         var startdatum = result.UserTasks[0].Date;
-                         _this.saldo = saldoHelper.calculateSaldo(startdatum, _this.workingHoursPerDay, result.UserTasks);
-                         _this.timerecords = records;
-                         console.log("Records nach dem Lesen" + angular.toJson(records));
-                         drawChartwithD3();
-                         _this.limittimerecordsTo6();
+
+                         if(result.UserTasks.length != 0) {
+                             ermittleTaskNameForRecords(result.UserTasks);
+                             ermittleProjectNameForRecords(result.UserTasks);
+                             ermittleFerien();
+                             var startdatum = result.UserTasks[0].Date;
+                             _this.saldo = saldoHelper.calculateSaldo(startdatum, _this.workingHoursPerDay, result.UserTasks);
+                             _this.timerecords = records;
+                             console.log("Records nach dem Lesen" + angular.toJson(records));
+                             drawChartwithD3();
+                             _this.limittimerecordsTo6();
+                         }
                      },
                  function(){
                  alert("Beim zweiten Lesen des Benutzer ist ein Fehler aufgetreten");
