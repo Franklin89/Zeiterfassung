@@ -18,6 +18,7 @@
             _this.gebrauchteFerienTage = 0;
 
             _this.usersOverview = [];
+            _this.monthOverview = [];
 
             records = [
                 {
@@ -124,6 +125,41 @@
                 return authenticationIntegrationService.isAdmin();
             };
 
+            function createMonthOverview(userTasks){
+                userTasks.forEach(function(userTask) {
+                    var date = new Date(userTask.Date);
+                    var month = date.getMonth();
+                    var year = date.getFullYear();
+                    var userTaskAdded = false;
+
+                    if (_this.monthOverview.length === 0) {
+                        _this.monthOverview.push(
+                            {
+                                month: month,
+                                year: year,
+                                time: userTask.Time
+                            }
+                        )
+                    }
+                    else {
+                        _this.monthOverview.forEach(function (entry) {
+                            if (entry.month === month && entry.year === year) {
+                                entry.time += userTask.Time;
+                                userTaskAdded = true;
+                            }
+                        });
+                        if (!userTaskAdded) {
+                            _this.monthOverview.push(
+                                {
+                                    month: month,
+                                    year: year,
+                                    time: userTask.Time
+                                }
+                            )
+                        }
+                    }
+                });
+            }
 
             function createUserTasksOverviewForUser(userTasks) {
                 userIntegrationService.readUsers()
@@ -132,6 +168,7 @@
                         userTaskIntegrationservice.readAllUserTasks()
                             .then(function (result) {
                                 var userTasks = result;
+                                createMonthOverview(userTasks);
                                 allUsers.forEach(function (user) {
                                     var loggedTimeByUser = 0;
                                     userTasks.forEach(function (userTask) {

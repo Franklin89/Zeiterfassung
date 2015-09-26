@@ -156,6 +156,24 @@
                         </table>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="table-responsive" ng-show="sc.isUserAdmin()">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>Monat</th>
+                                <th>Anzahl Stunden</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="monthlog in sc.monthOverview">
+                                <td>{{ monthlog.month + "." + monthlog.year}}</td>
+                                <td>{{ monthlog.time }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
