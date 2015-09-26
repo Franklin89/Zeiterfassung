@@ -23,8 +23,22 @@
                     return dfd.promise;
                 };
 
+                function readAllUserTasks() {
+                    var dfd = $q.defer();
+                    $log.info('readUserTasks');
+                    $http.get(REST.USERTASKS, null)
+                        .success(function(result) {
+                            dfd.resolve(result);
+                        })
+                        .error(function(result, status) {
+                            dfd.reject({result: result, status: status});
+                        });
+                    return dfd.promise;
+                }
+
                 return {
-                    createUserTask: createUserTask
+                    createUserTask: createUserTask,
+                    readAllUserTasks: readAllUserTasks
                 };
             }])
 })();

@@ -4,9 +4,10 @@
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
     timerecordingapp.controller('StatisticsController', ['AuthenticationIntegrationService', 'UsersIntegrationService',
-        'ProjectIntegrationService', 'TaskIntegrationService', 'SaldoHelper',
+        'ProjectIntegrationService', 'TaskIntegrationService', 'SaldoHelper', 'UserTaskIntegrationService',
         function (authenticationIntegrationService, userIntegrationService,
-                  projectIntegrationService, taskIntegrationService, saldoHelper) {
+                  projectIntegrationService, taskIntegrationService, saldoHelper,
+                    userTaskIntegrationservice) {
 
             var _this = this, records, drawChartwithD3;
             _this.workingHoursPerDay = 0;
@@ -15,6 +16,8 @@
             var tasks;
             _this.ausstehendeFerientage = 25;
             _this.gebrauchteFerienTage = 0;
+
+            _this.usersOverview = [];
 
             records = [
                 {
@@ -55,67 +58,100 @@
                 }
             ];
 
-            function readProjects(){
+            function readProjects() {
                 projectIntegrationService.readProjects()
-                    .then(function(result){
+                    .then(function (result) {
                         projects = result;
-                    }, function(){
+                    }, function () {
                         alert("Beim Lesen der Projekte ist ein Error aufgetreten.");
                     })
             };
 
-            function readTasks(){
+            function readTasks() {
                 taskIntegrationService.readAllTasks()
-                    .then(function(result){
+                    .then(function (result) {
                         tasks = result;
-                    }, function(){
+                    }, function () {
                         alert("Beim Lesen der Tasks ist ein Fehler aufgetreten");
                     })
             };
 
-            function ermittleTaskNameForRecords(userTasks){
-                for(var i = 0; i<userTasks.length; i++){
+            function ermittleTaskNameForRecords(userTasks) {
+                for (var i = 0; i < userTasks.length; i++) {
                     var taskName = getTaskNameFromTaskId(userTasks[i].TaskId);
                     records[i].TaskName = taskName;
                 }
             }
 
-            function ermittleProjectNameForRecords(userTasks){
-                for(var i = 0; i<userTasks.length; i++){
+            function ermittleProjectNameForRecords(userTasks) {
+                for (var i = 0; i < userTasks.length; i++) {
                     var projectName = getProjectNameFromProjetId(userTasks[i].ProjectId);
                     records[i].ProjectName = projectName;
                 }
             }
 
-            function getProjectNameFromProjetId(projectId){
+            function getProjectNameFromProjetId(projectId) {
                 var projectName = undefined;
 
-                projects.some(function(project){
+                projects.some(function (project) {
                     projectName = project.Name;
                     return project.Id === projectId;
                 });
                 return projectName;
             };
 
-            function getTaskNameFromTaskId(taskid){
+            function getTaskNameFromTaskId(taskid) {
                 var taskName = undefined;
 
-                tasks.some(function(task){
+                tasks.some(function (task) {
                     taskName = task.Name;
                     return task.Id === taskid;
-                    });
+                });
 
                 return taskName;
             };
 
-            function ermittleFerien(){
-                records.forEach(function(record) {
-                    if(record.TaskName === "Ferien"){
+            function ermittleFerien() {
+                records.forEach(function (record) {
+                    if (record.TaskName === "Ferien") {
                         _this.ausstehendeFerientage -= record.Time;
                         _this.gebrauchteFerienTage += record.Time;
                     }
                 });
             };
+
+            _this.isUserAdmin = function () {
+                return authenticationIntegrationService.isAdmin();
+            };
+
+
+            function createUserTasksOverviewForUser(userTasks) {
+                userIntegrationService.readUsers()
+                    .then(function (result) {
+                        var allUsers = result;
+                        userTaskIntegrationservice.readAllUserTasks()
+                            .then(function (result) {
+                                var userTasks = result;
+                                allUsers.forEach(function (user) {
+                                    var loggedTimeByUser = 0;
+                                    userTasks.forEach(function (userTask) {
+                                        if (user.Id === userTask.UserId) {
+                                            loggedTimeByUser += userTask.Time;
+                                        }
+                                    });
+                                    _this.usersOverview.push({
+                                        "name": user.FirstName + " " + user.LastName,
+                                        "time": loggedTimeByUser
+                                    });
+                                })
+                            }), function () {
+                            alert("Beim Lesen der User Tasks gab es einen Error");
+                        }
+                    }, function () {
+                        alert("An Error occured");
+                        return undefined;
+                    });
+            }
 
             _this.readUserTaskForUser = function () {
                 var userName = _this.getCurrentUserName();
@@ -123,32 +159,38 @@
 
                 //TODO kk: Noch ausbauen - Wenn nicht muss die Id in den local Storage geschrieben werden.
                 userIntegrationService.readByUserName(userName)
-                 .then(function(result){
-                 user = result;
-                 _this.workingHoursPerDay = user.WorkingHoursPerDay;
-                 userIntegrationService.readUserForId(user.Id)
-                 .then(function(result){
-                         records = result.UserTasks;
+                    .then(function (result) {
+                        user = result;
+                        _this.workingHoursPerDay = user.WorkingHoursPerDay;
+                        userIntegrationService.readUserForId(user.Id)
+                            .then(function (result) {
+                                records = result.UserTasks;
 
-                         if(result.UserTasks.length != 0) {
-                             ermittleTaskNameForRecords(result.UserTasks);
-                             ermittleProjectNameForRecords(result.UserTasks);
-                             ermittleFerien();
-                             var startdatum = result.UserTasks[0].Date;
-                             _this.saldo = saldoHelper.calculateSaldo(startdatum, _this.workingHoursPerDay, result.UserTasks);
-                             _this.timerecords = records;
-                             console.log("Records nach dem Lesen" + angular.toJson(records));
-                             drawChartwithD3();
-                             _this.limittimerecordsTo6();
-                         }
-                     },
-                 function(){
-                 alert("Beim zweiten Lesen des Benutzer ist ein Fehler aufgetreten");
-                 })
-                 },
-                 function(){
-                 alert("Beim Lesen des Benutzers ist ein Fehler aufgetreten");
-                 });
+                                if (result.UserTasks.length != 0) {
+                                    ermittleTaskNameForRecords(result.UserTasks);
+                                    ermittleProjectNameForRecords(result.UserTasks);
+                                    ermittleFerien();
+                                    var startdatum = result.UserTasks[0].Date;
+                                    _this.saldo = saldoHelper.calculateSaldo(startdatum, _this.workingHoursPerDay, result.UserTasks);
+                                    _this.timerecords = records;
+                                    console.log("Records nach dem Lesen" + angular.toJson(records));
+                                    drawChartwithD3();
+                                    _this.limittimerecordsTo6();
+
+                                    if (_this.isUserAdmin()) {
+                                        createUserTasksOverviewForUser(result.UserTasks);
+                                    }
+
+
+                                }
+                            },
+                            function () {
+                                alert("Beim zweiten Lesen des Benutzer ist ein Fehler aufgetreten");
+                            })
+                    },
+                    function () {
+                        alert("Beim Lesen des Benutzers ist ein Fehler aufgetreten");
+                    });
             };
 
             _this.getCurrentUserName = function () {
@@ -247,6 +289,9 @@
             _this.readUserTaskForUser();
             readProjects();
             readTasks();
-        }]);
+        }
+
+    ])
+    ;
 })();
 
