@@ -21,7 +21,7 @@
                             dfd.reject({result: result, status: status});
                         });
                     return dfd.promise;
-                };
+                }
 
                 function readAllUserTasks() {
                     var dfd = $q.defer();
@@ -40,5 +40,5 @@
                     createUserTask: createUserTask,
                     readAllUserTasks: readAllUserTasks
                 };
-            }])
+            }]);
 })();

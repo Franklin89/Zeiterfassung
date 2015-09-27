@@ -1,9 +1,5 @@
-/**
- * Created by Kiwi on 24.09.15.
- */
-
 (function(){
-
+    'use strict';
     angular.module('zeiterfassung.saldoCalculator', [])
 
         .factory('SaldoHelper', function(){
@@ -36,15 +32,15 @@
                 var arbeitstage;
 
                 arbeitstage = differenzInTagen - (geradeWochen * 2);
-                if(enddatum.getDay() == 0){
+                if(enddatum.getDay() === 0){
                     arbeitstage--;
-                };
+                }
 
                 return arbeitstage;
             }
 
             return {
                 "calculateSaldo": calculateSaldo
-            }
+            };
         });
 })();

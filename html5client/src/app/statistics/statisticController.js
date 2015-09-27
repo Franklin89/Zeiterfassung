@@ -65,8 +65,8 @@
                         projects = result;
                     }, function () {
                         swal("Oops...", "Fehler beim Lesen der Projekte!", "error");
-                    })
-            };
+                    });
+            }
 
             function readTasks() {
                 taskIntegrationService.readAllTasks()
@@ -74,8 +74,8 @@
                         tasks = result;
                     }, function () {
                         swal("Oops...", "Fehler beim Lesen der T\u00E4tigkeiten!", "error");
-                    })
-            };
+                    });
+            }
 
             function ermittleTaskNameForRecords(userTasks) {
                 for (var i = 0; i < userTasks.length; i++) {
@@ -86,23 +86,23 @@
 
             function ermittleProjectNameForRecords(userTasks) {
                 for (var i = 0; i < userTasks.length; i++) {
-                    var projectName = getProjectNameFromProjetId(userTasks[i].ProjectId);
+                    var projectName = getProjectNameFromProjectId(userTasks[i].ProjectId);
                     records[i].ProjectName = projectName;
                 }
             }
 
-            function getProjectNameFromProjetId(projectId) {
-                var projectName = undefined;
+            function getProjectNameFromProjectId(projectId) {
+                var projectName;
 
                 projects.some(function (project) {
                     projectName = project.Name;
                     return project.Id === projectId;
                 });
                 return projectName;
-            };
+            }
 
             function getTaskNameFromTaskId(taskid) {
-                var taskName = undefined;
+                var taskName;
 
                 tasks.some(function (task) {
                     taskName = task.Name;
@@ -110,7 +110,7 @@
                 });
 
                 return taskName;
-            };
+            }
 
             function ermittleFerien() {
                 records.forEach(function (record) {
@@ -119,7 +119,7 @@
                         _this.gebrauchteFerienTage += record.Time;
                     }
                 });
-            };
+            }
 
             _this.isUserAdmin = function () {
                 return authenticationIntegrationService.isAdmin();
@@ -139,7 +139,7 @@
                                 year: year,
                                 time: userTask.Time
                             }
-                        )
+                        );
                     }
                     else {
                         _this.monthOverview.forEach(function (entry) {
@@ -155,13 +155,13 @@
                                     year: year,
                                     time: userTask.Time
                                 }
-                            )
+                            );
                         }
                     }
                 });
             }
 
-            function createUserTasksOverviewForUser(userTasks) {
+            function createUserTasksOverviewForUser() {
                 userIntegrationService.readUsers()
                     .then(function (result) {
                         var allUsers = result;
@@ -180,10 +180,10 @@
                                         "name": user.FirstName + " " + user.LastName,
                                         "time": loggedTimeByUser
                                     });
-                                })
+                                });
                             }), function () {
                             swal("Oops...", "Fehler beim Lesen der T\u00E4tigkeiten!", "error");
-                        }
+                        };
                     }, function () {
                         swal("Oops...", "Ein Fehler ist aufgetreten!", "error");
                         return undefined;
@@ -203,7 +203,7 @@
                             .then(function (result) {
                                 records = result.UserTasks;
 
-                                if (result.UserTasks.length != 0) {
+                                if (result.UserTasks.length !== 0) {
                                     ermittleTaskNameForRecords(result.UserTasks);
                                     ermittleProjectNameForRecords(result.UserTasks);
                                     ermittleFerien();
@@ -223,7 +223,7 @@
                             },
                             function () {
                                 swal("Oops...", "Beim zweiten Lesen des Benutzers ist ein Fehler aufgetreten!", "error");
-                            })
+                            });
                     },
                     function () {
                         swal("Oops...", "Beim Lesen des Benutzers ist ein Fehler aufgetreten!", "error");

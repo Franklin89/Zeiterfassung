@@ -56,7 +56,7 @@
                                 dfd.resolve(result);
                             })
                             .error(function(result, status) {
-                                dfd.reject({result: result, status: status})
+                                dfd.reject({result: result, status: status});
                             });
 
                         taskIntegrationService.updateAllTasks(project.Tasks);

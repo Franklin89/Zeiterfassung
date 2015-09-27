@@ -1,9 +1,5 @@
-/**
- * Created by Kiwi on 19.09.15.
- */
-
 (function () {
-
+    'use strict';
     var timerecordingapp = angular.module('zeiterfassung.ui');
 
     timerecordingapp.controller("TimeRecordingController", ['$scope', 'ProjectIntegrationService',
