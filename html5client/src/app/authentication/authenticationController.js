@@ -11,7 +11,7 @@
                         .then(function(result) {
                             // authorized
                             if (authenticationIntegrationService.isAdmin()) {
-                                $state.go('projectManagement');
+                                $state.go('statistics');
                             }
                             else {
                                 $state.go('timeRecording');
