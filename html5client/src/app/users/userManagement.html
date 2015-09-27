@@ -16,7 +16,8 @@
                             <i class="fa fa-comments fa-5x">Benutzer erfassen</i>
                         </div>
 
-                        <form role="form" class="col-xs-9 text-left" autocomplete="off">
+                        <form id="userForm" role="form" class="col-xs-9 text-left" autocomplete="off"
+                              ng-submit="userForm.$valid && addUser()">
                             <div class="form-group">
                                 <label for="userName">Benutzername:</label>
                                 <input type="text" required class="form-control" id="userName" ng-model="account.userName">
@@ -29,7 +30,7 @@
                                 <label for="pwd">Passwort:</label>
                                 <input type="password" required class="form-control" id="pwd" ng-model="account.password">
                             </div>
-                            <button type="submit" class="btn btn-success" ng-click="addUser()">Erstellen</button>
+                            <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-success">Erstellen</button>
                         </form>
                     </div>
                 </div>
