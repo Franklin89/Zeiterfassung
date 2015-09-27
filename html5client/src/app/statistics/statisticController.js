@@ -64,7 +64,7 @@
                     .then(function (result) {
                         projects = result;
                     }, function () {
-                        alert("Beim Lesen der Projekte ist ein Error aufgetreten.");
+                        swal("Oops...", "Fehler beim Lesen der Projekte!", "error");
                     })
             };
 
@@ -73,7 +73,7 @@
                     .then(function (result) {
                         tasks = result;
                     }, function () {
-                        alert("Beim Lesen der Tasks ist ein Fehler aufgetreten");
+                        swal("Oops...", "Fehler beim Lesen der T\u00E4tigkeiten!", "error");
                     })
             };
 
@@ -182,10 +182,10 @@
                                     });
                                 })
                             }), function () {
-                            alert("Beim Lesen der User Tasks gab es einen Error");
+                            swal("Oops...", "Fehler beim Lesen der T\u00E4tigkeiten!", "error");
                         }
                     }, function () {
-                        alert("An Error occured");
+                        swal("Oops...", "Ein Fehler ist aufgetreten!", "error");
                         return undefined;
                     });
             }
@@ -222,11 +222,11 @@
                                 }
                             },
                             function () {
-                                alert("Beim zweiten Lesen des Benutzer ist ein Fehler aufgetreten");
+                                swal("Oops...", "Beim zweiten Lesen des Benutzers ist ein Fehler aufgetreten!", "error");
                             })
                     },
                     function () {
-                        alert("Beim Lesen des Benutzers ist ein Fehler aufgetreten");
+                        swal("Oops...", "Beim Lesen des Benutzers ist ein Fehler aufgetreten!", "error");
                     });
             };
 
@@ -331,4 +331,3 @@
     ])
     ;
 })();
-

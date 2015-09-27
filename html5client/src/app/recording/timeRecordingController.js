@@ -23,7 +23,7 @@
                         $scope.projects = result;
                     },
                     function () {
-                        alert("Error beim Lesen der Projekte");
+                        swal("Oops...", "Fehler beim Lesen der Projekte!", "error");
                     });
             };
 
@@ -34,7 +34,7 @@
                         console.log("Hier kommt der User" + angular.toJson(user));
                     },
                     function () {
-                        alert("Error beim Lesen der User");
+                        swal("Oops...", "Fehler beim Lesen der Benutzer!", "error");
                     });
             };
 
@@ -67,13 +67,12 @@
 
                 userTaskIntegrationService.createUserTask(userTaskToAdd)
                     .then(function(){
-                        alert("User Task erfolgreich hinzugefügt.");
+                        swal("Good job!", "Deine Zeit wurde erfolgreich hinzugefügt!", "success");
                     }, function(){
-                        alert("Leider konnte der User Task nicht hinzugefügt werden.")
+                        swal("Oops...", "Leider konnte der User Task nicht hinzugefügt werden!", "error");
                     });
 
                 console.log(angular.toJson(userTaskToAdd));
-
             };
 
             readProjects();
