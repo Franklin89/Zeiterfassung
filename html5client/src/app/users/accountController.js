@@ -56,8 +56,9 @@
                         cancelButtonText: 'Nein',
                         closeOnConfirm: true
                     }, function() {
-                        usersIntegrationService.deleteUser(user.Id).then(function(result) {
-                            readUsers();
+                        usersIntegrationService.deleteUser(user.Id)
+                            .then(function() {
+                                readUsers();
                         }, function() {
                             swal("Oops...", "Fehler beim L\u00f6schen des Benutzers", "error");
                         });
