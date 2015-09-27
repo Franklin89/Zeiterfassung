@@ -35,13 +35,16 @@
         'UserController',
         ['$scope', '$state', 'UsersIntegrationService',
             function($scope, $state, usersIntegrationService) {
-                usersIntegrationService.readUsers()
+                function readUsers(){
+                    usersIntegrationService.readUsers()
                         .then(function(result) {
                             // success
                             $scope.users = result;
                         }, function() {
-                            // TODO:show error message
+                            swal("Oops...", "Fehler beim Abrufen der Benutzer", "error");
                         });
+                }
+                readUsers();
 
                 $scope.deleteUser = function(user) {
                     swal({
@@ -53,8 +56,27 @@
                         cancelButtonText: 'Nein',
                         closeOnConfirm: true
                     }, function() {
-                        usersIntegrationService.deleteUser(user.Id);
+                        usersIntegrationService.deleteUser(user.Id).then(function(result) {
+                            readUsers();
+                        }, function() {
+                            swal("Oops...", "Fehler beim L\u00f6schen des Benutzers", "error");
+                        });
                     });
+                };
+
+                $scope.addUser = function() {
+                    usersIntegrationService.createUser({
+                            Username: $scope.account.userName,
+                            Email: $scope.account.email,
+                            Password: $scope.account.password
+                        }
+                    ).then(
+                        function() {
+                            readUsers();
+                        },
+                        function() {
+                            swal("Oops...", "Fehler beim Erstellen des Benutzers", "error");
+                        });
                 };
             }
         ]);
