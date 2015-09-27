@@ -5,12 +5,9 @@
         'ui.router',
         'zeiterfassung.users',
         'zeiterfassung.authentication',
-        'zeiterfassung.ui.app.constants',
-        'zeiterfassung.project.integrationservices',
-        'zeiterfassung.task.integrationservices',
-        'zeiterfassung.userTasks.integrationservices',
-        'angular-loading-bar',
-        'zeiterfassung.saldoCalculator'])
+        'zeiterfassung.project',
+        'zeiterfassung.statistics',
+        'angular-loading-bar'])
 
         .controller('MainController', ['$scope', '$state', 'AuthenticationIntegrationService',
             function($scope, $state, authenticationIntegrationService) {

@@ -1,9 +1,13 @@
 (function () {
     'use strict';
 
-    var timerecordingapp = angular.module('zeiterfassung.ui');
-
-    timerecordingapp.controller('StatisticsController', ['AuthenticationIntegrationService', 'UsersIntegrationService',
+    angular.module(
+        'zeiterfassung.statistics',
+        ['zeiterfassung.project.integrationservices', 'zeiterfassung.ui.app.constants',
+            'zeiterfassung.task.integrationservices', 'zeiterfassung.userTasks.integrationservices',
+            'zeiterfassung.authentication.integrationservices', 'zeiterfassung.users.integrationservices',
+            'zeiterfassung.saldoCalculator'])
+        .controller('StatisticsController', ['AuthenticationIntegrationService', 'UsersIntegrationService',
         'ProjectIntegrationService', 'TaskIntegrationService', 'SaldoHelper', 'UserTaskIntegrationService',
         function (authenticationIntegrationService, userIntegrationService,
                   projectIntegrationService, taskIntegrationService, saldoHelper,
