@@ -57,7 +57,7 @@
                                     {{dropdownDisplay}}
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <ul id="dropdownMenuMenu" class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <li ng-repeat="project in projects">
                                         <a href="" ng-click="dropDownSelected(project.Id, project.Name)">{{project.Name}}</a>
                                     </li>
@@ -65,11 +65,11 @@
                             </div>
                             <p>
                                 <label>Taskname</label>
-                                <input type="text" class="form-control" ng-model="taskname">
+                                <input id="tasknameInput" type="text" class="form-control" ng-model="taskname">
                             </p>
 
                             <p>
-                                <button class="btn btn-success" ng-click="insertTask()">Add Task</button>
+                                <button id="tasknameInputSubmit" class="btn btn-success" ng-click="insertTask()">Add Task</button>
                             </p>
                         </div>
                     </div>
