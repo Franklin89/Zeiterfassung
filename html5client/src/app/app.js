@@ -7,6 +7,7 @@
         'zeiterfassung.authentication',
         'zeiterfassung.project',
         'zeiterfassung.statistics',
+        'zeiterfassung.timeRecording',
         'angular-loading-bar'])
 
         .controller('MainController', ['$scope', '$state', 'AuthenticationIntegrationService',

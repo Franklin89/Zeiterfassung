@@ -1,8 +1,11 @@
 (function () {
     'use strict';
-    var timerecordingapp = angular.module('zeiterfassung.ui');
-
-    timerecordingapp.controller("TimeRecordingController", ['$scope', 'ProjectIntegrationService',
+    angular.module(
+        'zeiterfassung.timeRecording',
+        ['zeiterfassung.project.integrationservices', 'zeiterfassung.users.integrationservices',
+            'zeiterfassung.authentication.integrationservices', 'LocalStorageModule',
+            'zeiterfassung.userTasks.integrationservices'])
+        .controller("TimeRecordingController", ['$scope', 'ProjectIntegrationService',
         'UsersIntegrationService', 'AuthenticationIntegrationService', 'localStorageService', 'UserTaskIntegrationService',
         function ($scope, projectIntegrationService, userIntegrationService, authService,
                   localStorageService, userTaskIntegrationService) {
