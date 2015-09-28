@@ -18,7 +18,7 @@
             $scope.changesDetected = false;
             $scope.showSuccessAtTopOfPage = false;
             $scope.showFailureAtTopOfPage = false;
-            $scope.dropdownDisplay = 'Select a project';
+            $scope.dropdownDisplay = 'Projekt auswählen';
 
             var projectId, readProjects;
 
@@ -74,11 +74,11 @@
 
             $scope.insertTask = function() {
 
-                $scope.noProjectSelected = $scope.dropdownDisplay === 'Select a project';
+                $scope.noProjectSelected = $scope.dropdownDisplay === 'Projekt auswählen';
 
                 $scope.tasknameInvalid = $scope.taskname === undefined || $scope.taskname === '';
 
-                if ($scope.taskname !== undefined && $scope.dropdownDisplay !== 'Select a project') {
+                if ($scope.taskname !== undefined && $scope.dropdownDisplay !== 'Projekt auswählen') {
                     var taskToInsert = {
                         Name: $scope.taskname,
                         ProjectId: projectId
@@ -92,7 +92,7 @@
                             }, 2000);
                         },
                         function() {
-                            $scope.errorMessage = 'Fehler beim Einfügen des Tasks';
+                            $scope.errorMessage = 'Fehler beim Einfügen der Tätigkeit';
                             $scope.showFailureAtTopOfPage = true;
 
                             $timeout(function() {
@@ -106,7 +106,7 @@
             $scope.deleteTask = function(task) {
                 taskIntegrationService.deleteTask(task).
                     then(function() {
-                        $scope.successMeassage = 'Der Task wurde erfolgreich gelöscht';
+                        $scope.successMeassage = 'Die Tätigkeit wurde erfolgreich gelöscht';
                         $scope.showSuccessAtTopOfPage = true;
 
                         $timeout(function() {
@@ -114,7 +114,7 @@
                         }, 2000);
                         readProjects();
                     }, function() {
-                        $scope.errorMessage = 'Fehler beim Löschen des Tasks';
+                        $scope.errorMessage = 'Fehler beim Löschen der Tätigkeit';
                         $scope.showFailureAtTopOfPage = true;
 
                         $timeout(function() {
@@ -130,14 +130,14 @@
             $scope.saveAllProjects = function() {
                 projectIntegrationService.updateProjects($scope.projects)
                     .then(function() {
-                        $scope.successMeassage = 'Projekte und Tasks erfolgreich geändert';
+                        $scope.successMeassage = 'Projekte und Tätigkeiten erfolgreich geändert';
                         $scope.showSuccessAtTopOfPage = true;
 
                         $timeout(function() {
                             $scope.showSuccessAtTopOfPage = false;
                         }, 2000);
                     }, function() {
-                        $scope.errorMessage = 'Fehler beim Updaten der Tasks und Projekte';
+                        $scope.errorMessage = 'Fehler beim Aktualisieren der Tätigkeiten und Projekte';
                         $scope.showFailureAtTopOfPage = true;
 
                         $timeout(function() {

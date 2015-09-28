@@ -8,7 +8,7 @@
                   localStorageService, userTaskIntegrationService) {
 
             $scope.dropdownProjectDisplay = "Bitte wähle ein Projekt";
-            $scope.dropdownTaskDisplay = "Bitte wähle einen Task";
+            $scope.dropdownTaskDisplay = "Bitte wähle eine Tätigkeit";
             var projectId;
             var taskId;
             var user;
@@ -65,7 +65,7 @@
                     .then(function(){
                         swal("Good job!", "Deine Zeit wurde erfolgreich hinzugefügt!", "success");
                     }, function(){
-                        swal("Oops...", "Leider konnte der User Task nicht hinzugefügt werden!", "error");
+                        swal("Oops...", "Leider konnte die Arbeitszeit nicht hinzugefügt werden!", "error");
                     });
 
                 console.log(angular.toJson(userTaskToAdd));
