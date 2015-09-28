@@ -9,6 +9,9 @@
 
         beforeEach(inject(function(UsersIntegrationService) {
             userIntegrationService = UsersIntegrationService;
+        }));
+
+        beforeEach(function() {
             userDefinition = {
                 FirstName: 'Test Goa',
                 LastName: 'Goaner',
@@ -17,27 +20,39 @@
                 WorkingHoursPerDay: 6.1,
                 userName: 'GoanersAtmos'
             };
-        }));
+        });
 
         afterEach(function() {
             userIntegrationService = null;
+            userDefinition = null;
         });
 
-        it('initialization must work', function() {
+        xit('initialization must work', function() {
             expect(userIntegrationService).toBeDefined();
         });
 
-        xit('Create a user', function() {
-            var user;
+        describe('Test Create User', function() {
+            var users;
 
-            userIntegrationService.createUser(userDefinition)
-                .then(function(result) {
-                    user = result;
+            beforeEach(function() {
+                var t = userIntegrationService.createUserNew(userDefinition);
+                console.log('unrsolved Result ' + t);
+                t.then(function(result) {
+                    console.log('resolved Result ' + result);
+                    userIntegrationService.readUsers().then(function(result) {
+                        users = result;
+                    });
                 });
-            expect(user).toBeDefined();
+            });
+
+            xit('Should have createt a user', function() {
+                console.log(users);
+                expect(users).toBeDefined();
+                //expect(user).toBeDefined();
+            });
         });
 
-        it('read all users', function() {
+        xit('read all users', function() {
             var users, p = userIntegrationService.readUsers();
             console.log(p);
             p.then(function(result) {

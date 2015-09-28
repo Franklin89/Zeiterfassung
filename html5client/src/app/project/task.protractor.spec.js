@@ -58,6 +58,7 @@
 
         it('should delete the the task', function(){
             var newProject, newTask, deleteButton;
+            browser.waitForAngular();
             newProject = element.all(by.repeater('project in projects')).last();
             newTask = newProject.all(by.repeater('task in project.Tasks')).last();
             deleteButton = newTask.element(by.css('div a'));
