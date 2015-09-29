@@ -75,5 +75,12 @@
 
             readProjects();
             readUsersByName();
-        }]);
+        }])
+        .directive('datepicker', function() {
+            return function(scope, element, attrs) {
+                element.datepicker({
+                    format: 'dd.mm.yyyy'
+                });
+            }
+        });
 })();
