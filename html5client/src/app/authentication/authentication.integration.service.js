@@ -3,15 +3,17 @@
 
     angular.module(
         'zeiterfassung.authentication.integrationservices',
-        ['zeiterfassung.ui.app.constants', 'LocalStorageModule', 'angular-md5'])
-
+            ['zeiterfassung.ui.app.constants', 'LocalStorageModule', 'angular-md5'])
+        .config(function (localStorageServiceProvider) {
+            localStorageServiceProvider
+                .setStorageType('sessionStorage');
+        })
         .factory(
             'AuthenticationIntegrationService',
             ['$http', '$log', '$q', 'localStorageService', 'REST', 'md5',
             function($http, $log, $q, localStorageService, REST, md5) {
                 var authentication, localAuthData;
 
-                localStorageService.remove('authData');
                 authentication = {
                     isAuth: false,
                     userName: ''
