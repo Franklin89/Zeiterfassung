@@ -232,7 +232,5 @@
             readProjects();
             readTasks();
         }
-
-    ])
-    ;
+    ]);
 })();
