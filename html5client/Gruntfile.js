@@ -33,7 +33,7 @@
             },
             protractor: {
                 options: {
-                    configFile: "test/protractor-conf.js",
+                    configFile: "test/conf/protractor-conf.js",
                     noColor: false,
                     args: { }
                 },
