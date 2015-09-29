@@ -44,4 +44,4 @@ URL: https://interfaces.azurewebsites.net/api/...
 - REST
 
 ### Allgemein
-- Nur für Desktop
+- Vorallem für Desktop (Kann auch mit dem Mobile verwendet werden)
