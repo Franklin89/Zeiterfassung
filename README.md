@@ -5,12 +5,12 @@ URL: https://interfaces.azurewebsites.net/api/...
 ### Features
 - Benutzer CRUD 
   - Sollarbeitszeit - done
-- Projekt CRUD - delete pending
+- Projekt CRUD - done
 - Tätigkeiten CRUD - done
 - Zeiterfassen mit Tätigkeit und Projekt (Eintrag Editieren / Löschen)
-  - Pro Tag (navigierbar) 
+  - Pro Tag (navigierbar) - done (ohne Editieren - workaround: löschen und neu erstellen)
   - Anwesenheit von/bis (soll den Benutzer unterstützen) - wird nicht umgesetzt
-  - Erfassung nach Projekt und Tätigkeit ODER nur nach Tätigkeit - done aber immer mit projekt
+  - Erfassung nach Projekt und Tätigkeit ODER nur nach Tätigkeit - done aber immer mit einem projekt
 - Anmelden mit Benutzername und Passwort - done
   - Ein Benutzeraccount für *Admin* - done
 - Auswertung der Arbeitsstunden
