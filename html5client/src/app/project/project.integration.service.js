@@ -45,7 +45,7 @@
                     return dfd.promise;
                 }
 
-                function updater(dfd, projects, i){
+                function updater(dfd, projects, i) {
                     var project;
                     project = projects[i];
                     $log.debug('updateProjects: ' + angular.toJson(project, true));

@@ -31,7 +31,7 @@
             browser.waitForAngular();
         });
 
-        afterAll(function(){
+        afterAll(function() {
             var newProject, deleteButton;
             newProject = element.all(by.repeater('project in projects')).last();
             deleteButton = newProject.element(by.css('td > div > a'));
@@ -39,7 +39,7 @@
             browser.waitForAngular();
         });
 
-        it('should find the created Task', function(){
+        it('should find the created Task', function() {
             var newProject, newTask, inputText;
             newProject = element.all(by.repeater('project in projects')).last();
             newTask = newProject.all(by.repeater('task in project.Tasks')).last();
@@ -47,15 +47,15 @@
             expect(inputText.getAttribute('value')).toEqual(taskToAddName);
         });
 
-        it('should not display the project delete button', function(){
+        it('should not display the project delete button', function() {
             var newProject;
             newProject = element.all(by.repeater('project in projects')).last();
-            newProject.element(by.css('td > div > a')).isDisplayed().then(function(displayed){
+            newProject.element(by.css('td > div > a')).isDisplayed().then(function(displayed) {
                 expect(displayed).toBe(false);
             });
         });
 
-        it('should delete the the task', function(){
+        it('should delete the the task', function() {
             var newProject, newTask, deleteButton;
             browser.waitForAngular();
             newProject = element.all(by.repeater('project in projects')).last();

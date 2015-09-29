@@ -71,18 +71,18 @@
             return dfd.promise;
         }
 
-            function readTasks() {
-                var dfd = $q.defer();
-                $log.info('readAllTasks');
-                $http.get(REST.TASKS, null)
-                    .success(function(result) {
-                        dfd.resolve(result);
-                    })
-                    .error(function(result, status) {
-                        dfd.reject({result: result, status: status});
-                    });
-                return dfd.promise;
-            }
+        function readTasks() {
+            var dfd = $q.defer();
+            $log.info('readAllTasks');
+            $http.get(REST.TASKS, null)
+                .success(function(result) {
+                    dfd.resolve(result);
+                })
+                .error(function(result, status) {
+                    dfd.reject({result: result, status: status});
+                });
+            return dfd.promise;
+        }
 
         return {
             createTask: createTask,

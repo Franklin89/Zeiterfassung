@@ -34,14 +34,15 @@
             element(by.id('menuLogout')).click();
             browser.waitForAngular();
             alerter = element(by.css('.sweet-alert'));
-            alerter.element(by.css('.confirm')).click().then(function(){
-                browser.get(pageToTestUrl);
-                browser.waitForAngular();
-                expect(browser.getCurrentUrl()).toEqual(pageToTestUrl);
-            }, 3000);
+            alerter.element(by.css('.confirm')).click().then(
+                function() {
+                    browser.get(pageToTestUrl);
+                    browser.waitForAngular();
+                    expect(browser.getCurrentUrl()).toEqual(pageToTestUrl);
+                }, 3000);
         });
 
-        it('should do a failed login', function(){
+        it('should do a failed login', function() {
             element(by.id('password')).sendKeys(failedPwd);
             element(by.id('submitbutton')).click();
             browser.waitForAngular();

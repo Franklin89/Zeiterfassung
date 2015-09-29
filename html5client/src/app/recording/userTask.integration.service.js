@@ -2,13 +2,13 @@
  * Created by Kiwi on 22.09.15.
  */
 
-(function(){
+(function() {
     'use strict';
 
     angular.module('zeiterfassung.userTasks.integrationservices', ['zeiterfassung.ui.app.constants'])
 
         .factory('UserTaskIntegrationService', ['$http', '$log', '$q', 'REST',
-            function($http, $log, $q, REST){
+            function($http, $log, $q, REST) {
 
                 function createUserTask(userTask) {
                     var dfd = $q.defer();

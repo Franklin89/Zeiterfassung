@@ -22,7 +22,7 @@
             browser.waitForAngular();
         });
 
-        beforeEach(function(){
+        beforeEach(function() {
             var inputText, row;
             row = element.all(by.repeater('project in projects')).last();
             inputText = row.element(by.model('project.Name'));
@@ -39,7 +39,7 @@
             deleteButton.click();
             browser.waitForAngular();
             row = element.all(by.repeater('project in projects')).last();
-            if(row){
+            if (row) {
                 inputText = row.element(by.model('project.Name'));
                 projectName = inputText.getAttribute('value');
                 expect(projectName).not.toEqual(projectToAddName);

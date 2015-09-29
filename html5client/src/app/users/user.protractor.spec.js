@@ -14,11 +14,16 @@
             newUserEmail = 'new.user@incredibals.ch';
             newUserPwd = 'Test1234!';
             newUserWorkingHours = '8';
-            loginPageUrl = 'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/login';
-            timeRecordingUrl = 'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/timeRecording';
-            statisticsUrl = 'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/statistics';
-            accountSettingsUrl = 'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/account';
-            userAdministrationUrl = 'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/userManagement';
+            loginPageUrl =
+                'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/login';
+            timeRecordingUrl =
+                'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/timeRecording';
+            statisticsUrl =
+                'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/statistics';
+            accountSettingsUrl =
+                'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/account';
+            userAdministrationUrl =
+                'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/userManagement';
 
             newProjectName = 'Flow- Test- Project';
             projectTaskCodingName = 'Programmieren';
@@ -28,7 +33,7 @@
             browser.get(loginPageUrl);
         });
 
-        it('should log in the Administrator', function(){
+        it('should log in the Administrator', function() {
             element(by.id('username')).sendKeys(adminUserName);
             element(by.id('password')).sendKeys(adminUserPwd);
             element(by.id('submitbutton')).click();
@@ -36,7 +41,7 @@
             expect(browser.getCurrentUrl()).toEqual(statisticsUrl);
         });
 
-        it('should route the Admin to the User Administration Page', function(){
+        it('should route the Admin to the User Administration Page', function() {
             element(by.id('menuUserAdministration')).click();
             browser.waitForAngular();
             expect(browser.getCurrentUrl()).toEqual(userAdministrationUrl);
@@ -46,7 +51,7 @@
 
         });
 
-        it('should log out the Admin User', function(){
+        it('should log out the Admin User', function() {
             var alerter;
             element(by.id('menuLogout')).click();
             browser.waitForAngular();
@@ -58,7 +63,7 @@
             expect(browser.getCurrentUrl()).toEqual(loginPageUrl);
         });
 
-        it('it should login the newly created user', function(){
+        it('it should login the newly created user', function() {
             element(by.id('username')).sendKeys(newUserName);
             element(by.id('password')).sendKeys(newUserPwd);
             element(by.id('submitbutton')).click();

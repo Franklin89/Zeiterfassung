@@ -39,7 +39,7 @@
             }]);
 
     zeiterfassungsapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'cfpLoadingBarProvider',
-        function($stateProvider, $urlRouterProvider, $httpProvider ,cfpLoadingBarProvider) {
+        function($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider) {
             cfpLoadingBarProvider.spinnerTemplate = '<div class="col-lg-offset-6 dots-loader"></div>';
             $httpProvider.interceptors.push('AuthenticationInterceptorService');
             $urlRouterProvider.otherwise('/login');

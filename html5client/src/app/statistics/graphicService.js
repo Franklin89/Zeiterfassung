@@ -2,13 +2,13 @@
  * Created by Kiwi on 29.09.15.
  */
 
-(function(){
+(function() {
     'use strict';
     angular.module('zeiterfassung.graphicService', [])
 
-        .factory('GraphicService', function(){
+        .factory('GraphicService', function() {
 
-            var drawChartwithD3 = function (records) {
+            var drawChartwithD3 = function(records) {
                 var width = 360,
                     height = 360,
                     radius = Math.min(width, height) / 2,
@@ -34,7 +34,7 @@
                     .outerRadius(radius);
 
                 pie = d3.layout.pie()
-                    .value(function (d) {
+                    .value(function(d) {
                         return d.Time;
                     })
                     .sort(null);
@@ -44,14 +44,14 @@
                     .enter()
                     .append('path')
                     .attr('d', arc)
-                    .attr('fill', function (d) {
+                    .attr('fill', function(d) {
                         return color(d.data.TaskName);
                     }
                 );
 
-                path.on('mouseover', function (d) {
+                path.on('mouseover', function(d) {
                     var percent, total;
-                    total = d3.sum(records.map(function (d) {
+                    total = d3.sum(records.map(function(d) {
                         return d.Time;
                     }));
                     percent = Math.round(1000 * d.data.Time / total) / 10;
@@ -67,7 +67,7 @@
                     .enter()
                     .append('g')
                     .attr('class', 'legend')
-                    .attr('transform', function (d, i) {
+                    .attr('transform', function(d, i) {
                         var height = legendRectSize + legendSpacing,
                             offset = height * color.domain().length / 2,
                             horz = -2 * legendRectSize,
@@ -84,7 +84,7 @@
                 legend.append('text')
                     .attr('x', legendRectSize + legendSpacing)
                     .attr('y', legendRectSize - legendSpacing)
-                    .text(function (d) {
+                    .text(function(d) {
                         return d;
                     });
             };

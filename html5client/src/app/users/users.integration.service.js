@@ -34,7 +34,7 @@
             function readUserByUsername(username) {
                 var dfd = $q.defer();
                 $log.info('Read Users by username');
-                $http.get(REST.USERS + "/GetByUsername/" + username, {tracker: 'rest'})
+                $http.get(REST.USERS + '/GetByUsername/' + username, {tracker: 'rest'})
                     .success(function(result) {
                         dfd.resolve(result);
                     })
