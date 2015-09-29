@@ -20,6 +20,7 @@
             var projects;
             var tasks;
             var pageupdate = false;
+            _this.hasMoreThan6records = false;
             _this.ausstehendeFerientage = 25;
             _this.gebrauchteFerienTage = 0;
 
@@ -221,6 +222,9 @@
             };
 
             _this.limittimerecordsTo6 = function () {
+                if(records.length > 6){
+                    _this.hasMoreThan6records = true;
+                }
                 _this.timerecords = records.slice(0, 6);
             };
 

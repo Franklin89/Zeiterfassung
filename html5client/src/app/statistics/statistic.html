@@ -143,7 +143,7 @@
                             </div>
                             <div class="text-right">
                                 <!--<a ng-click="showallrecords()">Zeige alle Erfassungen <i class="fa fa-arrow-circle-right"></i></a>-->
-                                <button class="btn btn-info" ng-show="sc.timerecords.length <= 6"
+                                <button class="btn btn-info" ng-show="sc.timerecords.length <= 6 && sc.hasMoreThan6records"
                                         ng-click="sc.showallrecords()">Zeige alle Erfassungen
                                 </button>
                                 <button class="btn btn-warning" ng-show="sc.timerecords.length > 6"
