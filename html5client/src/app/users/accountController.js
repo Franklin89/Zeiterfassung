@@ -3,7 +3,8 @@
 
     angular.module(
         'zeiterfassung.users',
-        ['zeiterfassung.users.integrationservices', 'zeiterfassung.authentication', 'xeditable'])
+        ['zeiterfassung.users.integrationservices', 'zeiterfassung.authentication',
+            'xeditable', 'angular-md5'])
         .run(function(editableOptions) {
             editableOptions.theme = 'bs3';
         })
@@ -16,6 +17,7 @@
                         $scope.account = result;
                     }, function(reason) {
                         // show error message
+                        swal("Oops...", "Fehler beim Abfragen der Benutzer", "error");
                         return reason;
                     });
 
@@ -26,6 +28,7 @@
                             return true;
                         }, function(reason) {
                             // show error message
+                            swal("Oops...", "Fehler beim Editieren des Benutzers", "error");
                             return reason;
                         });
                 };
@@ -33,8 +36,8 @@
         ])
         .controller(
         'UserController',
-        ['$scope', '$state', 'UsersIntegrationService',
-            function($scope, $state, usersIntegrationService) {
+        ['$scope', '$state', 'UsersIntegrationService', 'md5',
+            function($scope, $state, usersIntegrationService, md5) {
                 function readUsers(){
                     usersIntegrationService.readUsers()
                         .then(function(result) {
@@ -69,7 +72,7 @@
                     usersIntegrationService.createUser({
                             Username: $scope.account.userName,
                             Email: $scope.account.email,
-                            Password: $scope.account.password
+                            Password: md5.createHash($scope.account.password)
                         }
                     ).then(
                         function() {
