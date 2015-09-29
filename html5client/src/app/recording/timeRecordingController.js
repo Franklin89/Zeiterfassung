@@ -30,7 +30,6 @@
                 userIntegrationService.readByUserName(getUserNameFromLocalStorage()).
                     then(function (result) {
                         user = result;
-                        console.log("Hier kommt der User" + angular.toJson(user));
                     },
                     function () {
                         swal("Oops...", "Fehler beim Lesen der Benutzer!", "error");
