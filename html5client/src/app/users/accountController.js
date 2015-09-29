@@ -70,6 +70,9 @@
 
                 $scope.addUser = function() {
                     usersIntegrationService.createUser({
+                            FirstName: $scope.account.firstName,
+                            LastName: $scope.account.lastName,
+                            WorkingHoursPerDay: $scope.account.workingHoursPerDay,
                             Username: $scope.account.userName,
                             Email: $scope.account.email,
                             Password: md5.createHash($scope.account.password)
