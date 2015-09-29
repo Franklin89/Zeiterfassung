@@ -40,8 +40,8 @@
             <li ui-sref-active="active" ng-hide="isAdmin()"><a ui-sref="timeRecording">Erfassung</a></li>
             <li ui-sref-active="active"><a ui-sref="statistics">&Uuml;bersicht</a></li>
             <li ui-sref-active="active" ng-hide="!isAdmin()"><a id="menuProjectManagement" ui-sref="projectManagement">Projektverwaltung</a></li>
-            <li ui-sref-active="active" ng-hide="isAdmin()"><a ui-sref="account">Mein Konto</a></li>
-            <li ui-sref-active="active" ng-hide="!isAdmin()"><a ui-sref="users">Benutzerverwaltung</a></li>
+            <li ui-sref-active="active" ng-hide="isAdmin()"><a id="menuAccount" ui-sref="account">Mein Konto</a></li>
+            <li ui-sref-active="active" ng-hide="!isAdmin()"><a id="menuUserAdministration" ui-sref="users">Benutzerverwaltung</a></li>
             <li ui-sref-active="active" ng-show="loggedIn()"><a id="menuLogout" href="" ng-click="logout()">Abmelden</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
