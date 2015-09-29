@@ -19,6 +19,19 @@
                         <form id="userForm" role="form" class="col-xs-9 text-left"
                               ng-submit="addUser()">
                             <div class="form-group">
+                                <label for="userName">Nachname:</label>
+                                <input type="text" required class="form-control" id="firstName" ng-model="account.firstName">
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">Vorname:</label>
+                                <input type="text" required class="form-control" id="lastName" ng-model="account.lastName">
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">Sollarbeitszeit pro Tag:</label>
+                                <input type="number" step="0.01" min="1" max="12" required class="form-control"
+                                       id="workingHoursPerDay" ng-model="account.workingHoursPerDay">
+                            </div>
+                            <div class="form-group">
                                 <label for="userName">Benutzername:</label>
                                 <input type="text" required class="form-control" id="userName" ng-model="account.userName">
                             </div>

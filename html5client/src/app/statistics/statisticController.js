@@ -14,7 +14,7 @@
                   projectIntegrationService, taskIntegrationService, saldoHelper,
                     userTaskIntegrationservice, graphicService) {
 
-            var _this = this, records, drawChartwithD3;
+            var _this = this, records;
             _this.workingHoursPerDay = 0;
             _this.saldo = 0;
             var projects;
@@ -107,7 +107,7 @@
                     reset();
                 }, function(){
                     swal("Beim Löschen des UserTasks ist ein Fehler aufgetaucht");
-                })
+                });
             };
 
             function createMonthOverview(userTasks){
@@ -147,11 +147,11 @@
             }
 
             function createUserTasksOverviewForUser() {
-                userIntegrationService.readUsers()
-                    .then(function (result) {
+                userIntegrationService.readUsers().then(
+                    function (result) {
                         var allUsers = result;
-                        userTaskIntegrationservice.readAllUserTasks()
-                            .then(function (result) {
+                        userTaskIntegrationservice.readAllUserTasks().then(
+                            function (result) {
                                 var userTasks = result;
                                 createMonthOverview(userTasks);
                                 allUsers.forEach(function (user) {
@@ -166,10 +166,12 @@
                                         "time": loggedTimeByUser
                                     });
                                 });
-                            }), function () {
-                            swal("Oops...", "Fehler beim Lesen der T\u00E4tigkeiten!", "error");
-                        };
-                    }, function () {
+                            },
+                            function () {
+                                swal("Oops...", "Fehler beim Lesen der T\u00E4tigkeiten!", "error");
+                            });
+                    },
+                    function () {
                         swal("Oops...", "Ein Fehler ist aufgetreten!", "error");
                         return undefined;
                     });

@@ -10,7 +10,7 @@
             targetUrl = 'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/statistics';
             testUser = 'Admin';
             testUserPwd = 'Admin1234!';
-            failedPwd = 'smokeAfterSex'
+            failedPwd = 'wrongpassword';
         });
 
         beforeEach(function() {
@@ -28,7 +28,7 @@
         });
 
         it('should logout', function() {
-            var alerter, confirmButton, target;
+            var alerter;
             element(by.id('submitbutton')).click();
             browser.waitForAngular();
             element(by.id('menuLogout')).click();

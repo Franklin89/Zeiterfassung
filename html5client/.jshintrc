@@ -24,6 +24,7 @@
     "describe",
     "beforeEach",
     "beforeAll",
+    "afterAll",
     "beforeEachAsync",
     "afterEach",
     "inject",

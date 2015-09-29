@@ -3,10 +3,9 @@
 
     describe('Project Erfassung - Test', function() {
 
-        var pageToTestUrl, testUser, taskToAddName, testUserPwd, projectToAddName, projectName, deleteButton;
+        var pageToTestUrl, testUser, taskToAddName, testUserPwd, projectToAddName;
 
         beforeAll(function() {
-            var dropDownList, project;
             pageToTestUrl = 'http://localhost:63342/Zeiterfassung/html5client/src/app/index.html#/login';
             testUser = 'Admin';
             testUserPwd = 'Admin1234!';
@@ -49,7 +48,7 @@
         });
 
         it('should not display the project delete button', function(){
-            var newProject, newTask, inputText;
+            var newProject;
             newProject = element.all(by.repeater('project in projects')).last();
             newProject.element(by.css('td > div > a')).isDisplayed().then(function(displayed){
                 expect(displayed).toBe(false);

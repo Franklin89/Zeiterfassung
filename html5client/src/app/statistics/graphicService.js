@@ -91,6 +91,6 @@
 
             return {
                 createGraphic: drawChartwithD3
-            }
+            };
         });
 })();

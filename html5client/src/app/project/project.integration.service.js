@@ -45,21 +45,24 @@
                     return dfd.promise;
                 }
 
+                function updater(dfd, projects, i){
+                    var project;
+                    project = projects[i];
+                    $log.debug('updateProjects: ' + angular.toJson(project, true));
+                    $http.put(REST.PROJECTS + '/' + project.Id, project)
+                        .success(function(result) {
+                            dfd.resolve(result);
+                        })
+                        .error(function(result, status) {
+                            dfd.reject({result: result, status: status});
+                        });
+                    taskIntegrationService.updateAllTasks(project.Tasks);
+                }
+
                 function updateProjects(projects) {
-                    var dfd = $q.defer(), i, project;
-
+                    var dfd = $q.defer(), i;
                     for (i = 0; i < projects.length; i++) {
-                        project = projects[i];
-                        $log.debug('updateProjects: ' + angular.toJson(project, true));
-                        $http.put(REST.PROJECTS + '/' + project.Id, project)
-                            .success(function(result) {
-                                dfd.resolve(result);
-                            })
-                            .error(function(result, status) {
-                                dfd.reject({result: result, status: status});
-                            });
-
-                        taskIntegrationService.updateAllTasks(project.Tasks);
+                        updater(dfd, projects, i);
                     }
                     return dfd.promise;
                 }
