@@ -53,10 +53,10 @@
 
             $scope.addUserTask = function(){
                 var dateAsArray = $scope.date.split(".");
-                var date = new Date(dateAsArray[2], dateAsArray[1], dateAsArray[0]);
+                var date = new Date(Date.UTC(dateAsArray[2], dateAsArray[1]-1, dateAsArray[0]));
 
                 var userTaskToAdd = {
-                    "Date": date,
+                    "Date": date.toISOString(),
                     "ProjectId": projectId,
                     "TaskId": taskId,
                     "Time": $scope.time,
