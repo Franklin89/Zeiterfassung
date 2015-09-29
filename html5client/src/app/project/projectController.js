@@ -90,6 +90,7 @@
                             $timeout(function() {
                                 $scope.taskInserted = false;
                             }, 2000);
+                            readProjects();
                         },
                         function() {
                             $scope.errorMessage = 'Fehler beim Einfügen der Tätigkeit';
@@ -99,7 +100,6 @@
                                 $scope.showFailureAtTopOfPage = false;
                             }, 2000);
                         });
-                    $timeout(readProjects, 2000);
                 }
             };
 
