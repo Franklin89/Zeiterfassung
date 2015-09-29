@@ -23,6 +23,7 @@ URL: https://interfaces.azurewebsites.net/api/...
 - Offline Modus
 - Grafik für die Auswertung - done
 - Berechtigungen - done
+- Mobile - done
 - Ausdrucken der Statistik
 - Weitere Auswertungen (Jahresansicht)
 - Konfiguration/Varianten Zeiterfassung (Templates, Vordefinierte Taetigkeiten, ...)
