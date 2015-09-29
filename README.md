@@ -14,15 +14,15 @@ URL: https://interfaces.azurewebsites.net/api/...
 - Anmelden mit Benutzername und Passwort - done
   - Ein Benutzeraccount für *Admin* - done
 - Auswertung der Arbeitsstunden
-  - Für *normale* Benutzer: nur eigene Zeit
-  - Für *Admin*: Alle
-  - Monatsansicht Benutzer/Projekt
-  - Darstellung Zeitsaldo
+  - Für *normale* Benutzer: nur eigene Zeit - done
+  - Für *Admin*: Alle - done
+  - Monatsansicht Benutzer/Projekt - done
+  - Darstellung Zeitsaldo - done
 
 ### Mögliche Erweiterung
 - Offline Modus
-- Grafik für die Auswertung
-- Berechtigungen
+- Grafik für die Auswertung - done
+- Berechtigungen - done
 - Ausdrucken der Statistik
 - Weitere Auswertungen (Jahresansicht)
 - Konfiguration/Varianten Zeiterfassung (Templates, Vordefinierte Taetigkeiten, ...)
