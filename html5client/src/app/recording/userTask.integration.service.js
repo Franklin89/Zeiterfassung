@@ -36,9 +36,23 @@
                     return dfd.promise;
                 }
 
+                function deleteUserTask(userTaskId) {
+                    var dfd = $q.defer();
+                    $log.debug('DeleteUserTask wit id : userTaskId');
+                    $http.delete(REST.USERTASKS + '/' + userTaskId, {tracker: 'rest'})
+                        .success(function(result) {
+                            dfd.resolve(result);
+                        })
+                        .error(function(result, status) {
+                            dfd.reject({result: result, status: status});
+                        });
+                    return dfd.promise;
+                }
+
                 return {
                     createUserTask: createUserTask,
-                    readAllUserTasks: readAllUserTasks
+                    readAllUserTasks: readAllUserTasks,
+                    deleteUserTask: deleteUserTask
                 };
             }]);
 })();

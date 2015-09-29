@@ -118,6 +118,7 @@
                                     <th>Anzahl Stunden</th>
                                     <th>Tätigkeiten</th>
                                     <th>Projekt</th>
+                                    <th>Löschen</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -126,6 +127,12 @@
                                     <td>{{ timerecord.Time }}</td>
                                     <td>{{ timerecord.TaskName }}</td>
                                     <td>{{ timerecord.ProjectName }}</td>
+                                    <td>
+                                        <div>
+                                        <a data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"
+                                                ng-click="sc.deleteUserTask(timerecord.Id)"><i class="glyphicon glyphicon-trash"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -183,7 +190,7 @@
 
                         <div id="chartcontainer">
                             <div id="chart"/>
-                            <div class="tooltipBox panel panel-primary">
+                            <div class="tooltipBox panel panel-default">
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="text-left">

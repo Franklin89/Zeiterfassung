@@ -18,50 +18,14 @@
             _this.saldo = 0;
             var projects;
             var tasks;
+            var pageupdate = false;
             _this.ausstehendeFerientage = 25;
             _this.gebrauchteFerienTage = 0;
 
             _this.usersOverview = [];
             _this.monthOverview = [];
 
-            records = [
-                {
-                    Date: '02.01.2015',
-                    Time: 8,
-                    TaskName: 'Programmieren',
-                    ProjectName: 'Testproject 1'
-                },
-                {
-                    Date: '02.01.2015',
-                    Time: 16,
-                    TaskName: 'Administratives',
-                    ProjectName: 'Testproject 2'
-                },
-                {
-                    Date: '02.01.2015',
-                    Time: 8,
-                    TaskName: 'Meeting',
-                    ProjectName: 'Testproject 3'
-                },
-                {
-                    Date: '02.01.2015',
-                    Time: 8,
-                    TaskName: 'Programmieren',
-                    ProjectName: 'Testproject 4'
-                },
-                {
-                    Date: '02.01.2015',
-                    Time: 8,
-                    TaskName: 'Programmieren',
-                    ProjectName: 'Testproject'
-                },
-                {
-                    Date: '02.01.2015',
-                    Time: 8,
-                    TaskName: 'Programmieren',
-                    ProjectName: 'Testproject'
-                }
-            ];
+            records = [];
 
             function readProjects() {
                 projectIntegrationService.readProjects()
@@ -125,8 +89,23 @@
                 });
             }
 
+            function reset(){
+                pageupdate = true;
+                _this.saldo = 0;
+                _this.gebrauchteFerienTage = 0;
+            }
+
             _this.isUserAdmin = function () {
                 return authenticationIntegrationService.isAdmin();
+            };
+
+            _this.deleteUserTask = function(userTaskId){
+                userTaskIntegrationservice.deleteUserTask(userTaskId).then(function(){
+                    _this.readUserTaskForUser();
+                    reset();
+                }, function(){
+                    swal("Beim Löschen des UserTasks ist ein Fehler aufgetaucht");
+                })
             };
 
             function createMonthOverview(userTasks){
@@ -198,7 +177,6 @@
                 var userName = _this.getCurrentUserName();
                 var user;
 
-                //TODO kk: Noch ausbauen - Wenn nicht muss die Id in den local Storage geschrieben werden.
                 userIntegrationService.readByUserName(userName)
                     .then(function (result) {
                         user = result;
@@ -215,7 +193,10 @@
                                     _this.saldo = saldoHelper.calculateSaldo(startdatum, _this.workingHoursPerDay, result.UserTasks);
                                     _this.timerecords = records;
                                     console.log("Records nach dem Lesen" + angular.toJson(records));
-                                    drawChartwithD3();
+
+                                    if(!pageupdate) {
+                                        drawChartwithD3();
+                                    }
                                     _this.limittimerecordsTo6();
 
                                     if (_this.isUserAdmin()) {
