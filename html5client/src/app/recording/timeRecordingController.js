@@ -66,6 +66,9 @@
                 userTaskIntegrationService.createUserTask(userTaskToAdd)
                     .then(function(){
                         swal("Good job!", "Deine Zeit wurde erfolgreich hinzugefügt!", "success");
+                        var newDate = new Date();
+                        newDate.setDate(date.getDate() + 1);
+                        $scope.date = newDate.toLocaleDateString();
                     }, function(){
                         swal("Oops...", "Leider konnte die Arbeitszeit nicht hinzugefügt werden!", "error");
                     });
