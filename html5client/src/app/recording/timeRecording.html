@@ -2,56 +2,60 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Neue Arbeitszeit erfassen
+                Arbeitszeit erfassen
             </h1>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
-            <label>Projekt</label>
+    <div class="jumbotron row">
+        <form role="form" class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4"
+                ng-submit="addUserTask()">
+            <div class="form-group">
+                <label>Projekt</label>
 
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="true">
-                    {{dropdownProjectDisplay}}
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li ng-repeat="project in projects">
-                        <a ng-click="projectDropDownSelected(project.Id)">{{project.Name}}</a>
-                    </li>
-                </ul>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        {{dropdownProjectDisplay}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="project in projects">
+                            <a ng-click="projectDropDownSelected(project.Id)">{{project.Name}}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <br />
-
-            <label>T&auml;tigkeit</label>
-            <div class="dropdown recordingdropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="true">
-                    {{dropdownTaskDisplay}}
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li ng-repeat="task in tasks" ng-click="taskDropDownSelected(task)"><a>{{task.Name}}</a></li>
-                </ul>
-            </div>
-            <label>Datum</label>
-            <div class="input-append date" id="dp3" data-date-format="dd.mm.yyyy">
-                <input class="span2 datepicker form-control" size="16" type="text" ng-model="date"/>
+            <div class="form-group">
+                <label>T&auml;tigkeit</label>
+                <div id="task" class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        {{dropdownTaskDisplay}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="task in tasks" ng-click="taskDropDownSelected(task)"><a>{{task.Name}}</a></li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- TODO kk: Noch ausbauen unobstrusive JavaScript -->
-                    <script type="text/javascript">
-                        $('.datepicker').datepicker({format: 'dd.mm.yyyy'})
-                    </script>
-
-            <label>Stunden</label>
-            <input type="number" min="1" max="12" value="3" class="form-control" ng-model="time"/>
-
-            <button class="btn btn-primary recordingbutton" ng-click="addUserTask()">Erfassen</button>
-
-        </div>
+            <div class="row">
+                <div class="form-group col-xs-2">
+                    <label for="date">Datum</label>
+                    <div class="input-append date" id="dp3" data-date-format="dd.mm.yyyy">
+                        <input id="date" datepicker class="datepicker form-control" size="16" type="text"
+                               ng-model="date" required/>
+                    </div>
+                </div>
+                <div class="form-group col-xs-2">
+                    <label for="hours">Stunden</label>
+                    <input id="hours" type="number" min="1" max="12" step="0.01"
+                           required class="form-control" ng-model="time"/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Erfassen</button>
+        </form>
     </div>
 </div>
