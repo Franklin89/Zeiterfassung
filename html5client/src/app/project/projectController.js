@@ -59,6 +59,8 @@
                                     $timeout(function() {
                                         $scope.projectInserted = false;
                                     }, 2000);
+                                    $scope.projectname = '';
+                                    readProjects();
                                 },
                                 function() {
                                     $scope.errorMessage = 'Fehler beim Erstellen des Projekts';
@@ -68,7 +70,6 @@
                                         $scope.showFailureAtTopOfPage = false;
                                     }, 2000);
                                 });
-                            $timeout(readProjects, 2000);
                         }
                     };
 
@@ -95,6 +96,7 @@
                                     $timeout(function() {
                                         $scope.taskInserted = false;
                                     }, 2000);
+                                    $scope.taskname = '';
                                     readProjects();
                                 },
                                 function() {
