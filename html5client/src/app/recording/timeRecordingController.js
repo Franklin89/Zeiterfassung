@@ -52,10 +52,10 @@
                         return authService.currentUsername();
                     };
 
-                    $scope.projectDropDownSelected = function(projectIdofSelectedItem) {
-                        $scope.tasks = $scope.projects[projectIdofSelectedItem - 1].Tasks;
-                        $scope.dropdownProjectDisplay = $scope.projects[projectIdofSelectedItem - 1].Name;
-                        projectId = $scope.projects[projectIdofSelectedItem - 1].Id;
+                    $scope.projectDropDownSelected = function(project) {
+                        $scope.tasks = project.Tasks;
+                        $scope.dropdownProjectDisplay = project.Name;
+                        projectId = project.Id;
                     };
 
                     $scope.taskDropDownSelected = function(task) {
