@@ -43,7 +43,7 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">{{sc.workingHoursPerDay}}</div>
+                                    <div class="huge">{{sc.workingHoursPerDay | number : 2}}</div>
                                     <div>Sollarbeitszeit</div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                                     <tbody>
                                     <tr ng-repeat="timerecord in sc.timerecords">
                                         <td>{{ timerecord.Date | date:'dd.MM.yyyy'}}</td>
-                                        <td>{{ timerecord.Time }}</td>
+                                        <td>{{ timerecord.Time | number : 2}}</td>
                                         <td>{{ timerecord.TaskName }}</td>
                                         <td>{{ timerecord.ProjectName }}</td>
                                         <td>
@@ -142,7 +142,6 @@
                                 </table>
                             </div>
                             <div class="text-right">
-                                <!--<a ng-click="showallrecords()">Zeige alle Erfassungen <i class="fa fa-arrow-circle-right"></i></a>-->
                                 <button class="btn btn-info" ng-show="sc.timerecords.length <= 6 && sc.hasMoreThan6records"
                                         ng-click="sc.showallrecords()">Zeige alle Erfassungen
                                 </button>
@@ -170,7 +169,7 @@
                                     <tbody>
                                     <tr ng-repeat="userlog in sc.usersOverview">
                                         <td>{{ userlog.name}}</td>
-                                        <td>{{ userlog.time }}</td>
+                                        <td>{{ userlog.time | number : 2}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -195,7 +194,7 @@
                                     <tbody>
                                     <tr ng-repeat="monthlog in sc.monthOverview">
                                         <td>{{ monthlog.month + "." + monthlog.year}}</td>
-                                        <td>{{ monthlog.time }}</td>
+                                        <td>{{ monthlog.time | number : 2}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
