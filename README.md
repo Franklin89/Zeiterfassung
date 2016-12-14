@@ -45,3 +45,7 @@ URL: https://interfaces.azurewebsites.net/api/...
 
 ### Allgemein
 - Vorallem für Desktop (kann auch mit dem Mobile verwendet werden)
+
+
+Project by:
+Matteo Locher (info@ml-software.ch / matteo.locher@ml-software.ch)
